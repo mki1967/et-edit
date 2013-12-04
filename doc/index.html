@@ -1,0 +1,955 @@
+<title> E.T. EDITOR - README </title>
+
+<h1>
+E.T. EDITOR:  EDGE TRIANGLE THREE-DIMENSIONAL EDITOR
+</h1>
+
+<img src="t_empty.png">
+
+<p>
+Copyright (C) 2003,2013  Marcin Kik      mki1967@gmail.com
+<br>
+E.T. EDITOR comes with ABSOLUTELY NO WARRANTY.
+<br>
+This is free software, and you are welcome to redistribute it
+under conditions of 
+<a href="../COPYING"> GNU GENERAL PUBLIC LICENSE </a>
+<br>
+Send any comments or suggestions to:
+<a href="mailto:mki1967@gmail.com"> mki1967@gmail.com </a>
+<br>
+Most recent versions are available at: 
+<a href="https://github.com/mki1967">
+https://github.com/mki1967
+</a>
+<br>
+</p>
+<p>
+See the <a href="NEWS"> NEWS </a> file for the recent 
+modifications of the program.
+</p>
+
+<h2>
+INSTALLING:
+</h2>
+
+<p>
+The program requires X11 with GL/GLX libraries.
+</p>
+
+
+
+<h2>
+DESCRIPTION OF THE PROGRAM:
+</h2>
+
+<p>
+E.T. EDITOR  is a graphical editor for designing 3-dimensional 
+graph consisting of colored edges and triangles.
+The main intention is to make the modeling process as direct
+as possible without additional hardware required
+for stereoscopic vision.
+It can be used for many useful purposes
+(e.g. designing 3D scenes in computer games).
+</p>
+
+<p>
+The graph is represented by following objects:
+
+<dl>
+<dt> Array of VERTICES
+</dt>
+<dd> each vertex is placed in a point of 3D space.
+</dd>
+
+<dt> Array of colored EDGES
+</dt>
+<dd> each edge is represented by line segment between
+   its incident vertices.
+</dd>
+
+<dt> Array of colored TRIANGLES
+</dt>
+<dd> a triangle is analogue of an edge but 
+   connects three vertices.
+</dd>
+</dl>
+</p>
+
+<p>
+The remaining objects of the editor are:
+<dl>
+
+<dt> CURSOR:
+</dt>
+<dd> indicates position in 3D space and current color.
+   Its orientation in the scene is fixed. 
+   The shape of the cursor is asymmetrical to help you find
+   your orientation  in the scene.
+</dd>
+
+<dt> OBSERVER:
+</dt>
+<dd> represents your  position and orientation in 3D space
+</dd>
+
+<dt> SCREEN:
+</dt>
+<dd> represents the view-port (zoom, resolution, etc)
+</dd>
+
+<dt> CONTEXT:
+</dt>
+<dd> modifies the meaning of some pressed keys
+</dd>
+
+<dt> GROUPS:
+</dt>
+<dd> each vertex belongs to a single group 
+   (denoted by an integer). 
+   Some actions can be performed on the groups of vertices.	
+</dd>
+</dl>
+</p>
+
+<p>
+You can manipulate these objects by invoking editing actions.
+Most of the actions are invoked by pressing the key while the input focus is
+on the graphical window.
+Sometimes you have to input a value in the terminal in
+which the program is started.
+Also some actions are invoked by selecting an item
+from text menu in the terminal.
+Therefore you should run the program in terminal as a foreground process.
+</p>
+
+<h3>
+USAGE:
+</h3>
+
+<p>
+In the directory containing the compiled program type:
+<br>
+./et-edit [filename.et]
+<br>
+You should have downloaded some example data: 
+the files with extension '.et'.
+(Warning: Keyboard CapsLock must be off.) 
+</p>
+
+<h3>
+USER ACTIONS:
+</h3>
+
+<dl>
+<dt>ROTATING THE SCENE: 
+&lt Arrow keys&gt /&lt Home&gt /&lt End&gt 
+</dt>
+<dd> 
+You may reset the orientation by pressing &lt R&gt  key.
+The observer is moved to a position from which it can see the cursor
+in the center of the screen.
+</dd>
+
+
+<dt>MOVING THE SCENE: 
+&lt Shift&gt +&lt Arrow keys&gt /&lt Home&gt /&lt End&gt 
+</dt>
+<dd>
+In F2 mode (i.e. after pressing the &lt F2&gt  key)
+you may increase/decrease  the moving step.
+</dd>
+
+
+<dt> MOVING THE CURSOR: 
+&lt Ctrl&gt +&lt Arrow keys&gt /&lt Home&gt /&lt End&gt 
+</dt>
+<dd>
+The cursor is moved by the "cursor step" in one
+of the six directions X+, Y+, Z+, X-, Y-, Z-.
+The selected direction depends on the orientation of the scene
+to the observer. 
+Whenever you move the cursor, its current (X,Y,Z) position is printed
+in the terminal.
+&lt Ctrl&gt +&lt F&gt   brings the cursor to the grid point 
+(i.e. the vector (x,y,z)*cursor_step, where x,y,z are integers) 
+close to the center of the screen.
+<br>
+In F2 mode (i.e. after pressing the &lt F2&gt  key)
+you may increase/decrease  the cursor step.
+You can also change the cursor parameters from text menu.
+</dd>
+
+
+<dt> FINDING A VERTEX: 
+&lt f&gt 
+</dt>
+<dd>
+This operation moves the cursor to the nearest vertex.
+</dd>
+
+
+<dt>INSERTING NEW EDGE:
+</dt>
+<dd>
+To insert new edge you have to insert two endpoint vertices.
+Pressing &lt Enter&gt  or &lt e&gt  in default context inserts
+a marker vertex in the cursor position and switches the context to et0.
+Note that in the context et0 the line between the marker and the
+cursor is drawn.
+Pressing &lt Enter&gt  or &lt e&gt  in context et0 inserts a new edge with two
+endpoints in positions of the marker and the cursor.
+</dd>
+
+
+<dt>INSERTING NEW TRIANGLE:
+</dt>
+<dd>
+Pressing &lt Enter&gt  or &lt e&gt  or &lt t&gt  in default context inserts
+a marker vertex in the cursor position and switches the context to et0.
+Pressing &lt t&gt  in context et0 inserts the second marker
+and switches the context to t1 (if the cursor is at position different from the
+first marker).
+In context t1 the triangle is drawn between the two markers and the cursor.
+Pressing &lt Enter&gt  or &lt t&gt  in context t1 inserts a new triangle with
+endpoints in positions of the markers and the cursor.
+</dd>
+
+
+<dt> CANCELING OPERATION:
+ &lt Esc&gt 
+</dt>
+<dd>
+This switches the context to default context.
+</dd>
+
+<dt> DELETING EDGES:
+</dt>
+<dd>
+To delete a single edge place the cursor in the first endpoint
+of the edge, press &lt e&gt  to switch the context to et0 and
+to mark the endpoint, then move the cursor to
+the second endpoint of the edge and press &lt Backspace&gt .
+<br>
+To delete all edges incident to a vertex,
+place the cursor at the vertex and press &lt Ctrl&gt +&lt Alt&gt +&lt x&gt 
+</dd>
+
+<dt> DELETING TRIANGLES:
+</dt>
+<dd>
+Deleting a single triangle is similar to deleting an edge:
+You start like inserting the triangle, but you finish it
+with &lt Backspace&gt .
+<br>
+To delete all triangles incident to a vertex,
+place the cursor at the vertex and press &lt Ctrl&gt +&lt Alt&gt +&lt Shift&gt +&lt x&gt 
+</dd>
+
+
+<dt> CHANGING CURRENT COLOR:
+ &lt c&gt 
+</dt>
+<dd>
+the color is changed cyclically
+</dd>
+
+<dt> CHANGING BACKGROUND COLOR: &lt b&gt 
+</dt>
+<dd>
+</dd>
+
+
+<dt> 
+SETTING THE LIGHT DIRECTION:
+&lt L&gt
+</dt>
+<dd>
+The brightness of each triangle depends on its
+orientation to the light direction.
+Press &lt L&gt  to set the light direction perpendicular to the screen
+(i.e. in the direction of your view).
+Note that there are two modes:
+<ul> 
+<li> one light mode
+</li>
+<li>two opposite lights mode
+</li>
+</ul>
+You can switch between the modes with &lt Shift&gt +&lt L&gt .
+The default is the second one: You have 
+two second light source in opposite direction
+to the main light.
+However, when you export to Povray,
+only the main light source is exported.
+</dd>
+
+<dt>SAVING TO A FILE: &lt Ctrl&gt +&lt s&gt 
+</dt>
+<dd>
+You have to input in the terminal the filename
+or "-" to leave the filename unchanged.
+</dd>
+
+<dt>LOADING: &lt Ctrl&gt +&lt l&gt 
+</dt>
+<dd>
+You have to input in the terminal the filename
+or "-" to leave the filename unchanged.
+</dd>
+
+
+<dt> MERGING: &lt Ctrl&gt +&lt Shift&gt +&lt l&gt 
+</dt>
+<dd>
+This adds the vertices, edges and triangles from the file
+to current graph. 
+The group numbers of the merged object are increased
+to be not mixed with existing groups.
+</dd>
+
+
+<dt>CLIPPING THE REGION: 
+</dt>
+<dd>
+You can clip of some fragments of the scene, that
+are obscuring the area you are working on.
+The &lt Ctrl&gt +&lt Shift&gt +&lt Arrow key&gt /&lt Home&gt /&lt End&gt  acts as
+the ON/OFF switch for clipping in given direction.
+The clipping plane is placed at the cursor
+and is parallel to two of the X,Y,Z axis.
+<br>
+To switch  off all the clipping planes press &lt Ctrl&gt +&lt Shift&gt +&lt R&gt .
+</dd>
+
+<dt>INVOKING TEXT MENU: 
+</dt>
+<dd>
+Pressing the key &lt M&gt  invokes the main menu in the 
+text terminal.
+The menu items are printed in separate lines.
+You select the item by inputing the string 
+printed on the left side of each item.
+</dd>
+
+
+<dt> UNDO: &lt U&gt 
+</dt>
+<dd>
+You can undo only the last step that 
+modified the structure of the graph or the groups.
+The graph structure, 
+groups, background and current color, cursor position, 
+context and the observer position are restored to the
+situation just before the last modifying action.
+</dd>
+
+
+<dt> INSERTING REGULAR POLYGON:
+</dt>
+<dd>
+You may insert a filled or not filled regular polygon
+composed of triangles, of edges or of edges with triangles
+(&lt Shift &gt+&lt O&gt, &lt Alt&gt+&lt O&gt
+ or &lt Shift &gt+&lt Alt&gt+&lt O&gt ).
+All vertices of the new polygon are placed in new group.
+CURRENT GROUP is set to this new group.
+Colors are equal to the current color.
+To increase/decrease the number of polygon vertices
+press &lt PageUp &gt/ &lt PageDown &gt.
+</dd> 
+
+<dt> STATISTICS: &lt =&gt  (key: EQUAL)
+</dt>
+<dd>
+The statistics about edited object are printed
+in the terminal:
+number of vertices, groups, edges, triangles,
+and the range of the object 
+(i.e. the minimal and maximal coordinates of vertices).
+</dd>
+
+<dt>EXPORTING TO 
+<a href="http://www.povray.org/"> POVRAY</a>:
+</dt>
+<dd>
+You can export a sequence of views of your scene to Povray
+scene description files,
+and then render them with the Povray program.
+(To render the exported scene call:
+ povray &lt filename&gt .ini
+where &lt filename&gt .ini and &lt filename&gt .pov are 
+the exported files - see the description below.)
+<p>
+The first scene should be exported by invoking the 
+MAIN MENU  in text terminal (&lt M&gt ) and then selecting 
+the Export ("4") to start EXPORT MENU and then selecting
+Povray ("pov") to start POVRAY EXPORT MENU.
+The subsequent exports can be done by pressing
+&lt Ctrl&gt +&lt Shift&gt +&lt S&gt  from graphical window.
+<p>
+In the POVRAY EXPORT MENU you can set the following parameters:
+<dl>
+<dt> file name prefix 
+</dt>
+<dt> counter
+</dt>
+<dd> 
+(Each exported file's name is a concatenation of the file name prefix
+and a counter. The counter is increased automatically 
+after each export. Thus you can prepare enumerated sequence of
+scenes for rendering.)
+</dd>
+
+<dt> edge radius
+</dt>
+<dd> 
+(Each edge is exported as a cylinder. 
+The radius of the cylinder should be rather small positive value.
+If you input the radius less or equal to zero, the
+edges are not exported.)       
+</dd>
+
+<dt> ambient
+</dt>
+<dt> diffuse
+</dt>
+<dd>
+These two parameters decide how large is
+the contrast between the shadowed and illuminated areas.
+</dd>
+
+<dt> light distance
+</dt>
+<dd>
+The distance of the light from the center of coordinate system.
+The very large value makes the light rays in the observed
+scene be almost parallel.
+The direction of the light is the same as in the editor. 
+</dd>
+</dl>
+</p>
+<p>
+To export the current view from POVRAY EXPORT MENU
+you select Export ("e").
+</p>
+<p>
+Note that two files are created:
+<dl> 
+<dt> the file with extension ".ini" 
+</dt>
+<dd>
+This file contains some Povray options.
+</dd>
+
+<dt> the file with extension ".pov"
+</dt>
+<dd>
+This file contains the description of exported scene:
+<ul>
+   <li> camera 
+   </li>
+   <li> light source 
+   </li>
+   <li> triangle colors 
+   </li>
+   <li> edge colors 
+   </li>
+   <li> edges (union of cylinders)
+   </li>
+   <li> triangles (mesh of triangles)
+   </li>
+</ul>
+Edge colors and edges are omitted if the edge radius is less or equal zero.
+</dd>
+</dl>
+</dd>
+</dl>
+</p>
+
+<h4>
+GROUPS:
+</h4>
+
+<p>
+Each vertex belongs to a single group.
+The groups are identified by natural numbers.
+There is an integer variable CURRENT GROUP.
+The initial value of this variable is zero.
+Each newly created vertex (endpoint of new edge or triangle) 
+becomes a member of current group.
+You can change the CURRENT GROUP number by pressing keys &lt N&gt  or &lt Shift&gt +&lt N&gt .
+The CURRENT GROUP number cycles through the already used 
+group numbers plus one greater number of an empty new group.
+The visibility can be restricted to the current group with key &lt 1&gt .
+(&lt 1&gt  acts as an ON/OFF switch).
+Thus you do not have to remember the numbers of the groups.
+You can just set the view to see all the objects, 
+press &lt 1&gt  and then start pressing &lt N&gt  until you find
+the group.
+</p>
+<p>
+You can move the groups groups with the keys: &lt Alt&gt +&lt Arrows&gt /&lt Home&gt /&lt End&gt .
+</p>
+<p>
+You can perform following actions by pressing 
+a sequence of two keys starting with &lt F1&gt :
+(note that after pressing &lt F1&gt  the list of these commands are printed in the terminal)
+<dl>
+
+<dt> &lt F1&gt  &lt M&gt  Mark current group [...]
+</dt>
+<dd>
+       You can store here the number of current group, 
+       and then change CURRENT GROUP, and perform the next operation.
+</dd>  
+
+<dt> &lt F1&gt  &lt Ctrl&gt +&lt M&gt  Move vertices from marked group to current group 
+</dt>
+<dd>
+      After this operation the vertices of the marked group become
+      members of the current group.
+      Note that the marked group becomes empty.
+</dd>
+
+<dt> &lt F1&gt  &lt E&gt  extract visible vertices to a new group
+</dt>
+<dd>
+        This creates a new group with vertices
+        contained in the region clipped by the &lt Ctrl&gt +&lt Shift&gt +&lt Arrows&gt /&lt Home&gt /&lt End&gt 
+        keys. 
+        If visibility is restricted to current group, then
+        only the vertices that are from the current group are
+        considered.
+        Note that after the operation the newly created group becomes
+        current group and the visibility is restricted to the current group.
+</dd>
+
+<dt> &lt F1&gt  &lt F&gt  change to a group incident to the cursor
+</dt>
+<dd>
+        This lets you find a group by touching its vertex with a cursor:
+        you have first to move the cursor close to some vertex of an object,
+        then press &lt F&gt  to make the cursor jump exactly to the vertex
+        and then press the sequence &lt F1&gt  &lt F&gt  to change current group
+        to the group that contains this vertex.
+</dd>
+         
+<dt> &lt F1&gt  &lt C&gt  copy to new group
+</dt>
+<dd>         
+        Makes a copy of all edges and triangles contained in the
+        current group and places them in a new group.
+        It also changes CURRENT GROUP to the newly created group.
+        Note that the new group is in the same place as the old one.
+        You have to move it with &lt Alt&gt +&lt Arrows&gt /&lt Home&gt /&lt End&gt 
+        to see both the copy and the original.
+</dd>
+
+<dt> &lt F1&gt  &lt Alt&gt +&lt C&gt  copy and glue with edges
+</dt>
+<dd>        
+        The same as &lt C&gt  but it also creates an edge connecting
+        each vertex with its copy.
+        The color of connecting edges is the CURRENT COLOR 
+        (color of the cursor).
+</dd>
+
+<dt> &lt F1&gt  &lt Shift&gt +&lt C&gt  copy and glue with triangles
+</dt>
+<dd>
+         The same as &lt C&gt  but it also creates a pair of triangles
+         between each edge and its copy.
+         The color of the connecting triangles is the same
+         as the color of the edges.
+         (It is useful, when you want to make a 3D object by 
+         from a group that is its 2D projection.) 
+</dd>     
+
+<dt> &lt F1&gt  &lt Alt&gt +&lt Shift&gt +&lt C&gt  copy and glue with edges and triangles
+</dt>
+
+
+<dt> &lt F1&gt  &lt Z&gt  remove empty group numbers
+</dt>
+<dd>
+      Some of the groups may become empty. 
+      This operation eliminates them 
+      (so that the &lt N&gt  key cycles only through nonempty 
+      groups except the last one).
+</dd>
+
+<dt> &lt F1&gt  &lt Alt&gt +&lt X&gt  delete edges incident to current group
+</dt>
+
+<dt> &lt F1&gt  &lt Shift&gt +&lt X&gt  delete triangles incident to current group
+</dt>
+
+<dt> &lt F1&gt  &lt Shift&gt +&lt Alt&gt +&lt X&gt  delete edges and triangles incident to current group
+</dt>
+<dd>
+    Deleting edges/triangles that have at least one vertex in current group
+</dd>
+  
+<dt> &lt F1&gt  &lt Alt&gt +&lt P&gt  paint edges of current group with current color
+</dt>
+
+<dt> &lt F1&gt  &lt Shift&gt +&lt P&gt  paint triangles of current group with current color
+</dt>
+
+
+<dt> &lt F1&gt  &lt V&gt  move current group by vector (et0_marker, cursor) (only in context et0)
+</dt>
+<dd>
+       Move all vertices of current group by the vector
+       from the marker to the cursor.
+</dd>
+
+<dt> &lt F1&gt  &lt Up&gt /&lt Right&gt /&lt Home&gt  rotate current group 90 degrees around the axis
+</dt>
+<dd>
+       This is reversible operation.
+       (By typing tree more times the same sequence.)
+</dd>
+
+<dt>  &lt F1&gt  &lt Space&gt  group menu in the text terminal
+</dt>
+<dd>
+       This invokes the group menu in the text terminal.
+       The menu offers you the commands that require 
+       arguments typed from the terminal. 
+</dd>
+
+<dt> &lt F1&gt &lt =&gt current group statistics
+</dt>
+<dd>
+Prints the number of vertices in current group.
+Prints the number of internal and incident
+edges and triangles,
+where "internal" are the objects with all vertices in the group
+and "incident" are the objects with at least one vertex in the
+group.
+</dd>
+
+</dl>
+</p>
+
+<h4>
+POINT STORAGE: &lt F3&gt 
+</h4>
+
+<p>
+There are vector variables named '0' ... '9' and 'A' ... 'O'. 
+
+The current position of the cursor can be stored
+by pressing a sequence of keys &lt F3&gt  &lt *&gt  where &lt *&gt  denotes
+one of the keys &lt 0&gt  ... &lt 9&gt  or &lt A&gt  ... &lt O&gt .
+The points named by letters may be used as parameters of constructive methods.
+
+The stored points are not visible but you can locate 
+each of them by pressing the sequence &lt F3&gt  &lt Ctrl&gt +&lt *&gt .
+This moves the cursor to the point '*'.
+</p>
+
+<h4>
+CONSTRUCTIVE METHODS: &lt F4&gt 
+</h4>
+
+<p>
+The parameters of constructive methods are the points named
+by letters from the POINT STORAGE. 
+<dl>
+
+<dt> &lt F4&gt &lt C&gt 
+</dt>
+<dd>
+moves the cursor to the (weighted) center of current group.
+Note that you may want to do vertex reduction
+(&lt F5&gt) before this action.
+</dd>
+
+<dt> &lt F4&gt &lt N&gt 
+</dt>
+<dd>
+finds the vector normal to the plane ABC.
+The normal vector is scaled by the current length of cursor step.
+The context is switched to et_0 (inserting second endpoint of
+edge or triangle).
+The vector is represented by [cursor_position-et0_marker],
+(where et0_marker the position of cursor just before this operation) 
+and is visible as the line of et0 context.
+Note that you can change the length and the direction
+of the vector by selecting the following item from text menu:
+&lt M &gt "1" "e" move cursor to new distance from et0 marker. 
+
+</dd>
+
+<dt> &lt F4&gt  &lt I&gt  
+</dt>
+<dd>
+moves the cursor to the intersection point of the line
+         containing the points 'A' 'B' and the plane containing the points
+         'C' 'D' 'E'.
+
+         The following screen-shot shows an example:
+<br>
+<img src="t_line_plane_intersect.png"> 
+<br>
+         
+         Points 'A' 'B' are the two endpoints of the blue segment,
+         while 'C' 'D' 'E' are placed at three different vertices
+         of the red rectangle.
+         The cursor is placed in its position by the &lt F4&gt  &lt I&gt  operation.
+ 
+
+         Note that if the line AB is almost parallel to the plane CDE,
+         the cursor can be moved to some very distant place.
+         To move the cursor back to the screen press &lt Ctrl&gt +&lt F&gt .
+</dd>
+
+<dt> &lt F4&gt &lt Shift &gt+&lt I&gt  
+</dt>
+<dd>
+        creates a new group of edges. Each of these edges is an intersection
+        of a triangle from the current group with a triangle from the
+        marked group.
+        Note that after this operation the newly created group becomes
+        current group and the visibility is restricted to the current group.
+
+</dd>
+
+<dt>&lt F4&gt  &lt S&gt  
+</dt>
+<dd>
+scales the current subset by the factor |AB|/|BC|
+         so that the cursor is a fixed point of this transformation.
+</dd>
+
+
+<dt> &lt F4&gt  &lt Ctrl&gt +&lt S&gt  
+</dt>
+<dd>
+scales the current subset by the factor |AB|/|BC|
+         in the direction of the vector EF
+         so that the cursor is a fixed point of this transformation.
+
+         On the following screen-shot
+<br>
+<img src="t_scale_directed1.png">
+<br>
+         the white square and the green segment are inside the current set.
+         The points A and B are placed on two distinct ends of 
+         the green edge.
+         The points C and D are at two endpoints of one of the white edges.
+         The points E and F are at two endpoints of the red edge.
+         The following screen-shot 
+         shows the graph after the transformation.
+<br>
+<img src="t_scale_directed2.png">
+<br>
+
+</dd>
+
+<dt> &lt F4&gt  &lt T&gt  Three point transformation: 
+</dt>
+<dd>
+isometric transformation
+	that transforms the plane defined by the points ABC into the
+	plane defined by DEF.
+
+        On the screen-shot 
+<br>
+<img src="t_three_point1.png"> 
+</br>
+        the current group is the left
+        pyramid.
+        Point A is placed where the green edge meets the yellow edge.
+        Points B and C are on the other sides of the yellow and green edge
+        respectively.
+        Point D is placed where the blue edge meets the red edge.
+        Point E is placed on the far end of the red edge.
+        Point F is placed on the lower end of the blue edge.
+        The transformed graph is shown on the following screen-shot.
+<br>
+<img src="t_three_point2.png">
+<br>
+Note that the three-point transformation is very universal:
+any rotation and movement is a special case of this operation.
+</dd>
+
+<dt> FOLDING: &lt F4 &gt &lt Ctrl &gt +&lt F &gt 
+</dt>
+<dd>
+This operation rotates the marked group around the line AB
+and the current group around the line AC.
+The line AD is transformed by the first rotation
+and the line AE is transformed by the second rotation
+to the same line.
+The rotations are made in the direction of point F.
+See the following screen-shot.
+<br>
+<img src="t_fold1.png">
+<br>
+The blue pentagon is the marked group.
+The red pentagon is the current group.
+Point A is placed where the red and the blue pentagons meet each other.
+Point B is placed on the other end of the border between the
+blue and green pentagons.
+Point C is placed on the other end of the border between the
+red and green pentagons.
+Point D is placed on the other end of the white edge on the border
+of the blue pentagon.
+Point E is placed on the other end of the white edge on the border
+of the red pentagon.
+Point F is in the same place as the cursor.
+The graph after the folding is shown on the following screen-shot.
+<br>
+<img src="t_fold2.png">
+<br>
+Note that the sides of the rotated pentagons are aligned.
+(The white edges did not belong to the folded groups,
+so they stayed in place.)
+<p>
+Folding is implemented in two steps:
+First a point V is found, such that the line
+AV is the alignment line and |AV|=1.
+Then two three-point transformations are applied:
+from ABD to ABV, for the marked group,
+and from ACE to ACV, for the current group.
+You can find the point V (without rotating the groups)
+by pressing &lt F4&gt &lt F&gt.
+</dd>
+
+</dl>
+</p>
+
+<h3>
+REDUCTIONS &lt F5 &gt
+</h3>
+
+<p>
+<dl>
+<dt>
+&lt F5 &gt &lt V &gt
+</dt>
+
+<dd>
+Reduces vertices in current group:
+The group of vertices that are very 
+close to each other are replaced by a single vertex.
+</dd>
+
+<dt>
+&lt F5 &gt &lt 1 &gt
+</dt>
+<dd>
+You input the new value of the reduction epsilon
+in the text terminal.
+The greater is the value of the reduction epsilon, the greater is
+the chance that two vertices are replaced by the same single vertex
+by the vertex reduction operation. 
+</dd>
+
+</dl>
+</p>
+
+
+<h3>
+STEREOSCOPIC MODE:
+</h3>
+
+<dl>
+<dt>
+&lt F7 &gt &lt F7 &gt
+</dt>
+<dd>
+Switching the stereoscopic mode ON/OFF.
+You need the red-blue glasses for viewing in this mode.
+(See the screen shot below.)
+Note that automatically a clipping cube is switched on to restrict the
+visible range to the objects around the cursor.
+You can remove the clipping cube with &lt Ctrl&gt+&lt Shift&gt+&lt R &gt,
+however the stereoscopic mode is suitable for viewing small objects
+that are within appropriate distance from the observer.
+It is especially useful for constructing monochromatic 
+wire-frame models.
+To update the clipping cube position after the cursor movements  press 
+&lt Ctrl &gt+&lt Shift&gt+&lt C&gt.
+If the object is too large or too small you can scale the view
+in &lt F2&gt mode (&lt Shift&gt+&lt S&gt/&lt S&gt) without changing the distance between your
+eyes and the cursor.
+You can then increase/decrease the clipping cube in F7 mode 
+([Ctrl+](&lt Shift&gt+&lt C&gt/&lt C&gt)).
+</dd>
+
+<dt>
+&lt F7 &gt [&lt Shift &gt+] &lt 1 &gt/&lt 2 &gt/&lt 3 &gt
+</dt>
+<dt>
+&lt F7 &gt [&lt Shift &gt+] &lt 7 &gt/&lt 8 &gt/&lt 9 &gt
+</dt>
+<dd>
+Modifying the Red/Green/Blue components of the left
+and right color, respectively.
+With Shift you increase and without Shift you decrease the component.
+Note that one color (initially the left one) is masked
+so that only its red component is used, while the
+other is masked so that only its green and blue components
+are used. 
+</dd>
+
+<dt>
+&lt F7 &gt [&lt Shift &gt+] &lt E &gt
+</dt>
+<dd>
+Modifying the assumed distance between the eyes.
+</dd>
+
+<dt>
+&lt F7 &gt [&lt Shift &gt+] &lt C &gt
+</dt>
+<dd>
+Modifying the size of the clipping cube.
+</dd>
+
+<dt>
+&lt F7 &gt &lt X &gt
+</dt>
+<dd>
+Swapping the left and right color for the  
+reversed  red-blue glasses.
+</dd>
+
+<br>
+<a href=stereo.html>
+<img src="t_stereo1.png">
+</a>
+<br>
+
+
+
+<h2>
+EXAMPLES
+</h2>
+<ul>
+<li>
+<a href="icosahedron.html"> Constructing icosahedron
+<br>  
+<img src="t_icosahedron8.png"> 
+</a>
+
+<li>
+<a href="tt_intersect.html"> Application of triangles intersection 
+(&lt F4&gt &lt Shift&gt+&lt I &gt).
+<br>  
+<img src="t_tt_intersect10.png"> 
+</a>
+
+
+</li>
+</ul>
+
+
+
+
+

@@ -1,0 +1,128 @@
+
+Date: 2004-03-02
+<F2> [<Ctrl>]+(<Shift>+<A>/<A>) [precise] clip_min [1.000000]
+<F2> [<Ctrl>]+(<Shift>+<B>/<B>) [precise] clip_max [500.000000]
+
+
+Date: 2004-01-13
+<F2> <Shift>+<S>/<S>  scale up/down the view [1.000000]
+<F7> <Ctrl>+(<Shift>+<C>/<C>) double/halve clipping cube size
+
+
+--------   Release 0.18 -------
+
+Date: 2004-01-10
+<Ctrl>+<Shift>+<C> - clipping cube
+<F7> - stereo mode controls
+<F7> <F7> switch stereo mode ON/OFF
+<F7> [<Shift>+] <1>/<2>/<3> Modify R/G/B values of the left color
+<F7> [<Shift>+] <7>/<8>/<9> Modify R/G/B values of the right color
+<F7> <Shift>+<E>/<E> Modify distance between eyes
+<F7> <Shift>+<C>/<C> Modify clipping cube size
+<F7> <X> exchange left and right colors
+<F2> <Ctrl>+(<Shift>+<Z>/<Z>)  precise zoom  (screen distance)
+
+NOTE: the keys used for setting parameters in <F2> and <F7> mode
+do not switch the key mode to the "default mode".
+
+
+
+--------   Release 0.17 -------
+
+Date: 2003-12-16
+<F4> <Shift>+<I> intersection of triangles of marked and curent groups
+
+--------   Release 0.16 -------
+
+Date: 2003-12-06
+<F4> <C> move cursor to the current group center
+<F5> <1> input new reduction epsilon [0.000100]
+<F5> <V> reduce vertices in current group
+
+
+Date: 2003-12-03
+<F1> <=> current group statistics
+
+
+Date: 2003-12-02
+<F4> <N> find cursor_step*(normal to ABC)
+<M> "1" "e" move cursor to new distance from et0 marker 
+(in context et0 if cursor is not equal to et0_marker)
+
+
+--------   Release 0.15 -------
+
+Date: 2003-11-27
+README moved to README.html
+
+Date: 2003-11-26
+<F4> <F> find folding point: axes AB, AC, rotated lines AD, AE, direction F
+<F4> <Ctrl>+<F> folding marked and current group around AB and AC in direction F so that AD meets AE
+
+
+Date: 2003-11-24
+<Alt>+<O> - add regular polygon (edges)
+<Shift>+<O> - add regular polygon (triangles)
+<Alt>+<Shift>+<O> - add regular polygon (edges and triangles)
+<PageUp>/<PageDown> - increase/decrease number of polygon vertices
+
+
+
+--------   Release 0.14 -------
+
+Date: 2003-11-15
+<F4> <T> three point transformation ABC to DEF
+
+Date: 2003-11-15
+<F4> <S> scale current group by  |AB|/|CD| (where fixed_point=cursor)
+<F4> <Ctrl>+<S> scale current group by  |AB|/|CD| in direction EF
+
+
+
+--------   Release 0.13 -------
+
+Date: 2003-10-29
+<F3> - switch to F3 mode (STORED POINTS)
+<F4> - switch to F4 mode (CONSTRUCTIVE METHODS)
+<F4> <I> move cursor to intersection of line AB and plane CDE
+
+Date: 2003-10-27
+<U>  undo (last step only)
+<=>  statistics
+
+--------   Release 0.12 -------
+
+Date: 2003-10-20
+<F1> <Up>/<Right>/<Home> rotate current group 90 degrees around the axis
+F2 mode:
+<F2> <Shift>+<Z>/<Z>  increase/decrease screen distance (zoom)
+<F2> <Shift>+<M>/<M>  double/halve move step 
+<F2> <Shift>+<C>/<C>  double/halve cursor step
+
+
+Date: 2003-10-15
+<F1>  <M> Mark current group 
+<F1>  <Ctrl>+<M> Move vertices from marked group  to current group 
+<F1>  <C> copy to new group
+<F1>  <Alt>+<C> copy and glue with edges
+<F1>  <Shift>+<C> copy and glue with triangles
+<F1>  <Alt>+<Shift>+<C> copy and glue with edges and triangles
+<F1>  <Z> Remove empty group numbers
+<F1>  <Alt>+<X> delete edges incident to current group
+<F1>  <Shift>+<X> delete triangles incident to current group
+<F1>  <Shift>+<Alt>+<X> delete edges and triangles incident to current group
+<F1>  <Alt>+<P> paint edges of current group with current color
+<F1>  <Shift>+<P> paint triangles of current group with current color
+<F1>  <V> move current group by vector (et0_marker, cursor)
+
+Date: 2003-10-14
+<F1> F1 key mode
+<F1> <E> extract visible vertices to a new group
+<Alt>+(<Arrow keys>, <Home>, <End>) - move current group
+
+Date: 2003-10-13  
+<Ctrl>+<F> move the cursor toward the screen centre 
+<1> switch visibility restriction to current group ON/OFF
+<N> change current group to next one (modulo max_group+2)
+<Shift>+<N> change current group to previous one (modulo max_group+2)
+

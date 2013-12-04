@@ -1,0 +1,144 @@
+<title> E.T. EDITOR: icosahedron example </title>
+
+<h1>
+Constructing icosahedron
+</h1>
+<ol>
+<li>
+Create two regular triangles (&lt Shift &gt+&lt O&gt)
+and move them (&lt Alt &gt+&lt Arrows &gt)
+so that they are in distinct places,
+and one pentagon (&lt Alt &gt+&lt O&gt).
+</li>
+
+<li>
+Scale the pentagon so that the length of its side
+is the same as the length of the triangle side:
+<ol>
+<li> 
+Place points A,B and C,D on two endpoints of the sides 
+of the triangle and the pentagon, respectively.
+(Move the cursor close to the vertex and jump to it with &lt F&gt key.
+Then press one of &lt F3 &gt &lt A &gt, &lt F3 &gt &lt B &gt,
+ &lt F3 &gt &lt C &gt or &lt F3 &gt &lt D &gt key sequences)
+</li>
+<li> 
+Press the key sequence &lt F4 &gt &lt S &gt.
+</li>
+</ol>
+</li>
+
+<li>
+Transform the triangles so that they are aligned to the
+two subsequent sides of the pentagon as on the following screen-shot.
+<br>
+<img src="t_icosahedron1.png"> 
+<br>
+It can be done with two three-point transformations (&lt F4 &gt &lt T &gt)
+with the points AB on two endpoints of the transformed triangle,
+C one step above A, 
+and the points DE on two endpoints of the side of pentagon, 
+F one step above D. 
+</li>
+
+<li>
+Fold the triangles around the sides of pentagon 
+(&lt F4&gt &lt Ctrl&gt+&lt F&gt).
+<br>
+<img src="t_icosahedron2.png"> 
+<br>
+</li>
+
+<li>
+Add remaining sides of the pyramid
+(the green triangles on the following screen-shot).
+<br>
+<img src="t_icosahedron3.png">
+<br>
+Use &lt F &gt to locate vertices and &lt T &gt to insert
+endpoints of triangles.
+</li>
+
+<li>
+Make two copies of the pyramid (&lt F1 &gt &lt C &gt)
+and new triangle.
+Align two pyramids to the sides of the triangle. 
+<br>
+<img src="t_icosahedron4.png">
+<br>
+</li>
+
+
+<li>
+Fold the aligned pyramids
+<br>
+<img src="t_icosahedron5.png">
+<br>
+</li>
+
+<li>
+Use three-point transformation to place the third pyramid 
+as on the following screen-shot.
+<br>
+<img src="t_icosahedron6.png">
+</br>
+</li>
+
+<li>
+Add the missing walls (the white triangles on the following screen-shot).
+<br>
+<img src="t_icosahedron7.png">
+</br>
+</li>
+
+<li>
+Extract all objects to a single group 
+(&lt F1 &gt &lt E &gt)
+</li>
+
+<li>
+Remove empty groups 
+(&lt F1 &gt &lt Z &gt)
+</li>
+
+<li>
+Reduce vertices in the current group
+(&lt F5 &gt &lt V &gt).
+Verify that the number of vertices after reduction is 12.
+If the number of vertices is greater,
+then input greater reduction epsilon (&lt F5 &gt &lt 1 &gt)
+and repeat vertex reduction.
+</li>
+
+<li>
+Move the center of the icosahedron to the point (0,0,0) as follows:
+<ol>
+<li> Move the cursor to the center of current group (&lt F4&gt &lt C&gt).
+</li>
+<li> Switch context to et0 (&lt E &gt).
+</li>
+<li> Move the cursor to the point (0,0,0) (&lt Ctrl &gt+&lt R &gt).
+</li>
+<li> Move the current group by the vector (cursor-et0_marker)
+(&lt F1 &gt &lt V&gt)
+</li>
+<li> Switch context to default context (&lt Esc &gt).
+</li>
+</ol>
+</li>
+
+<li>
+Remove edges from current group (&lt F1 &gt &lt Alt &gt+&lt X&gt).
+<br>
+<img src="t_icosahedron8.png"> 
+<br>
+</li>
+
+<li>
+You may paint all triangles with current color 
+(&lt F1 &gt &lt Shift &gt+&lt P&gt)
+<br>
+<img src="t_icosahedron9.png"> 
+<br>
+</li>
+</ol>

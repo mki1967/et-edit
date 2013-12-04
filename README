@@ -1,0 +1,100 @@
+
+E.T. EDITOR:  EDGE TRIANGLE THREE-DIMENSIONAL EDITOR
+
+Copyright (C) 2003  Marcin Kik      kik@im.pwr.wroc.pl
+
+E.T. EDITOR comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under conditions of GNU GENERAL PUBLIC LICENSE
+
+Send any comments or suggestions to: mki1967@gmail.com
+Most recent versions are available at: https://github.com/mki1967
+
+
+DESCRIPTION OF THE PROGRAM:
+---------------------------
+(Short tutorial has been placed on-line at: https://dl.dropboxusercontent.com/u/22924817/et-edit/doc/index.html )
+
+E.T. EDITOR  is a graphical editor for designing 3-dimensional 
+graph consisting of coloured edges and triangles.
+The main intention is to make the modelling process as direct
+as possible without additional hardware required
+for stereoscopic vision.
+I believe it can be used for many useful purposes
+(e.g. designing 3D scenes in computer games).
+
+
+The graph is represented by following objects:
+
+1. Array of VERTICES; each vertex is placed in a point of 3D space.
+
+2. Array of coloured EDGES; each edge is represented by line segment between
+   its incident vertices.
+
+3. Array of coloured TRIANGLES; a triangle is analogue of an edge but 
+   connects three vertices.
+
+The remaining objects of the editor are:
+
+1. CURSOR: indicates position in 3D space and current colour.
+   Its orientation in the scene is fixed. 
+   The shape of the cursor is asymmetrical to help you find
+   your orientation  in the scene.
+
+2. OBSERVER: represents your  position and orientation in 3D space
+
+3. SCREEN: represents the view-port (zoom, resolution, etc.)
+
+4. CONTEXT: modifies the meaning of some pressed keys
+
+3. GROUPS: each vertex belongs to a single group 
+   (denoted by an integer). 
+   Some actions can be performed on the groups of vertices.	
+
+You can manipulate these objects by invoking editing actions.
+Most of the actions are invoked by pressing the key while the input focus is
+on the graphical window.
+Sometimes you have to input a value in the terminal in
+which the program is started.
+Also some actions are invoked by selecting an item
+from text menu in the terminal.
+Therefore you should run the program in terminal as a foreground process.
+
+
+INSTALLING:
+-----------
+
+The program requires X11 with GL/GLX libraries.
+
+
+USAGE:
+------
+In the directory containing the compiled program type:
+
+./et-edit [filename.et]
+
+
+You should have downloaded some example data: 
+the files with extension '.et'.
+
+(Warning: Keyboard CapsLock must be off.) 
+
+Some simple tutorial is in HTML file:  doc/index.html
+
+
+USER ACTIONS:
+-------------
+
+You start the compiled  program with the command:
+./et-edit
+
+After starting the program, it opens the window, and reacts on the key press events in this
+window.
+Occasionally, it needs some text input from the terminal, where it is running.
+
+Type <H> command to print the key actions on the terminal in default mode.
+Whenever you switch the mode (F1, F2, ...) the key actions for the mode are
+printed on the terminal.
+
+Actions are described in HTML file:  doc/index.html
+
