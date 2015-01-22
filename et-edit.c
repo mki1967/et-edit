@@ -3668,7 +3668,7 @@ int povray_export()
     if(edge_top>0 && povray_edge_radius>0)
       {
 	int i;
-	// EDGE COLORS
+	/* // EDGE COLORS */
 	fprintf(povf, "\n// Colors of the edges\n");
 	for(i=0; i<COLOR_MAX; i++)
 	  {
@@ -5716,9 +5716,9 @@ void redraw_mono()
 
 void redraw()
 {
-  float rwidth, rheight;
+  float rwidth /* , rheight */;
   rwidth = screen.width*pixel_size;
-  rheight = screen.height*pixel_size;
+  /* rheight = screen.height*pixel_size; */
 
 
   triangle_recompute_normals();  /*  SORRY ! */
@@ -6716,7 +6716,7 @@ int main(int argc, char *argv[])
 
   printf("This is unstable test version, that can be freely redistributed.\n");
   printf("Send any comments or suggestions to: kik@im.pwr.wroc.pl\n");
-  printf("Most recent versions are available at: http: /* www.im.pwr.wroc.pl/~kik/et/\n"); */
+  printf("Most recent versions are available at:  https://github.com/mki1967/et-edit \n"); 
 
   printf("This is free software, and you are welcome to redistribute it\n");
   printf(" under conditions of GNU GENERAL PUBLIC LICENSE\n\n");

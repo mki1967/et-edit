@@ -19,7 +19,7 @@
  *    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  *
- *    The author can be reached at mki1967@gmail.com and https://github.com/mki1967
+ *    The author can be reached at mki1967@gmail.com and https://github.com/mki1967 
  *       
  *
  **/
@@ -41,9 +41,9 @@
 
 
 
-///// PROGRAM VARIABLES AND FUNCTIONS ////////////////////////
+ /* /// PROGRAM VARIABLES AND FUNCTIONS //////////////////////// */
 
-///////// X / GLX VARIABLES /////////////
+ /* /////// X / GLX VARIABLES ///////////// */
 
 Display *display;
 XVisualInfo *xvisualinfo_array;
@@ -57,7 +57,7 @@ XSetWindowAttributes windowattributes;
 GLXContext glxcontext;
 
 
-//////// PROGRAM INTERNAL VARIABLES
+ /* ////// PROGRAM INTERNAL VARIABLES */
 
 
 float pixel_size=0.028;
@@ -77,9 +77,9 @@ char merge_file_name[MAX_FILE_NAME+5]="noname.et";
 
 
 
-////// SCREEN VARIABLES
+ /* //// SCREEN VARIABLES */
 
-// float rwidth, rheight; 
+ /*  float rwidth, rheight;  */
 
 struct Screen
 {
@@ -91,7 +91,7 @@ struct Screen
 struct Screen screen;
 
 
-//// FRUSTUM VARIABLES (computed by setfrustum() )
+ /* // FRUSTUM VARIABLES (computed by setfrustum() ) */
 
 float frustum_left, frustum_right,frustum_bottom, frustum_top,
   frustum_near_val, frustum_far_val;
@@ -99,7 +99,7 @@ float frustum_left, frustum_right,frustum_bottom, frustum_top,
 
 double scale=1.0;
 
-//// STEREO VARIABLES
+ /* // STEREO VARIABLES */
 
 Bool stereo_mode=False;
 float stereo_eye_distance= 7.0;
@@ -109,7 +109,7 @@ float stereo_right_color[3]={0,0,1};
 GLboolean stereo_right_mask[3]={GL_FALSE, GL_TRUE, GL_TRUE};
 float stereo_background[3]={0,0,0};
 
-/// PCL VARIABLES
+ /* / PCL VARIABLES */
 
 char pcl_file_name[]="stereo.pcl";
 
@@ -125,7 +125,7 @@ double pcl_darkness=0.7;
 
 
 
-//// TRANSFORMATION VARIABLES
+ /* // TRANSFORMATION VARIABLES */
 
 struct Transformation 
 {
@@ -138,7 +138,7 @@ struct Transformation
 struct Transformation transformation;
 
 
-//// CLIPPING VARIABLES
+ /* // CLIPPING VARIABLES */
 
 struct Clipping_xyz
 {
@@ -163,7 +163,7 @@ struct Clipping_xyz clipping_xyz;
 float clipping_cube_size=25.0;
 
 
-///// COLOR VARIABLES
+ /* /// COLOR VARIABLES */
 
 #define COLOR_MAX 12
 
@@ -187,14 +187,14 @@ int background= COLOR_MAX-1;
 int current_color=0;
 
 
-//// LIGHT VARIABLES
+ /* // LIGHT VARIABLES */
 
 float basic_light[16]= {0.0, 0.0, 1.0, 0.0};
 float light[16]= {0.0, 0.0, 1.0, 0.0};
 Bool two_lights = True;
 
 
-//// VERTEX VARIABLES
+ /* // VERTEX VARIABLES */
 
 #define VERTEX_MAX 10000
 
@@ -202,26 +202,26 @@ int vertex_used[VERTEX_MAX];
 float vertex[VERTEX_MAX][3];
 
 
-///// EDGE VARIABLES
+ /* /// EDGE VARIABLES */
 
 #define EDGE_MAX 20000
 
 int edge[EDGE_MAX][3]; 
-// int edge_color[EDGE_MAX]; // moved to last coordinate of edge
+ /*  int edge_color[EDGE_MAX]; // moved to last coordinate of edge */
 int edge_top=0;
 
 
-//// TRIANGLE VARIABLES
+ /* // TRIANGLE VARIABLES */
 
 #define TRIANGLE_MAX 20000
 
 int triangle[TRIANGLE_MAX][4]; 
-// int triangle_color[TRIANGLE_MAX]; // moved to last coordinate of triangle
+ /*  int triangle_color[TRIANGLE_MAX]; // moved to last coordinate of triangle */
 float triangle_normal[TRIANGLE_MAX][3];
 int triangle_top=0;
 
 
-//// GROUP VARIABLES
+ /* // GROUP VARIABLES */
 
 int group[VERTEX_MAX];
 int group_current=0;
@@ -229,7 +229,7 @@ int group_marker=-1;
 Bool group_restricted=False;
 
 
-//// CURSOR VARIABLES
+ /* // CURSOR VARIABLES */
 
 float cursor[16]={ 0.0, 0.0, 0.0, 1.0 };
 
@@ -252,12 +252,12 @@ float cursor_vertex_template[CURSOR_VERTEX_MAX][3] =
 #define CURSOR_EDGE_TOP  4
 
 int cursor_edge[CURSOR_EDGE_TOP][3] = { {0,1,0}, {2,3,0}, {4,5,0}, {3,6,0} };
-// int cursor_edge_color[CURSOR_EDGE_TOP]= {0,0,0};
+ /*  int cursor_edge_color[CURSOR_EDGE_TOP]= {0,0,0}; */
 
 float cursor_step=1.0, cursor_min_step=0.0001, cursor_max_step=10000;
 
 
-//// EDITOR VARIABLES
+ /* // EDITOR VARIABLES */
 
 float move_step=1.0, rotate_step=5.0;
 
@@ -271,9 +271,9 @@ enum  Context
 enum Context context=context_default;
 
 
-float  et0_marker[3], t1_marker[3]; // for storing endpoits of new edge or triangle
+float  et0_marker[3], t1_marker[3];  /*  for storing endpoits of new edge or triangle */
 
-/// CALLBACK
+ /* / CALLBACK */
 
 enum Keymode
   {
@@ -291,7 +291,7 @@ enum Keymode
 enum Keymode keymode=key_default;
 
 
-/// LOAD/SAVE VARIABLES
+ /* / LOAD/SAVE VARIABLES */
 
 char transformation_label[]="TRANSFORMATION";
 char light_label[]="LIGHT";
@@ -301,18 +301,18 @@ char group_label[]="GROUPS";
 
 
 
-//// EXPORT FUNCTION VARIABLE
+ /* // EXPORT FUNCTION VARIABLE */
 
 int (*export_last_ptr)();
 
-/// POVRAY VARIABLES
+ /* / POVRAY VARIABLES */
 
 char povray_name[MAX_FILE_NAME+5]="povname";
 float povray_light_distance=100000.0;
 float povray_ambient=0.3;
 float povray_diffuse=0.7;
-// float povray_edge_ambient=1;
-// float povray_edge_diffuse=0;
+ /*  float povray_edge_ambient=1; */
+ /*  float povray_edge_diffuse=0; */
 float povray_light_red=1.0;
 float povray_light_green=1.0;
 float povray_light_blue=1.0;
@@ -323,7 +323,7 @@ int povray_counter=0;
 
 
 
-//// GRAPH VARIABLES
+ /* // GRAPH VARIABLES */
 
 int graph_first_nbr[VERTEX_MAX];
 int graph_nbr[2*EDGE_MAX+6*TRIANGLE_MAX];
@@ -336,7 +336,7 @@ int graph_queue_first, graph_queue_size;
 int graph_marked[VERTEX_MAX];
 
 
-//// BACKUP AND UNDO VARIABLES
+ /* // BACKUP AND UNDO VARIABLES */
 
 Bool was_modified=False;
 
@@ -374,14 +374,14 @@ float backup_move_step;
 
 
 
-//// POINTS
+ /* // POINTS */
 
 #define POINT_MAX 25
 
 float point[POINT_MAX][3];
 
 
-//// REGULAR POLYGON
+ /* // REGULAR POLYGON */
 
 #define POLYGON_MAX 720
 #define POLYGON_MIN 3
@@ -389,7 +389,7 @@ float point[POINT_MAX][3];
 int   polygon_n=POLYGON_MIN;
 
 
-//// REDUCTION
+ /* // REDUCTION */
 
 double reduction_epsilon=0.0001;
 
@@ -400,30 +400,30 @@ double reduction_epsilon=0.0001;
 
 
 
-//////////////  FUNCTIONS
+ /* ////////////  FUNCTIONS */
 
 
 
-//// XTERMINAL INTERACTION
+ /* // XTERMINAL INTERACTION */
 
 void get_file_name(char *file_name);
 float get_float();
 
 
-//// REGULAR POLYGON
+ /* // REGULAR POLYGON */
 
 void polygon_get_vertex(int i, float v[3]);
 void polygon_n_increase(int d);
 void polygon_add(Bool edges, Bool triangles);
 
 
-//// POINTS
+ /* // POINTS */
 
 void point_print();
 void point_store(int i, float v[3]);
 
 
-//// BACKUP AND UNDO
+ /* // BACKUP AND UNDO */
 
 void backup();
 void int_swap(int* a, int* b);
@@ -435,19 +435,19 @@ void triangle_swap(int a[4], int b[4]);
 void undo();
 
 
-//// SCREEN 
+ /* // SCREEN  */
 
 void screen_init(struct Screen* scr);
 void screen_set_distance(struct Screen* scr,float distance);
 void screen_set_clipping(struct Screen* scr,float clip_min, float clip_max);
 
 
-/// COLOR ADJUSTMENT
+ /* / COLOR ADJUSTMENT */
 
 void color_adjust(float r, float g, float b, float c[3]);
 
 
-/// VECTOR OPERATIONS
+ /* / VECTOR OPERATIONS */
 
 void float_zeroes(int n, float v[]);
 double matrix3_det(float m[3][3]);
@@ -465,14 +465,14 @@ double vector_length(float a[3]);
 double vector_distance(float a[3], float b[3]);
 void vector_normalize(float v[]);
 
-///// VECTOR I/O
+ /* /// VECTOR I/O */
 
 void vector_fprintf(FILE *stream, float v[3]);
 void vector_fscanf(FILE *stream, float v[3]);
 
 
 
-/// CONSTRUCTIVE METHODS
+ /* / CONSTRUCTIVE METHODS */
 
 void find_group_center(int g, float X[3]);
 void line_triangle_intersection( float A[3], float B[3],
@@ -498,7 +498,7 @@ Bool find_three_point_transform(float P1[3], float P2[3], float P3[3],
 void three_point_transform(float P1[3], float P2[3], float P3[3], 
 		      float Q1[3], float Q2[3], float Q3[3],
 			   int g);
-// FOLDING
+ /*  FOLDING */
 Bool find_centered_folding(float A1[3],float A2[3],
 			    float B1[3],float B2[3],
 			    float K[3],
@@ -509,7 +509,7 @@ Bool find_folding(float A[3],float B[3],float C[3],
 
 
 
-///// TRANSFORMATION //////////////////////////////////
+ /* /// TRANSFORMATION ////////////////////////////////// */
 
 void transformation_fprintf(FILE* s, struct Transformation* t);
 void transformation_fscanf(FILE* s, struct Transformation* t);
@@ -525,20 +525,20 @@ void find_versor(float x, float y, float z, float e[]);
 void sort_dimmensions(double x, double y, double z, struct Transformation *t,
 		      int d[3]);
 
-////// CLIPPING PLANES /////
+ /* //// CLIPPING PLANES ///// */
 
 void clip_reset(struct Clipping_xyz *clipping_xyz);
 void clip_cube(struct Clipping_xyz *clipping_xyz);
 void clip_xyz(float x, float y, float z, float cursor[], struct Clipping_xyz *clipping_xyz); 
 
-///// LIGHT ///////////////////////////////////
+ /* /// LIGHT /////////////////////////////////// */
 
 
 void set_light(float light[16]);
 void switch_second_light();
 
 
-//// VERTEX FUNCTIONS
+ /* // VERTEX FUNCTIONS */
 
 
 int vertex_number_of(int vertex_used[VERTEX_MAX]);
@@ -554,12 +554,12 @@ void vertex_get_range(float vertex[][3], int vertex_used[],
 		      float vmin[3], float vmax[3]);
 
 
-//// I/O
+ /* // I/O */
 
 void vertex_fprintf(FILE* s, int n, float v[][3]);
 int vertex_fscanf(FILE* s,  float v[][3], int v_used[]);
 
-//// EDGE STACK
+ /* // EDGE STACK */
 
 void edge_fprintf(FILE* s, int edge_top, int edge[][3] );
 void edge_fscanf(FILE* s, int* edge_top, int edge[][3], int vertex_used[]);
@@ -577,7 +577,7 @@ Bool edge_inside_group(int e[3], int g);
 void edge_delete_incident(float v[3]);
 void edge_paint_incident(float v[3], int color);
 
-//// TRIANGLE 
+ /* // TRIANGLE  */
 
 void triangle_fprintf(FILE* s, int triangle_top, int triangle[][4]);
 void triangle_fscanf(FILE* s, int* triangle_top, int triangle[][4], 
@@ -600,7 +600,7 @@ int triangle_vector_delete(float a[], float b[], float c[]);
 int triangle_find(int e[4]);
 
 
-/////////// GROUPS
+ /* ///////// GROUPS */
 
 void group_mark(int gr);
 int group_find(float v[3]);
@@ -631,7 +631,7 @@ void group_paint_triangles(int g, int color);
 void group_delete_edges(int g);
 void group_delete_triangles(int g);
 
-//////// CURSOR ///////
+ /* ////// CURSOR /////// */
 
 void cursor_set_shape();
 void cursor_move(float x, float y, float z);
@@ -641,20 +641,20 @@ void cursor_set_step(double step);
 void cursor_to_screen();
 
 
-/// REDUTCIONS
+ /* / REDUTCIONS */
 
 void reduce_group_vertices(int g);
 
 
 
-/////////////////// EDITOR  ///////////////////////////
+ /* ///////////////// EDITOR  /////////////////////////// */
 
 
 void context_switch(enum Context new_context);
 int set_current_color(int c);
 
 
-///////////// SAVING / LOADING
+ /* /////////// SAVING / LOADING */
 
 
 
@@ -699,7 +699,7 @@ int merge(char* fname,
 	  int group[]);
 
 
-//// PCL raster printing
+ /* // PCL raster printing */
 
 void pcl_init(FILE* f);
 void pcl_finish(FILE* f);
@@ -710,25 +710,25 @@ void pcl_print_raster(FILE *f);
 void pcl_print();
 
 
-////// POVRAY
+ /* //// POVRAY */
 
 int povray_export();
 void povray_clipping(FILE* povf);
 
 
-//////////// X / GLX //////////////////////
+ /* ////////// X / GLX ////////////////////// */
 
 void initglx();
 
-/////////////////////////////////////////////////////////////////////////////////
+ /* /////////////////////////////////////////////////////////////////////////////// */
 
 void mainloop();
 
-////// CALLBACKS
+ /* //// CALLBACKS */
 
 void callbackExpose( XExposeEvent* evptr);
 
-////////////// KEY COMMANDS ////////////
+ /* //////////// KEY COMMANDS //////////// */
 
 void callbackKeyPress( XKeyEvent* evptr);
 void callback_key_F7(XKeyEvent* evptr);
@@ -747,20 +747,20 @@ void callback_key_default(XKeyEvent* evptr);
 void setfrustum();
 
 
-//// REDRAW FUNCTIONS
+ /* // REDRAW FUNCTIONS */
 
 void draw_triangles(int top, int t[][4],  float v[][3], float t_normal[][3],
 		    int group_current, Bool group_restricted, int group[]);
 void draw_triangle(float a[], float b[], float c[], int col);
 void draw_edge(float a[], float b[], int c);
-void draw_edges(int top, int e[][3], float v[][3], // int e_color[],
+void draw_edges(int top, int e[][3], float v[][3],  /*  int e_color[], */
 		int group_current, Bool group_restricted, int group[]);
 void draw_cursor();
 void redraw_mono();
 void redraw();
 
 
-//// MENU
+ /* // MENU */
 
 int are_you_sure();
 void quit_menu();
@@ -773,7 +773,7 @@ void export_menu();
 void povray_menu();
 
 
-/////// GRAPH FUNCTIONS
+ /* ///// GRAPH FUNCTIONS */
 
 void graph_marked_init();
 void graph_queue_init();
@@ -792,15 +792,15 @@ void graph_delete_marked_triangles();
 void graph_rotate_marked(double angle, double x, double y, double z, float cursor[3]);
 
 
-//// HELP
+ /* // HELP */
 
 void help_keys();
 
-//// STATISTICS
+ /* // STATISTICS */
 
 void stats();
 
-////////// MAIN
+ /* //////// MAIN */
 
 int main(int argc, char *argv[]);
 
