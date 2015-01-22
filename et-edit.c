@@ -36,11 +36,11 @@
 
 
 
-//////////////  FUNCTIONS
+ /* ////////////  FUNCTIONS */
 
 
 
-//// XTERMINAL INTERACTION
+ /* // XTERMINAL INTERACTION */
 
 void get_file_name(char *file_name)
 {
@@ -66,7 +66,7 @@ float get_float()
 
 
 
-//// REGULAR POLYGON
+ /* // REGULAR POLYGON */
 
 void polygon_get_vertex(int i, float v[3])
 {
@@ -157,7 +157,7 @@ void polygon_add(Bool edges, Bool triangles)
 	triangle[triangle_top+i][1]=first_free+i+1;
 	triangle[triangle_top+i][2]=first_free+i+2;
 	triangle[triangle_top+i][3]=current_color;
-	// triangle_sort(triangle[triangle_top+i]);
+	 /*  triangle_sort(triangle[triangle_top+i]); */
 	triangle_set_normal(triangle_top+i);
 	vertex_used[first_free]++;
 	vertex_used[first_free+i+1]++;
@@ -175,7 +175,7 @@ void polygon_add(Bool edges, Bool triangles)
 
 
 
-//// POINTS
+ /* // POINTS */
 
 void point_print()
 {
@@ -206,7 +206,7 @@ void point_store(int i, float v[3])
 
 
 
-//// BACKUP AND UNDO
+ /* // BACKUP AND UNDO */
 
 
 void backup()
@@ -319,7 +319,7 @@ void undo()
   int_swap(&backup_was_modified, &was_modified);
 
   
-  //// .... 
+   /* // ....  */
 
   for(i=0;i<VERTEX_MAX; i++)
     {
@@ -392,7 +392,7 @@ void undo()
 
 
 
-//// SCREEN 
+ /* // SCREEN  */
 
 void screen_init(struct Screen* scr)
 {
@@ -427,7 +427,7 @@ void screen_set_clipping(struct Screen* scr,float clip_min, float clip_max)
 
 
 
-/// COLOR ADJUSTMENT
+ /* / COLOR ADJUSTMENT */
 
 void color_adjust(float r, float g, float b, float c[3])
 {
@@ -446,7 +446,7 @@ void color_adjust(float r, float g, float b, float c[3])
 }
 
 
-/// VECTOR OPERATIONS
+ /* / VECTOR OPERATIONS */
 void float_zeroes(int n, float v[])
 {
   int i;
@@ -545,7 +545,7 @@ double vector_distance(float a[3], float b[3])
 void vector_normalize(float v[])
 {
   float sp=scalar_product(v,v);
-  if(sp==0) return; // zero length vector
+  if(sp==0) return;  /*  zero length vector */
   sp=sqrt(sp); 
   v[0]/=sp;  v[1]/=sp;  v[2]/=sp;
 }
@@ -554,7 +554,7 @@ void vector_normalize(float v[])
 
 
 
-///// VECTOR I/O
+ /* /// VECTOR I/O */
 
 void vector_fprintf(FILE *stream, float v[3])
 {
@@ -573,7 +573,7 @@ void vector_fscanf(FILE *stream, float v[3])
 
 
 
-/// CONSTRUCTIVE METHODS
+ /* / CONSTRUCTIVE METHODS */
 
 void find_group_center(int g, float X[3])
 {
@@ -611,7 +611,7 @@ Bool line_triangle_solve( float A[3], float B[3],
 			    float C[3], float D[3], float E[3],
 			    float X[3], double *t)
 {
-  // sets X to the intersection of line AB with triangle CDE
+   /*  sets X to the intersection of line AB with triangle CDE */
   float m[3][3];
   double d, d1;
 
@@ -692,7 +692,7 @@ Bool triangle_triangle_intersection( float A1[3],float A2[3], float A3[3],
       (det1>=0 && det2>=0 && det3>=0)
       )
     {
-      // printf("all vertices of B are on the same side of plane A1,A2,A3\n");
+       /*  printf("all vertices of B are on the same side of plane A1,A2,A3\n"); */
       return False;
     }
 
@@ -723,7 +723,7 @@ Bool triangle_triangle_intersection( float A1[3],float A2[3], float A3[3],
       vectorcpy(B_3,B1);
     }
 
-  // B_1 is on the other side of the plane A1, A2, A3 than B_2, B_3.
+   /*  B_1 is on the other side of the plane A1, A2, A3 than B_2, B_3. */
 
   line_triangle_intersection(B_1,B_2, A1,A2,A3, X1);
   line_triangle_intersection(B_1,B_3, A1,A2,A3, X2);
@@ -747,7 +747,7 @@ Bool triangle_triangle_intersection( float A1[3],float A2[3], float A3[3],
       (det1>=0 && det2>=0 && det3>=0)
       )
     {
-      // printf("all vertices of A are on the same side of plane B1,B2,B3\n");
+       /*  printf("all vertices of A are on the same side of plane B1,B2,B3\n"); */
       return False;
     }
 
@@ -777,7 +777,7 @@ Bool triangle_triangle_intersection( float A1[3],float A2[3], float A3[3],
       vectorcpy(A_2,A2);
       vectorcpy(A_3,A1);
     }
-  // A_1 is on the other side of the plane B1, B2, B3 than A_2, A_3.
+   /*  A_1 is on the other side of the plane B1, B2, B3 than A_2, A_3. */
 
   vector_add(A_1, NA, NA);
   line_triangle_solve(X1,X2, A_1,A_2,NA, Y1, &t1);
@@ -791,7 +791,7 @@ Bool triangle_triangle_intersection( float A1[3],float A2[3], float A3[3],
 
   if( t2<=0  || t1>=1 )
     {
-      // printf("t2==%lf<=0  || t1==%lf>=1\n", t2, t1);
+       /*  printf("t2==%lf<=0  || t1==%lf>=1\n", t2, t1); */
       return False;
     }
 
@@ -809,7 +809,7 @@ Bool triangle_triangle_intersection( float A1[3],float A2[3], float A3[3],
 
   return True;
 
-  /// DOKONCZ ...
+   /* / DOKONCZ ... */
 
 }
 
@@ -900,7 +900,7 @@ void group_tt_intersection(int g1, int g2)
 void constr_scale(float A[3], float B[3], float C[3], float D[3],
 	     float fixed_point[3], 
 	     int g)
-     // sclaes group by |AB|/|CD|
+      /*  scales group by |AB|/|CD| */
 {
   double lAB,lCD,s;
   float AB[3], CD[3];
@@ -929,7 +929,7 @@ void constr_scale(float A[3], float B[3], float C[3], float D[3],
 void constr_scale_in_direction(float A[3], float B[3], float C[3], float D[3],
 			  float E[3], float F[3], float fixed_point[3], 
 			  int g)
-     // sclaes group by |AB|/|CD| in direction EF
+      /*  scales group by |AB|/|CD| in direction EF */
 {
   double lAB,lCD,s;
   float AB[3], CD[3], EF[3], v[3], tmp[3];
@@ -981,17 +981,17 @@ void constr_scale_in_direction(float A[3], float B[3], float C[3], float D[3],
 Bool find_three_point_transform(float P1[3], float P2[3], float P3[3], 
 		     float Q1[3], float Q2[3], float Q3[3],
 		     float mv[3], float R[3][3])
-     // assumption: for each Pi!=Pj and Qi!=Qj
+      /*  assumption: for each Pi!=Pj and Qi!=Qj */
 {
   float u[3][3], w[3][3];
   int i,j,k;
 
   vector_sub(P2,P1, u[0]);
   vector_sub(P3,P1, u[1]);
-  vector_product(u[0], u[1], u[1]); // u[1] = (P2-P1)x(P3-P1)
+  vector_product(u[0], u[1], u[1]);  /*  u[1] = (P2-P1)x(P3-P1) */
   vector_normalize(u[0]);
   vector_normalize(u[1]);
-  vector_product(u[0], u[1], u[2]); // u[2] |_ u[1] |_ u[2]
+  vector_product(u[0], u[1], u[2]);  /*  u[2] |_ u[1] |_ u[2] */
 
   if(vector_length(u[2])==0) 
     {
@@ -1001,10 +1001,10 @@ Bool find_three_point_transform(float P1[3], float P2[3], float P3[3],
 
   vector_sub(Q2,Q1, w[0]);
   vector_sub(Q3,Q1, w[1]);
-  vector_product(w[0], w[1], w[1]); // w[1] = (Q2-Q1)x(Q3-Q1)
+  vector_product(w[0], w[1], w[1]);  /*  w[1] = (Q2-Q1)x(Q3-Q1) */
   vector_normalize(w[0]);
   vector_normalize(w[1]);
-  vector_product(w[0], w[1], w[2]); // w[2] |_ w[1] |_ w[2]
+  vector_product(w[0], w[1], w[2]);  /*  w[2] |_ w[1] |_ w[2] */
   if(vector_length(w[2])==0) 
     {
       printf("three points transformation: the last three points are colinear !!!\n");
@@ -1021,7 +1021,7 @@ Bool find_three_point_transform(float P1[3], float P2[3], float P3[3],
       }
 
   matrix3_vector_mult(R, P1, mv);
-  vector_sub(Q1, mv, mv); // mv = Q1 - R*P1
+  vector_sub(Q1, mv, mv);  /*  mv = Q1 - R*P1 */
   return True;
 
 }
@@ -1030,7 +1030,7 @@ Bool find_three_point_transform(float P1[3], float P2[3], float P3[3],
 void three_point_transform(float P1[3], float P2[3], float P3[3], 
 		      float Q1[3], float Q2[3], float Q3[3],
 		       int g)
-     // assumption: for each Pi!=Pj and Qi!=Qj
+      /*  assumption: for each Pi!=Pj and Qi!=Qj */
 {
   float  mv[3], R[3][3];
 
@@ -1046,7 +1046,7 @@ void three_point_transform(float P1[3], float P2[3], float P3[3],
 
 
 
-// FOLDING
+ /*  FOLDING */
 
 
 Bool find_centered_folding(float A1[3],float A2[3],
@@ -1055,7 +1055,7 @@ Bool find_centered_folding(float A1[3],float A2[3],
 			    float V[3])
 {
   double eps= 1e-14;
-  int swap=0; // 0 - no swap, 1 - swaped xy, 2 - swaped yz 
+  int swap=0;  /*  0 - no swap, 1 - swaped xy, 2 - swaped yz  */
   double m,p,q, A2B2, A1B1, a, b, c, delta, x1, y1, z1, d1,d2;
   float matrix[3][3];
 
@@ -1102,7 +1102,7 @@ Bool find_centered_folding(float A1[3],float A2[3],
       return False;
     }
 
-  // m!=0 
+   /*  m!=0  */
 
   p=(A1[1]*A2[0]-A2[1]*A1[0])/m;
   q=(A2B2*A1[0]-A1B1*A2[0])/m;
@@ -1124,7 +1124,7 @@ Bool find_centered_folding(float A1[3],float A2[3],
     return False;
     }
 
-  // a!=0
+   /*  a!=0 */
 
   delta= b*b-4*a*c;
 
@@ -1190,7 +1190,7 @@ Bool find_centered_folding(float A1[3],float A2[3],
     }
 
   return True;
-  // DOKONCZYC ...
+   /*  DOKONCZYC ... */
 
 
 }
@@ -1253,7 +1253,7 @@ Bool find_folding(float A[3],float B[3],float C[3],
 
 
 
-///// TRANSFORMATION //////////////////////////////////
+ /* /// TRANSFORMATION ////////////////////////////////// */
 
 
 
@@ -1326,7 +1326,7 @@ void transformation_scale(double s,struct Transformation* t, float cursor[16])
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
   glLoadMatrixd( t->M );
-  glScaled(scale,scale,scale); ///
+  glScaled(scale,scale,scale);  /* / */
   glMultMatrixf(cursor);
   glGetFloatv( GL_MODELVIEW_MATRIX, tmp1 );
   glPopMatrix();
@@ -1336,7 +1336,7 @@ void transformation_scale(double s,struct Transformation* t, float cursor[16])
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
   glLoadMatrixd( t->M );
-  glScaled(scale,scale,scale); ///
+  glScaled(scale,scale,scale);  /* / */
   glMultMatrixf(cursor);
   glGetFloatv( GL_MODELVIEW_MATRIX, tmp2 );
   glPopMatrix();
@@ -1354,7 +1354,7 @@ void transformation_rotate(double angle, double x, double y, double z,
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
   glLoadMatrixd( t->M );
-  glScaled(scale,scale,scale); ///
+  glScaled(scale,scale,scale);  /* / */
   glMultMatrixf(cursor);
   glGetFloatv( GL_MODELVIEW_MATRIX, tmp );
   glPopMatrix();
@@ -1368,7 +1368,7 @@ void transformation_rotate(double angle, double x, double y, double z,
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
   glLoadMatrixd( t->M );
-  glScaled(scale,scale,scale); ///
+  glScaled(scale,scale,scale);  /* / */
   glMultMatrixf(cursor);
   glGetFloatv( GL_MODELVIEW_MATRIX, tmp );
   glPopMatrix();
@@ -1442,7 +1442,7 @@ void sort_dimmensions(double x, double y, double z, struct Transformation *t,
 
 
 
-////// CLIPPING PLANES /////
+ /* //// CLIPPING PLANES ///// */
 
 
 void clip_reset(struct Clipping_xyz *clipping_xyz)
@@ -1542,7 +1542,7 @@ void clip_xyz(float x, float y, float z, float cursor[], struct Clipping_xyz *cl
 
 
 
-///// LIGHT ///////////////////////////////////
+ /* /// LIGHT /////////////////////////////////// */
 
 
 void set_light(float light[16])
@@ -1565,7 +1565,7 @@ void switch_second_light()
 
 
 
-//// VERTEX FUNCTIONS
+ /* // VERTEX FUNCTIONS */
 
 
 int vertex_number_of(int vertex_used[VERTEX_MAX])
@@ -1596,7 +1596,7 @@ int vertex_insert(float v[])
 
   vectorcpy(vertex[i], v);
 
-  // vertex_used[i]++;
+   /*  vertex_used[i]++; */
   return i;
 }
 
@@ -1678,7 +1678,7 @@ int vertex_compress(float vertex[][3],
 			      triangle_normal[i]);
     }
 
-  return last_used+1; // size == first free
+  return last_used+1;  /*  size == first free */
 
 }
 
@@ -1719,7 +1719,7 @@ void vertex_get_range(float vertex[][3], int vertex_used[],
 }
 
 
-//// I/O
+ /* // I/O */
 
 void vertex_fprintf(FILE* s, int n, float v[][3])
 {
@@ -1743,7 +1743,7 @@ int vertex_fscanf(FILE* s,  float v[][3], int v_used[])
 
 
 
-//// EDGE STACK
+ /* // EDGE STACK */
 
 
 
@@ -1769,7 +1769,7 @@ void edge_fscanf(FILE* s, int* edge_top, int edge[][3], int vertex_used[])
       vertex_used[edge[i][0]]++;
       fscanf(s, "%d", &edge[i][1]);
       vertex_used[edge[i][1]]++;
-      fscanf(s, "%d", &edge[i][2]); // color
+      fscanf(s, "%d", &edge[i][2]);  /*  color */
     }
 }
 
@@ -1781,7 +1781,7 @@ Bool edge_eq(int a[], int b[])
 }
 
 int edge_compare(const void* a, const void* b)
-     // for qsort(...)
+      /*  for qsort(...) */
 {
   if( *((int*) a) < *((int*) b) ||
       ( *((int*) a) == *((int*) b) &&
@@ -1800,7 +1800,7 @@ int edge_compare(const void* a, const void* b)
 void edgecpy(int dest[],int src[])
 {
   dest[0]=src[0]; dest[1]=src[1];
-  dest[2]=src[2]; // color
+  dest[2]=src[2];  /*  color */
 } 
 
 void edge_sort(int e[])
@@ -1814,7 +1814,7 @@ int edge_insert(int e[])
 {
   int i;
 
-  if(e[0]==e[1]) return -1; // degenerate !!!
+  if(e[0]==e[1]) return -1;  /*  degenerate !!! */
   edge_sort(e);
 
   for(i=0; i<edge_top && !edge_eq(e,edge[i]); i++);
@@ -1827,7 +1827,7 @@ int edge_insert(int e[])
       return -1;
     }
 
-  // CASE:  i == edge_top < EDGE_MAX
+   /*  CASE:  i == edge_top < EDGE_MAX */
   edge_top++;
   edgecpy(edge[i],e);
   vertex_used[e[0]]++;
@@ -1858,11 +1858,11 @@ int edge_vector_insert(float a[], float b[])
       printf("vector_edge_insert: failed !!!\n");
       return -1;
     }
-  vertex_used[e[0]]++; // temporarily block the vertex
+  vertex_used[e[0]]++;  /*  temporarily block the vertex */
   
   e[1]=vertex_insert(b);
 
-  vertex_used[e[0]]--; // release the vertex
+  vertex_used[e[0]]--;  /*  release the vertex */
 
   if(e[1]==-1) 
     {
@@ -1963,7 +1963,7 @@ void edge_paint_incident(float v[3], int color)
 }
 
 
-//// TRIANGLE 
+ /* // TRIANGLE  */
 
 
 void triangle_fprintf(FILE* s, int triangle_top, int triangle[][4])
@@ -2022,7 +2022,7 @@ int triangle_compare(const void * a, const void *b)
 void trianglecpy(int dest[],int src[])
 {
   dest[0]=src[0]; dest[1]=src[1]; dest[2]=src[2];
-  dest[3]=src[3]; // color
+  dest[3]=src[3];  /*  color */
 } 
 
 void triangle_sort(int e[])
@@ -2039,7 +2039,7 @@ int triangle_insert(int e[])
   int i;
 
   triangle_sort(e);
-  if(e[0]==e[1] || e[1]==e[2]) return -1; // degenerate !!!
+  if(e[0]==e[1] || e[1]==e[2]) return -1;  /*  degenerate !!! */
 
   for(i=0; i<triangle_top && !triangle_eq(e,triangle[i]); i++);
 
@@ -2051,7 +2051,7 @@ int triangle_insert(int e[])
       return -1;
     }
 
-  // CASE:  i == triangle_top < TRIANGLE_MAX
+   /*  CASE:  i == triangle_top < TRIANGLE_MAX */
   triangle_top++;
   trianglecpy(triangle[i],e);
   vertex_used[e[0]]++;
@@ -2147,23 +2147,23 @@ int triangle_vector_insert(float a[], float b[], float c[])
       return -1;
     }
 
-  vertex_used[e[0]]++; // temporarily block the vertex
+  vertex_used[e[0]]++;  /*  temporarily block the vertex */
 
   e[1]=vertex_insert(b);
 
   if(e[1]==-1) 
     {
-      vertex_used[e[0]]--; // release the vertex
+      vertex_used[e[0]]--;  /*  release the vertex */
       printf("vector_triangle_insert: failed !!!\n");
       return -1;
     }
 
-  vertex_used[e[1]]++; // temporarily block the vertex
+  vertex_used[e[1]]++;  /*  temporarily block the vertex */
 
   e[2]=vertex_insert(c);
 
-  vertex_used[e[0]]--; // release the vertex
-  vertex_used[e[1]]--; // release the vertex
+  vertex_used[e[0]]--;  /*  release the vertex */
+  vertex_used[e[1]]--;  /*  release the vertex */
 
   if(e[2]==-1) 
     {
@@ -2268,7 +2268,7 @@ int triangle_find(int e[4])
 
 
 
-/////////// GROUPS
+ /* ///////// GROUPS */
 
 
 void group_mark(int gr)
@@ -2516,7 +2516,7 @@ void group_cursor_move(float x, float y, float z)
 void group_scale(int g, double sx, double sy, double sz, float cursor[3],
 	   int group[], float vertex[][3], int vertex_used[])
 {
-  // cursor is a fixed point 
+   /*  cursor is a fixed point  */
 
   int i;
   for(i=0; i<VERTEX_MAX; i++)
@@ -2658,7 +2658,7 @@ void group_copy(Bool glue_edges, Bool glue_triangles)
 
 void group_paint_edges(int g, int color)
 {
-  // PAINT EDGES INCLUDED INSIDE GROUP g
+   /*  PAINT EDGES INCLUDED INSIDE GROUP g */
   int i;
   for(i=0; i<edge_top; i++)
     if(
@@ -2671,7 +2671,7 @@ void group_paint_edges(int g, int color)
 
 void group_paint_triangles(int g, int color)
 {
-  // PAINT TRIANGLES INCLUDED INSIDE GROUP g
+   /*  PAINT TRIANGLES INCLUDED INSIDE GROUP g */
   int i;
   for(i=0; i<triangle_top; i++)
     if(
@@ -2688,7 +2688,7 @@ void group_paint_triangles(int g, int color)
 
 void group_delete_edges(int g)
 {
-  // REMOVE ALL EDGES INCIDENT TO A GROUP g
+   /*  REMOVE ALL EDGES INCIDENT TO A GROUP g */
 
   int i=0;
   while(i<edge_top)
@@ -2704,7 +2704,7 @@ void group_delete_edges(int g)
 
 void group_delete_triangles(int g)
 {
-  // REMOVE ALL EDGES INCIDENT TO A GROUP g
+   /*  REMOVE ALL EDGES INCIDENT TO A GROUP g */
 
   int i=0;
   while(i<triangle_top)
@@ -2724,7 +2724,7 @@ void group_delete_triangles(int g)
 
 
 
-//////// CURSOR ///////
+ /* ////// CURSOR /////// */
 
 void cursor_set_shape()
 {
@@ -2811,7 +2811,7 @@ void cursor_to_screen()
 
 
 
-/// REDUTCIONS
+ /* / REDUTCIONS */
 
 
 
@@ -2872,10 +2872,10 @@ void reduce_group_vertices(int g)
     graph_marked_init();
     for(i=0; i<g_size; i++)
       graph_marked[*(rtab+2*i)]= *(rtab+2*(*(rtab+2*i+1)));
-    // if graph_marked[i]!=-1 thten group[i]== g and i should be replaced
-    // by graph_marked[i]
+     /*  if graph_marked[i]!=-1 thten group[i]== g and i should be replaced */
+     /*  by graph_marked[i] */
 
-    // REDUCE EDGES
+     /*  REDUCE EDGES */
     old_top=edge_top;
     i=0;
     while(i<edge_top)
@@ -2907,7 +2907,7 @@ void reduce_group_vertices(int g)
       }
 
 
-    // REDUCE TRIANGLES
+     /*  REDUCE TRIANGLES */
     old_top=triangle_top;
     i=0;
     while(i<triangle_top)
@@ -2942,7 +2942,7 @@ void reduce_group_vertices(int g)
 	i++;
       }
 
-    // DOKONCZ ... dla triangles
+     /*  DOKONCZ ... dla triangles */
   }
   free(rtab);
 
@@ -2953,7 +2953,7 @@ void reduce_group_vertices(int g)
 
 
 
-/////////////////// EDITOR  ///////////////////////////
+ /* ///////////////// EDITOR  /////////////////////////// */
 
 
 void context_switch(enum Context new_context)
@@ -2987,7 +2987,7 @@ int set_current_color(int c)
 
 
 
-///////////// SAVING / LOADING
+ /* /////////// SAVING / LOADING */
 
 
 
@@ -3016,7 +3016,7 @@ int save(char* fname,
   }
 
 
-  // VERTICES
+   /*  VERTICES */
   n_vertices=vertex_compress(vertex,
 			     vertex_used,
 			     edge_top, edge,
@@ -3026,32 +3026,32 @@ int save(char* fname,
   vertex_fprintf(stream, n_vertices, vertex);
   fprintf(stream, "\n");
 
-  // EDGES
+   /*  EDGES */
   edge_fprintf(stream, edge_top, edge);
   fprintf(stream, "\n");
 
-  // TRIANGLES
+   /*  TRIANGLES */
   triangle_fprintf(stream, triangle_top, triangle);
   fprintf(stream, "\n");
 
-  // TRANSFORMATION
+   /*  TRANSFORMATION */
   fprintf(stream, "%s\n", transformation_label);
   transformation_fprintf(stream, transformation);
 
-  // LIGHT
+   /*  LIGHT */
   fprintf(stream, "%s\n", light_label);
   vector_fprintf(stream, light);
 
-  // BACKGROUND
+   /*  BACKGROUND */
   fprintf(stream, "%s\n", background_label);
   fprintf(stream, "%d\n", background);
 
-  // CURSOR
+   /*  CURSOR */
   fprintf(stream, "%s\n", cursor_label);
   vector_fprintf(stream, cursor);
   fprintf(stream, "%f\n", cursor_step);
 
-  // GROUPS
+   /*  GROUPS */
   fprintf(stream, "%s\n", group_label);
   group_fprintf(stream, n_vertices, group);
 
@@ -3091,39 +3091,39 @@ int load(char* fname,
   }
 
 
-  // VERTICES
+   /*  VERTICES */
   n_vertices=vertex_fscanf(stream, vertex, vertex_used);
 
-  // EDGES
+   /*  EDGES */
   edge_fscanf(stream, edge_top, edge,  
 	      vertex_used);
 
-  // TRIANGLES
+   /*  TRIANGLES */
   triangle_fscanf(stream, triangle_top, triangle, 
 		  triangle_normal, vertex, vertex_used);
 
-  // TRANSFORMATION
+   /*  TRANSFORMATION */
   fscanf(stream, "%s", label);
   if(strcmp(label, transformation_label)==0)
     {
       transformation_fscanf(stream, transformation);
     }
 
-  // LIGHT
+   /*  LIGHT */
   fscanf(stream, "%s", label);
   if(strcmp(label, light_label)==0)
     {
       vector_fscanf(stream, light);
     }
 
-  // BACKGROUND
+   /*  BACKGROUND */
   fscanf(stream, "%s", label);
   if(strcmp(label, background_label)==0)
     {
       fscanf(stream, "%d\n", background);
     }
 
-  // CURSOR
+   /*  CURSOR */
   fscanf(stream, "%s", label);
   if(strcmp(label, cursor_label)==0)
     {
@@ -3132,7 +3132,7 @@ int load(char* fname,
       cursor_set_step(*cursor_step);
     }
 
-  // GROUP
+   /*  GROUP */
   fscanf(stream, "%s", label);
   if(strcmp(label, group_label)==0)
     {
@@ -3217,7 +3217,7 @@ int merge(char* fname,
       return -1;
     }
 
-  // merge groups
+   /*  merge groups */
   {
     int d;
     d=group_max(group, vertex_used)+1;
@@ -3226,7 +3226,7 @@ int merge(char* fname,
     printf("merged groups start from: %d\n", d);
   }
 
-  // merge vertices
+   /*  merge vertices */
   for(i=0; i<m_vertices; i++)
     {
       vectorcpy(vertex[first_free+i], m_vertex[i]);
@@ -3234,16 +3234,16 @@ int merge(char* fname,
     }
 
 
-  // merge edges
+   /*  merge edges */
   for(i=0; i<m_edge_top; i++)
     {
       edge[(*edge_top)+i][0]= m_edge[i][0]+first_free;
       edge[(*edge_top)+i][1]= m_edge[i][1]+first_free;
-      edge[(*edge_top)+i][2]= m_edge[i][2]; // color
+      edge[(*edge_top)+i][2]= m_edge[i][2];  /*  color */
     }
   *edge_top += m_edge_top;
 
-  // merge triangles
+   /*  merge triangles */
   for(i=0; i<m_triangle_top; i++)
     {
       triangle[(*triangle_top)+i][0]= m_triangle[i][0]+first_free;
@@ -3259,21 +3259,21 @@ int merge(char* fname,
 
 
 
-//// PCL raster printing
+ /* // PCL raster printing */
 
 void pcl_init(FILE* f)
 {
-fprintf(f,"%c*t300R",27); // RESOLUTION 300 DPI
-fprintf(f,"%c*b0M",27); // UNENCODED
-fprintf(f,"%c*r-3U",27); // CMY Color
-fprintf(f,"%c*r0A",27); // START RASTER
+fprintf(f,"%c*t300R",27);  /*  RESOLUTION 300 DPI */
+fprintf(f,"%c*b0M",27);  /*  UNENCODED */
+fprintf(f,"%c*r-3U",27);  /*  CMY Color */
+fprintf(f,"%c*r0A",27);  /*  START RASTER */
 }
 
 
 void pcl_finish(FILE* f)
 {
-fprintf(f,"%c*rC",27); // END RASTER
-fprintf(f,"\f"); // END OF PAGE 
+fprintf(f,"%c*rC",27);  /*  END RASTER */
+fprintf(f,"\f");  /*  END OF PAGE  */
 }
 
 
@@ -3325,7 +3325,7 @@ void pcl_line1_bytes(FILE* f,int length, double red, double green, double blue)
 	}
     }
 
-  if(mask!=128) fprintf(f,"%c", out_byte); // LAST BYTE NON-FULL
+  if(mask!=128) fprintf(f,"%c", out_byte);  /*  LAST BYTE NON-FULL */
 
 }
 
@@ -3380,7 +3380,7 @@ void pcl_line12_bytes(FILE* f,int length, double red, double green, double blue)
       
     }
 
-  if(mask!=128) fprintf(f,"%c", out_byte); // LAST BYTE NON-FULL
+  if(mask!=128) fprintf(f,"%c", out_byte);  /*  LAST BYTE NON-FULL */
 
 }
 
@@ -3389,25 +3389,25 @@ void pcl_print_two_lines(FILE *f)
   int bytes_in_line;
 
 
-  bytes_in_line=((screen.width+3)/4); // TWO PCL POINTS PER SCREEN PIXEL
+  bytes_in_line=((screen.width+3)/4);  /*  TWO PCL POINTS PER SCREEN PIXEL */
 
   fprintf(f,"%c*b%dV",27, bytes_in_line);
-  pcl_line1_bytes(f,screen.width, 1,0,0); // RED->CYAN
+  pcl_line1_bytes(f,screen.width, 1,0,0);  /*  RED->CYAN */
 
   fprintf(f,"%c*b%dV",27, bytes_in_line);
-  pcl_line1_bytes(f,screen.width, 0,1,1); // GREEN+BLUE->MAGENTA
+  pcl_line1_bytes(f,screen.width, 0,1,1);  /*  GREEN+BLUE->MAGENTA */
 
   fprintf(f,"%c*b%dW",27, bytes_in_line);
-  pcl_line1_bytes(f,screen.width, 0,1,1); // GREEN+BLUE->YELLOW
+  pcl_line1_bytes(f,screen.width, 0,1,1);  /*  GREEN+BLUE->YELLOW */
 
   fprintf(f,"%c*b%dV",27, bytes_in_line);
-  pcl_line12_bytes(f,screen.width, 1,0,0); // RED->CYAN
+  pcl_line12_bytes(f,screen.width, 1,0,0);  /*  RED->CYAN */
 
   fprintf(f,"%c*b%dV",27, bytes_in_line);
-  pcl_line12_bytes(f,screen.width, 0,1,1); // GREEN+BLUE->MAGENTA
+  pcl_line12_bytes(f,screen.width, 0,1,1);  /*  GREEN+BLUE->MAGENTA */
 
   fprintf(f,"%c*b%dW",27, bytes_in_line);
-  pcl_line12_bytes(f,screen.width, 0,1,1); // GREEN+BLUE->YELLOW
+  pcl_line12_bytes(f,screen.width, 0,1,1);  /*  GREEN+BLUE->YELLOW */
 
 }
 
@@ -3515,7 +3515,7 @@ void pcl_print()
 
   pcl_init(f);
 
-  // EXPORT RASTER ...
+   /*  EXPORT RASTER ... */
   pcl_print_raster(f);
 
 
@@ -3541,7 +3541,7 @@ void pcl_print()
 
 
 
-////// POVRAY
+ /* //// POVRAY */
 
 int povray_export()
 {
@@ -3562,7 +3562,7 @@ int povray_export()
 
   sprintf(pov_name, "%s%d.pov", povray_name, povray_counter);
  
-  //// prepare *.ini
+   /* // prepare *.ini */
 
 
   inif=fopen(ini_name,"w");
@@ -3572,7 +3572,7 @@ int povray_export()
     return -1; 
   }
 
-  /// prepare ini file
+   /* / prepare ini file */
   fprintf(inif, "Input_File_Name=%s\n", pov_name);
   fprintf(inif, "+W%d +H%d\n", screen.width, screen.height);
   fprintf(inif, "+A\n");
@@ -3582,7 +3582,7 @@ int povray_export()
 
 
 
-  /// prepare *.pov
+   /* / prepare *.pov */
 
   povf=fopen(pov_name,"w");
   if(povf==NULL) 
@@ -3592,20 +3592,20 @@ int povray_export()
   }
 
   {
-    /// export pov file
+     /* / export pov file */
     float matrix[16];
-    // matrix[0..3] - observer
-    // matrix[4..7] - look at
-    // matrix[8..11] -sky
+     /*  matrix[0..3] - observer */
+     /*  matrix[4..7] - look at */
+     /*  matrix[8..11] -sky */
 
     float_zeroes(16, matrix);
     vectorcpy(matrix, transformation.mov);
     vector_scale(-1, matrix);
     vectorcpy(matrix+4, matrix);
     matrix[6]-=screen.distance;
-    matrix[9]=1; // sky = <0,1,0>
+    matrix[9]=1;  /*  sky = <0,1,0> */
 
-    // multpily by reverse of transformation.M
+     /*  multpily by reverse of transformation.M */
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
@@ -3648,7 +3648,7 @@ int povray_export()
     fprintf(povf, "  }\n\n");
 
 
-    // LIGHT
+     /*  LIGHT */
     fprintf(povf, "light_source {\n  <%f,%f,%f>\n  color rgb<%f,%f,%f>\n  }\n\n",
 	    povray_light_distance*light[0],
 	    povray_light_distance*light[1],
@@ -3802,7 +3802,7 @@ void povray_clipping(FILE* povf)
 
 
 
-//////////// X / GLX //////////////////////
+ /* ////////// X / GLX ////////////////////// */
 
 
 void initglx()
@@ -3847,7 +3847,7 @@ if(xvisualinfo_array==NULL)
 
 
  {
-   /// Enable events for the window
+    /* / Enable events for the window */
 
    unsigned long valuemask=CWEventMask;
    windowattributes.event_mask=
@@ -3871,8 +3871,8 @@ if(xvisualinfo_array==NULL)
  XMapWindow(display, window);
  XFlush(display);
 
- // printf("terminal: %d\n", terminal); 
- // printf("window: %d\n", window); 
+  /*  printf("terminal: %d\n", terminal);  */
+  /*  printf("window: %d\n", window);  */
 
  
  glxcontext= glXCreateContext(display, &xvisualinfo_array[0], NULL, True);
@@ -3884,7 +3884,7 @@ if(xvisualinfo_array==NULL)
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////
+ /* /////////////////////////////////////////////////////////////////////////////// */
 
 
 void mainloop()
@@ -3907,7 +3907,7 @@ void mainloop()
 
 
 
-////// CALLBACKS
+ /* //// CALLBACKS */
 
 void callbackExpose( XExposeEvent* evptr)
 {
@@ -3934,7 +3934,7 @@ while(XCheckWindowEvent(display,window,event_mask , (XEvent*) evptr));
 }
 
 
-////////////// KEY COMMANDS ////////////
+ /* //////////// KEY COMMANDS //////////// */
 
 
 
@@ -3961,7 +3961,7 @@ void callbackKeyPress( XKeyEvent* evptr)
       callback_key_F5(evptr);
       break;
     case key_F6:
-      // callback_key_F6(evptr);
+       /*  callback_key_F6(evptr); */
       break;
     case key_F7:
       callback_key_F7(evptr);
@@ -4381,7 +4381,7 @@ void callback_key_F4(XKeyEvent* evptr)
 		if(group_marker!=group_current)
 		  group_transform(group_marker,mv1,R1);
  
-	        // DOKONCZ ...
+	         /*  DOKONCZ ... */
 	      }
 	  }
 	  break;
@@ -4617,12 +4617,12 @@ void callback_key_F2(XKeyEvent* evptr)
       switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
 	{
 	case 0:
-          // scale/=2;
+           /*  scale/=2; */
 	  transformation_scale(0.5, &transformation, cursor);
           if(scale < 1/512) scale=1/512; 
 	  break;
 	case ShiftMask:
-	  //          scale*=2;
+	   /*           scale*=2; */
 	  transformation_scale(2, &transformation, cursor);
 	  if(scale>512) scale=512;
 	  break;
@@ -4969,7 +4969,7 @@ void callback_key_default(XKeyEvent* evptr)
 	}
       break;
 
-    case XK_Left : // printf("XK_Left  evptr->state=%d\n",evptr->state);
+    case XK_Left :  /*  printf("XK_Left  evptr->state=%d\n",evptr->state); */
       switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
 	{
 	case 0:
@@ -5421,7 +5421,7 @@ void callback_key_default(XKeyEvent* evptr)
 		    backup();
 		    group_move(group_current, mv, 
 			       group, vertex, vertex_used);
-		    // context_switch(context_default);
+		     /*  context_switch(context_default); */
 		    redraw();
 		  } 
 		  break;
@@ -5494,7 +5494,7 @@ void setfrustum()
 
 
 
-//// REDRAW FUNCTIONS
+ /* // REDRAW FUNCTIONS */
 
 
 void draw_triangles(int top, int t[][4],  float v[][3], float t_normal[][3],
@@ -5559,7 +5559,7 @@ void draw_edge(float a[], float b[], int c)
 }
 
 
-void draw_edges(int top, int e[][3], float v[][3], // int e_color[],
+void draw_edges(int top, int e[][3], float v[][3],  /*  int e_color[], */
 	       int group_current, Bool group_restricted, int group[])
 {
   int i;
@@ -5607,7 +5607,7 @@ void redraw_mono()
   glDisable(GL_CLIP_PLANE3);
   glDisable(GL_CLIP_PLANE4);
   glDisable(GL_CLIP_PLANE5);
-  // ...
+   /*  ... */
 
   {
     float diffuse[4];
@@ -5637,7 +5637,7 @@ void redraw_mono()
     }
 
   {
-    // clipping
+     /*  clipping */
     double eqn[4];    
 
     if(clipping_xyz.xmin_flag)
@@ -5691,7 +5691,7 @@ void redraw_mono()
         glEnable(GL_CLIP_PLANE5);
       }
 
-    // ...
+     /*  ... */
 
   }
 
@@ -5707,7 +5707,7 @@ void redraw_mono()
   glDisable(GL_CLIP_PLANE4);
   glDisable(GL_CLIP_PLANE5);
 
-  //   glFlush();
+   /*    glFlush(); */
 }
 
 
@@ -5721,12 +5721,12 @@ void redraw()
   rheight = screen.height*pixel_size;
 
 
-  triangle_recompute_normals(); // SORRY !
+  triangle_recompute_normals();  /*  SORRY ! */
   glEnable(GL_DEPTH_TEST);
   glMatrixMode(GL_MODELVIEW);
   if(!stereo_mode)
     {
-      // CASE FOR MONO
+       /*  CASE FOR MONO */
       glClearColor(color[background][0], 
 		   color[background][1], 
 		   color[background][2], 0.0);
@@ -5901,7 +5901,7 @@ void redraw()
 
 
 
-//// MENU
+ /* // MENU */
 
 
 int are_you_sure()
@@ -5951,7 +5951,7 @@ void main_menu()
       printf("2  Screen\n");
       printf("3  Groups\n");
       printf("4  Export\n");
-      // ...
+       /*  ... */
       printf("0  Return\n");
       printf("\nselect intem: ");
       scanf("%3s", s);
@@ -5964,7 +5964,7 @@ void main_menu()
       else
       if(strcmp(s,"4")==0) export_menu();
 
-      // ...
+       /*  ... */
     }
   while(strcmp(s,"0")!=0);
 
@@ -5983,7 +5983,7 @@ void screen_menu()
       printf("1  Screen distance (zoom)[%f]\n", screen.distance);
       printf("2. minimal clipping plane [%f]\n", screen.clip_min);
       printf("3. maximal clipping plane [%f]\n", screen.clip_max);
-      // ...
+       /*  ... */
       printf("0  Return\n");
       printf("\nselect item: ");
       scanf("%3s", s);
@@ -6032,7 +6032,7 @@ void cursor_menu()
 	  printf("e move cursor to new distance from et0 [%f]\n",
 		 vector_length(v));
 	}
-      // ...
+       /*  ... */
       printf("0  Return\n");
       printf("\nselect item: ");
       scanf("%3s", s);
@@ -6074,7 +6074,7 @@ void cursor_menu()
 	  cursor_set(v[0], v[1], v[2]);
 	}
 
-      // ...
+       /*  ... */
       redraw();
     }
   while(strcmp(s,"0")!=0);
@@ -6182,7 +6182,7 @@ void graph_menu()
   printf("rx rotate around X\n");
   printf("ry rotate around Y\n");
   printf("rz rotate around Z\n");
-  // ...
+   /*  ... */
   printf("0  Return\n");
   printf("\nselect item: ");
   scanf("%3s", s);
@@ -6360,7 +6360,7 @@ void povray_menu()
 }
 
 
-/////// GRAPH FUNCTIONS
+ /* ///// GRAPH FUNCTIONS */
 
 
 void graph_marked_init()
@@ -6470,7 +6470,7 @@ int graph_bfs(int v)
 	  nxt=graph_next_nbr[nxt];
 	}
     }
-  return mark; // number of marked vertices
+  return mark;  /*  number of marked vertices */
 }
 
 void graph_move_marked(float vector[3])
@@ -6528,7 +6528,7 @@ void graph_copy_move_marked(float vector[3], int first_free )
 
 void graph_scale_marked(double sx, double sy, double sz, float cursor[3])
 {
-  // cursor is a fixed point 
+   /*  cursor is a fixed point  */
 
   int i;
   for(i=0; i<VERTEX_MAX; i++)
@@ -6614,7 +6614,7 @@ void graph_rotate_marked(double angle, double x, double y, double z, float curso
 
 
 
-//// HELP
+ /* // HELP */
 
 void help_keys()
 {
@@ -6669,7 +6669,7 @@ void help_keys()
   printf("<Alt>+<Shift>+<O> - add regular polygon (edges and triangles)\n");
   printf("<PageUp>/<PageDown> - increase/decrease number of polygon vertices [%d]\n",
 polygon_n);
-  // ...
+   /*  ... */
 
   printf("-----------------------------------------\n\n");
 
@@ -6678,7 +6678,7 @@ polygon_n);
 
 
 
-//// STATISTICS
+ /* // STATISTICS */
 
 void stats()
 {
@@ -6701,7 +6701,7 @@ void stats()
 
 
 
-////////// MAIN
+ /* //////// MAIN */
 
 
 
@@ -6716,7 +6716,7 @@ int main(int argc, char *argv[])
 
   printf("This is unstable test version, that can be freely redistributed.\n");
   printf("Send any comments or suggestions to: kik@im.pwr.wroc.pl\n");
-  printf("Most recent versions are available at: http://www.im.pwr.wroc.pl/~kik/et/\n");
+  printf("Most recent versions are available at: http: /* www.im.pwr.wroc.pl/~kik/et/\n"); */
 
   printf("This is free software, and you are welcome to redistribute it\n");
   printf(" under conditions of GNU GENERAL PUBLIC LICENSE\n\n");
@@ -6757,7 +6757,7 @@ int main(int argc, char *argv[])
   was_modified=False;
 
   XRaiseWindow(display, window);
-  // XSetInputFocus(display, window, RevertToParent, CurrentTime);
+   /*  XSetInputFocus(display, window, RevertToParent, CurrentTime); */
   mainloop();
   return 0;
 }
