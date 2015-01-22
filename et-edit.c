@@ -3615,7 +3615,7 @@ int povray_export()
     glPopMatrix();
 
 
-    // COMMENTS
+     /*  COMMENTS */
     {
       float vmin[3], vmax[3];
       fprintf(povf, "// Exported from E.T. EDITOR.\n");
@@ -3633,7 +3633,7 @@ int povray_export()
       fprintf(povf, "//\n\n");
     }
 
-    // CAMERA
+     /*  CAMERA */
 
     fprintf(povf, " camera {\n");
     fprintf(povf, "    up <0,%f,0>\n", screen.height*pixel_size);
@@ -3657,14 +3657,14 @@ int povray_export()
             povray_light_green,
             povray_light_blue);
 
-    // BACKGROUND
+     /*  BACKGROUND */
     fprintf(povf,"background { color rgb <%f,%f,%f>}\n\n",
 	    color[background][0],
 	    color[background][1],
 	    color[background][2]
 	    );
 
-    // EDGES
+     /*  EDGES */
     if(edge_top>0 && povray_edge_radius>0)
       {
 	int i;
@@ -3700,11 +3700,11 @@ int povray_export()
 		      edge[i][2]); 
 	    }
 	povray_clipping(povf);
-	fprintf(povf,"}\n"); // end of union
+	fprintf(povf,"}\n");  /*  end of union */
       }
 
 
-    // COLORS
+     /*  COLORS */
     {
       int i;
       fprintf(povf, "\n// Colors of the triangles\n");
@@ -3722,7 +3722,7 @@ int povray_export()
     }
 
 
-    // TRIANGLES
+     /*  TRIANGLES */
     if(triangle_top>0)
     {
       int i;
@@ -3744,7 +3744,7 @@ int povray_export()
 		    triangle[i][3]);
 	  }
       povray_clipping(povf);
-      fprintf(povf," }\n"); // end of mesh
+      fprintf(povf," }\n");  /*  end of mesh */
     }
  
   }
@@ -3760,7 +3760,7 @@ int povray_export()
 
 void povray_clipping(FILE* povf)
 {
-  // CLIPPING
+   /*  CLIPPING */
 
   if(clipping_xyz.xmin_flag)
     {
