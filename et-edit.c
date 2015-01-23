@@ -3847,13 +3847,11 @@ if(xvisualinfo_array==NULL)
 
 
  {
-    /* / Enable events for the window */
+    
 
-   unsigned long valuemask=CWEventMask;
-   windowattributes.event_mask=
-     KeyPressMask   
-     | ExposureMask        
-     ;
+   unsigned long valuemask=CWEventMask | CWOverrideRedirect;
+   windowattributes.event_mask=     KeyPressMask | ExposureMask ; /* / Enable events for the window */
+   /* windowattributes.override_redirect = True; */ /* override redirection if window is raised */
    XChangeWindowAttributes(display, window, valuemask, &windowattributes);    
  }
  
@@ -3871,8 +3869,9 @@ if(xvisualinfo_array==NULL)
  XMapWindow(display, window);
  XFlush(display);
 
-  /*  printf("terminal: %d\n", terminal);  */
-  /*  printf("window: %d\n", window);  */
+/**/
+    printf("terminal: %d\n", (int) terminal);  
+   printf("window: %d\n", (int) window);  
 
  
  glxcontext= glXCreateContext(display, &xvisualinfo_array[0], NULL, True);
@@ -5941,6 +5940,9 @@ void main_menu()
   char s[4];
 
   XLowerWindow(display, window);
+  /* XIconifyWindow(display, window, DefaultScreen(display)); */
+  /* XUnmapWindow(display, window); */ 
+
   XRaiseWindow(display, terminal);
   XSetInputFocus(display, terminal, RevertToParent, CurrentTime);
 
@@ -5968,9 +5970,14 @@ void main_menu()
     }
   while(strcmp(s,"0")!=0);
 
-  XRaiseWindow(display, window);
-  XSetInputFocus(display, window, RevertToParent, CurrentTime);
   printf("\nReturn to graphical window\n");
+
+  XLowerWindow(display, terminal);
+ /* XMapWindow(display, window); */
+/* XIconifyWindow(display, window, DefaultScreen(display)); */ /* screen_number set to 0 */
+/* XMapRaised(display, window); */
+  XRaiseWindow(display, window);
+ XSetInputFocus(display, window, RevertToParent, CurrentTime); 
 
 }
 
