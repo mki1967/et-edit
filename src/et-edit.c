@@ -492,11 +492,11 @@ int main(int argc, char *argv[])
   printf("==================================================\n");
   printf("E.T. EDITOR:  EDGE TRIANGLE THREE-DIMENSIONAL EDITOR\n");
   printf("version 0.21\n\n");
-  printf("Copyright (C) 2003  Marcin Kik      kik@im.pwr.wroc.pl\n");
+  printf("Copyright (C) 2003  Marcin Kik    mki1967@gmail.com \n");
   printf("\nE.T. EDITOR comes with ABSOLUTELY NO WARRANTY.\n");
 
   printf("This is unstable test version, that can be freely redistributed.\n");
-  printf("Send any comments or suggestions to: kik@im.pwr.wroc.pl\n");
+  printf("Send any comments or suggestions to: mki1967@gmail.com \n");
   printf("Most recent versions are available at:  https://github.com/mki1967/et-edit \n"); 
 
   printf("This is free software, and you are welcome to redistribute it\n");
