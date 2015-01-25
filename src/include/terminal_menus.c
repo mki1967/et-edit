@@ -1,3 +1,26 @@
+ /* // TERMINAL INTERACTION */
+
+void get_file_name(char *file_name)
+{
+  char new_name[MAX_FILE_NAME+5];
+  XRaiseWindow(display, terminal);
+  XSetInputFocus(display, terminal, RevertToParent, CurrentTime);
+  printf("Input file name (input '-' to leave the old name: '%s'):\n", file_name);
+  scanf("%100s", new_name);
+  if( strcmp("-",new_name)!=0 ) strcpy(file_name, new_name);
+  printf("New file name is: '%s'\n", file_name);
+  XRaiseWindow(display, window);
+  XSetInputFocus(display, window, RevertToParent, CurrentTime);
+}
+
+
+float get_float()
+{
+  float x;
+  scanf("%f", &x);
+  return x;
+}
+
 
 int are_you_sure()
 {
@@ -35,12 +58,8 @@ void main_menu()
 {
   char s[4];
 
-  XLowerWindow(display, window);
-  /* XIconifyWindow(display, window, DefaultScreen(display)); */
-  /* XUnmapWindow(display, window); */ 
 
-  XRaiseWindow(display, terminal);
-  XSetInputFocus(display, terminal, RevertToParent, CurrentTime);
+  goto_terminal();
 
   do
     {
@@ -68,12 +87,8 @@ void main_menu()
 
   printf("\nReturn to graphical window\n");
 
-  XLowerWindow(display, terminal);
- /* XMapWindow(display, window); */
-/* XIconifyWindow(display, window, DefaultScreen(display)); */ /* screen_number set to 0 */
-/* XMapRaised(display, window); */
-  XRaiseWindow(display, window);
- XSetInputFocus(display, window, RevertToParent, CurrentTime); 
+goto_window();
+
 
 }
 

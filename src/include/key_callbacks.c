@@ -1,4 +1,33 @@
 
+
+void context_switch(enum Context new_context)
+{
+  context=new_context;
+  printf("CONTEXT: ");
+  switch(context)
+    {
+    case context_default:
+      printf("default\n"); break;
+    case context_et0:
+      printf("et0\n"); break;
+    case context_t1:
+      printf("t1\n"); break;
+    }
+}
+
+
+int set_current_color(int c)
+{
+  int i;
+  if(c<0 || c>= COLOR_MAX) return -1;
+  current_color=c;
+  for(i=0; i<CURSOR_EDGE_TOP; i++) cursor_edge[i][2]=c;
+  return 0;
+}
+
+
+
+
 void callbackKeyPress( XKeyEvent* evptr)
 {
   switch(keymode)
@@ -29,6 +58,26 @@ void callbackKeyPress( XKeyEvent* evptr)
       break;
     }
 }
+
+
+ /* / COLOR ADJUSTMENT in mode F7 */
+
+void color_adjust(float r, float g, float b, float c[3])
+{
+  c[0]+=r;
+  if(c[0]<0) c[0]=0;
+  if(c[0]>1) c[0]=1;
+
+  c[1]+=g;
+  if(c[1]<0) c[1]=0;
+  if(c[1]>1) c[1]=1;
+
+  c[2]+=b;
+  if(c[2]<0) c[2]=0;
+  if(c[2]>1) c[2]=1;
+
+}
+
 
 void callback_key_F7(XKeyEvent* evptr)
 {
@@ -930,6 +979,7 @@ void callback_key_F1(XKeyEvent* evptr)
 
 void key_F1_help()
 {
+goto_terminal();
   printf("F1 mode:\n");
   printf("  <M> Mark current group [now marked: %d]\n", group_marker);
   printf("  <Ctrl>+<M> Move vertices from marked group (%d) to current group (%d)\n", 
@@ -953,6 +1003,11 @@ void key_F1_help()
     printf("  <V> move current group by vector (et0_marker, cursor)\n");
   printf(" <Space> group menu in the text terminal\n");  
   printf(" <=> current group statistics\n");  
+printf("Press <ENTER> to return to graphical window:");
+getchar();
+/* scanf("\n"); */
+printf("Continue ...\n");
+goto_window();
 }
 
 
@@ -1513,6 +1568,8 @@ void callback_key_default(XKeyEvent* evptr)
 
 void help_keys()
 {
+goto_terminal();
+
   printf("\n--------- LIST OF KEY COMMANDS -------------\n");
   printf("<Arrow keys>, <Home>, <End> - rotate around the cursor\n");
   printf("<Shift>+(<Arrow keys>, <Home>, <End>) - move the observer\n");
@@ -1568,7 +1625,10 @@ polygon_n);
 
   printf("-----------------------------------------\n\n");
 
-
+printf("Press <ENTER> to return to graphical window:");
+getchar();
+printf("Continue ...\n");
+goto_window();
 }
 
 

@@ -720,6 +720,10 @@ void povray_clipping(FILE* povf);
 
 void initglx();
 
+void goto_terminal();
+
+void goto_window();
+
  /* /////////////////////////////////////////////////////////////////////////////// */
 
 void mainloop();

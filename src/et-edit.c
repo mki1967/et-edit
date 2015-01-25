@@ -33,201 +33,72 @@
  /* ////////////  FUNCTIONS */
 
 
-
- /* // XTERMINAL INTERACTION */
-
-void get_file_name(char *file_name)
-{
-  char new_name[MAX_FILE_NAME+5];
-  XRaiseWindow(display, terminal);
-  XSetInputFocus(display, terminal, RevertToParent, CurrentTime);
-  printf("Input file name (input '-' to leave the old name: '%s'):\n", file_name);
-  scanf("%100s", new_name);
-  if( strcmp("-",new_name)!=0 ) strcpy(file_name, new_name);
-  printf("New file name is: '%s'\n", file_name);
-  XRaiseWindow(display, window);
-  XSetInputFocus(display, window, RevertToParent, CurrentTime);
-}
-
-
-float get_float()
-{
-  float x;
-  scanf("%f", &x);
-  return x;
-}
-
-
-
-
-
-
-
-
  /* // BACKUP AND UNDO */
-
 #include "backup_undo.c"
-
-
-
- /* // SCREEN  */
-
-void screen_init(struct Screen* scr)
-{
-  scr->distance=screen_distance;
-  scr->clip_min=clip_min;
-  scr->clip_max=clip_max;
-  scr->width=screen_width;
-  scr->height=screen_height;
-}
-
-
-void screen_set_distance(struct Screen* scr,float distance)
-{
-  scr->distance=distance;
-  setfrustum();
-  printf("Screen distance is: %f\n", scr->distance);
-}
-
-
-void screen_set_clipping(struct Screen* scr,float clip_min, float clip_max)
-{
-  if(clip_min_limit<= clip_min && clip_min<= clip_max)
-    {
-      scr->clip_min=clip_min;
-      scr->clip_max=clip_max;
-      setfrustum();
-    }
-  else printf("Screen clipping: bad values !\n");
-  printf("Screen: clip_min = %f, clip_max = %f\n", scr->clip_min, scr->clip_max);
-
-}
-
-
-
- /* / COLOR ADJUSTMENT */
-
-void color_adjust(float r, float g, float b, float c[3])
-{
-  c[0]+=r;
-  if(c[0]<0) c[0]=0;
-  if(c[0]>1) c[0]=1;
-
-  c[1]+=g;
-  if(c[1]<0) c[1]=0;
-  if(c[1]>1) c[1]=1;
-
-  c[2]+=b;
-  if(c[2]<0) c[2]=0;
-  if(c[2]>1) c[2]=1;
-
-}
-
-
- /* / VECTOR OPERATIONS */
-
+/* // SCREEN  */
+#include "include/screen_functions.c"
+/* / VECTOR OPERATIONS */
 #include "include/vector_functions.c"
-
- /* / CONSTRUCTIVE METHODS */
-
+/* / CONSTRUCTIVE METHODS */
 #include "include/constructive_methods.c"
-
-
-/* /// TRANSFORMATION ////////////////////////////////// */
-
-
+/* /// TRANSFORMATION  */
 #include "include/transformation_functions.c"
-
-
- /* //// CLIPPING PLANES ///// */
-
+/* //// CLIPPING PLANES ///// */
 #include "include/clip_functions.c"
-
-
- /* /// LIGHT /////////////////////////////////// */
-
+/* /// LIGHT  */
 #include "include/light_functions.c"
-
- /* // VERTEX FUNCTIONS */
-
+/* // VERTEX FUNCTIONS */
 #include "include/vertex_functions.c"
-
- /* // EDGE STACK */
-
+/* // EDGE STACK */
 #include "include/edge_functions.c"
-
- /* // TRIANGLE  */
-
+/* // TRIANGLE  */
 #include "include/triangle_functions.c"
-
- /* ///////// GROUPS */
-
+/* ///////// GROUPS */
 #include "include/group_functions.c"
-
-
- /* ////// CURSOR /////// */
-
+/* ////// CURSOR /////// */
 #include "include/cursor_functions.c"
-
 /* / REDUTCIONS */
-
-
 #include "include/reduce_functions.c"
+/* /////////// SAVING / LOADING */
+#include "include/io_functions.c"
+/* // PCL raster printing */
+#include "include/export_pcl.c" 
+/* //// POVRAY */
+#include "include/export_povray.c"
 
 
 
  /* ///////////////// EDITOR  /////////////////////////// */
 
 
-void context_switch(enum Context new_context)
-{
-  context=new_context;
-  printf("CONTEXT: ");
-  switch(context)
-    {
-    case context_default:
-      printf("default\n"); break;
-    case context_et0:
-      printf("et0\n"); break;
-    case context_t1:
-      printf("t1\n"); break;
-    }
-}
-
-
-int set_current_color(int c)
-{
-  int i;
-  if(c<0 || c>= COLOR_MAX) return -1;
-  current_color=c;
-  for(i=0; i<CURSOR_EDGE_TOP; i++) cursor_edge[i][2]=c;
-  return 0;
-}
-
-
-
-
-
-
-
- /* /////////// SAVING / LOADING */
-
-
-#include "include/io_functions.c"
-
- /* // PCL raster printing */
-
- 
-#include "include/export_pcl.c" 
-
-
- /* //// POVRAY */
-
-#include "include/export_povray.c"
-
 
  /* ////////// X / GLX ////////////////////// */
 
+void goto_terminal()
+{
+/*
+XDestroyWindow(display,window);
+glXDestroyContext(display, glxcontext);
+*/
+  XLowerWindow(display, window);
+  /* XIconifyWindow(display, window, DefaultScreen(display)); */
+  /* XUnmapWindow(display, window); */ 
+
+  XRaiseWindow(display, terminal);
+  XSetInputFocus(display, terminal, RevertToParent, CurrentTime);
+  XFlush(display);
+}
+
+void goto_window()
+{
+  XLowerWindow(display, terminal);
+ /* XMapWindow(display, window); */
+/* XIconifyWindow(display, window, DefaultScreen(display)); */ /* screen_number set to 0 */
+/* XMapRaised(display, window); */
+  XRaiseWindow(display, window);
+ XSetInputFocus(display, window, RevertToParent, CurrentTime); 
+  XFlush(display);
+}
 
 void initglx()
 {
@@ -263,16 +134,19 @@ if(xvisualinfo_array==NULL)
  {
    int revert_to;
    XGetInputFocus(display, &terminal,&revert_to);
+   printf("terminal: %d\n", (int) terminal); /**/  
  }
+{
+ glxcontext= glXCreateContext(display, &xvisualinfo_array[0], NULL, True);
+
+ printf("glXIsDirect: %d\n", glXIsDirect(display, glxcontext) );
+}
 
  window= XCreateSimpleWindow( display, DefaultRootWindow(display) , 0,0, 
 			      screen_width, screen_height,
                               0, 0, 0 );
 
-
  {
-    
-
    unsigned long valuemask=CWEventMask | CWOverrideRedirect;
    windowattributes.event_mask=     KeyPressMask | ExposureMask ; /* / Enable events for the window */
    /* windowattributes.override_redirect = True; */ /* override redirection if window is raised */
@@ -292,18 +166,13 @@ if(xvisualinfo_array==NULL)
 
  XMapWindow(display, window);
  XFlush(display);
-
-/**/
-    printf("terminal: %d\n", (int) terminal);  
-   printf("window: %d\n", (int) window);  
-
- 
- glxcontext= glXCreateContext(display, &xvisualinfo_array[0], NULL, True);
-
- printf("glXIsDirect: %d\n", glXIsDirect(display, glxcontext) );
-
  glXMakeCurrent(display, window, glxcontext);
+/**/
+ printf("window: %d\n", (int) window);  
+
  
+/* goto_window(); */
+
 }
 
 

@@ -1,7 +1,7 @@
 # Makefile based on http://www.freesoftwaremagazine.com/articles/gnu_coding_standards_applied_to_autotools
 # Package-related substitution variables
 export package     = et-edit
-export version     = 1.0
+export version     = 1.0-SNAPSHOT
 export tarname     = $(package)
 export distdir     = $(tarname)-$(version)
 
