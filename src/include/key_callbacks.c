@@ -1625,9 +1625,14 @@ polygon_n);
 
   printf("-----------------------------------------\n\n");
 
-printf("Press <ENTER> to return to graphical window:");
-getchar();
-printf("Continue ...\n");
+{
+  char s[4];
+  printf("MENU:\n");
+  printf(" 0 (or anything) - to return to graphical window\n");
+  printf("\nselect intem: ");
+  scanf(" %3s%*[^\n]", s);
+}
+/* printf("Continue ...\n"); */
 goto_window();
 }
 
