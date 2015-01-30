@@ -35,9 +35,6 @@ void callbackKeyPress( XKeyEvent* evptr)
     case key_default:
       callback_key_default(evptr);
       break;
-    case key_F1:
-      callback_key_F1(evptr);
-      break;
     case key_F2:
       callback_key_F2(evptr);
       break;
@@ -792,225 +789,6 @@ void key_F2_help()
 }
 
 
-void callback_key_F1(XKeyEvent* evptr)
-{
-  enum Keymode next_mode;
-
-  next_mode= key_default;
-
-  switch(XLookupKeysym(evptr,0))
-    {
-    case  XK_Shift_L:
-    case  XK_Shift_R:
-    case XK_Control_L:
-    case XK_Control_R:
-    case XK_Alt_L:
-    case XK_Alt_R:
-      next_mode=key_F1;
-      break;
-
-    case XK_Up:
-      backup();
-      group_rot90(group_current, 0, 1, 0);
-      redraw();
-      break;
-    case XK_Right:
-      backup();
-      group_rot90(group_current, 1, 0, 0);
-      redraw();
-      break;
-    case XK_Home:
-      backup();
-      group_rot90(group_current, 0, 0, 1);
-      redraw();
-      break;
-
-    case  XK_equal:
-      group_statistics(group_current); 
-      break;
-
-
-    case XK_space :
-      group_menu();
-      XRaiseWindow(display, window);
-      XSetInputFocus(display, window, RevertToParent, CurrentTime);
-      break;
-
-    case XK_e : 
-      backup();
-      group_extract_clipped();
-      redraw();
-      break;
-
-    case XK_m :
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  group_mark(group_current);
-	  redraw();
-	  break;
-	case Mod1Mask:
-	  group_mark(-1);
-	  redraw();
-	  break;
-	case ControlMask:
-	  backup();
-          group_regroup(group_marker, group_current);
-	  redraw();
-	  break;
-	}
-      break;
-
-    case XK_z :
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-          group_remove_empty();
-	  redraw();
-	  break;
-	}
-      break;
-
-    case XK_f :
-      {
-	int found;
-	switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	  {
-	  case 0:
-	    found=group_find(cursor);
-	    if(found!=-1)
-	      {
-		group_change_current(found, &group_current, group, vertex_used);
-		redraw();
-	      }
-	    else
-	      printf("CURSOR IS NOT INCIDENT TO ANY GROUP\n");
-	    break;
-	  }
-      }
-      break;
-
-    case XK_v :
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  if(context==context_et0)
-	    {
-	      float mv[3];
-	      vector_sub(cursor, et0_marker, mv);
-	      backup();
-	      group_move(group_current, mv, 
-			 group, vertex, vertex_used);
-	      
-	    }
-	  redraw();
-	  break;
-	}
-      break;
-
-    case XK_x :
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case Mod1Mask:
-	  backup();
-          group_delete_edges(group_current);
-	  redraw();
-	  break;
-	case ShiftMask:
-	  backup();
-          group_delete_triangles(group_current);
-	  redraw();
-	  break;
-	case Mod1Mask|ShiftMask:
-	  backup();
-          group_delete_triangles(group_current);
-          group_delete_edges(group_current);
-	  redraw();
-	}
-      break;
-
-    case XK_p :
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case Mod1Mask:
-	  backup();
-          group_paint_edges(group_current, current_color);
-	  redraw();
-	  break;
-	case ShiftMask:
-	  backup();
-          group_paint_triangles(group_current, current_color);
-	  redraw();
-	  break;
-	}
-      break;
-
-    case XK_c :
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  backup();
-          group_copy(False, False);
-	  redraw();
-	  break;
-	case Mod1Mask:
-	  backup();
-          group_copy(True, False);
-	  redraw();
-	  break;
-	case ShiftMask:
-	  backup();
-          group_copy(False, True);
-	  redraw();
-	  break;
-	case Mod1Mask|ShiftMask:
-	  backup();
-          group_copy(True, True);
-	  redraw();
-	  break;
-	}
-      break;
-    }
-  keymode=next_mode;
-  if(keymode==key_default) printf("default key mode\n");
-
-}
-
-
-void key_F1_help()
-{
-goto_terminal();
-  printf("F1 mode:\n");
-  printf("  <M> Mark current group [now marked: %d]\n", group_marker);
-  printf("  <Ctrl>+<M> Move vertices from marked group (%d) to current group (%d)\n", 
-	 group_marker, group_current
-	 );
-  printf("  <Alt>+<M> Set group marker to -1 (no group)\n");
-  printf("  <E> extract visible vertices to a new group\n");
-  printf("  <F> change to a group incident to the cursor\n");
-  printf("  <C> copy to new group\n");  
-  printf("  <Alt>+<C> copy and glue with edges\n");  
-  printf("  <Shift>+<C> copy and glue with triangles\n");  
-  printf("  <Alt>+<Shift>+<C> copy and glue with edges and triangles\n");  
-  printf("  <Z> remove empty group numbers\n");
-  printf("  <Alt>+<X> delete edges incident to current group\n");
-  printf("  <Shift>+<X> delete triangles incident to current group\n");
-  printf("  <Shift>+<Alt>+<X> delete edges and triangles incident to current group\n");
-  printf("  <Alt>+<P> paint edges of current group with current color\n");
-  printf("  <Shift>+<P> paint triangles of current group with current color\n");
-  printf(" <Up>/<Right>/<Home> rotate current group 90 degrees around the axis\n");
-  if(context==context_et0) 
-    printf("  <V> move current group by vector (et0_marker, cursor)\n");
-  printf(" <Space> group menu in the text terminal\n");  
-  printf(" <=> current group statistics\n");  
-printf("Press <ENTER> to return to graphical window:");
-/* getchar(); */
-scanf("%*[^\n]");
-printf("Continue ...\n");
-goto_window();
-}
-
-
 
 
 void callback_key_default(XKeyEvent* evptr)
@@ -1022,8 +800,9 @@ void callback_key_default(XKeyEvent* evptr)
   switch(XLookupKeysym(evptr,0))
     {
     case XK_F1:
-      keymode=key_F1;
-      key_F1_help();
+      goto_terminal();
+      menu_F1();
+      goto_window();
       break;
 
     case XK_F2:
@@ -1610,7 +1389,7 @@ goto_terminal();
   printf("<Ctrl>+<V> - move current group (in context: et0)\n");
   printf("<G> - menu for connected component in text terminal\n");
   printf("<Q> - quit\n");
-  printf("<F1> - switch to F1 key mode (groups) \n");
+  printf("<F1> - switch to F1 menu (operations on groups) \n");
   printf("<F2> - switch to F2 key mode (cursor, zoom, observer step) \n");
   printf("<F3> - switch to F3 mode (STORED POINTS)\n");
   printf("<F4> - switch to F4 mode (CONSTRUCTIVE METHODS)\n");
@@ -1627,6 +1406,8 @@ polygon_n);
 
   printf("-----------------------------------------\n\n");
 
+get_anything();
+/*
 {
   char s[4];
   printf("MENU:\n");
@@ -1634,6 +1415,7 @@ polygon_n);
   printf("\nselect item: ");
   scanf(" %3s%*[^\n]", s);
 }
+*/
 /* printf("Continue ...\n"); */
 goto_window();
 }
