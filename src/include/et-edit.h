@@ -767,7 +767,7 @@ void redraw();
  /* // MENU */
 
 int are_you_sure();
-void quit_menu();
+/* void quit_menu(); */
 void main_menu();
 void screen_menu();
 void cursor_menu();

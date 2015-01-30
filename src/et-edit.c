@@ -65,6 +65,17 @@
 #include "include/export_pcl.c" 
 /* //// POVRAY */
 #include "include/export_povray.c"
+/* // REDRAW FUNCTIONS */
+#include "include/redraw_functions.c"
+/* // MENU */
+/* #include "include/terminal_menus.c" */
+#include "include/ui/ui.c"
+/* ///// GRAPH FUNCTIONS */
+#include "include/graph_functions.c"
+/* //// CALLBACKS */
+#include "include/expose_callbacks.c"
+/* //////////// KEY COMMANDS //////////// */
+#include "include/key_callbacks.c"
 
 
 
@@ -96,6 +107,7 @@ void goto_window()
 /* XIconifyWindow(display, window, DefaultScreen(display)); */ /* screen_number set to 0 */
 /* XMapRaised(display, window); */
   XRaiseWindow(display, window);
+  redraw(); 
  XSetInputFocus(display, window, RevertToParent, CurrentTime); 
   XFlush(display);
 }
@@ -175,8 +187,7 @@ if(xvisualinfo_array==NULL)
 
 }
 
-
- /* /////////////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////////// */
 
 
 void mainloop()
@@ -199,14 +210,6 @@ void mainloop()
 
 
 
- /* //// CALLBACKS */
-
-#include "include/expose_callbacks.c"
-
-/* //////////// KEY COMMANDS //////////// */
-
-
-#include "include/key_callbacks.c"
 
 
 
@@ -252,17 +255,6 @@ void setfrustum()
 
 
 
- /* // REDRAW FUNCTIONS */
-
-#include "include/redraw_functions.c"
-
- /* // MENU */
-
-#include "include/terminal_menus.c"
-
- /* ///// GRAPH FUNCTIONS */
-
-#include "include/graph_functions.c"
 
 
  /* //////// MAIN */
@@ -286,7 +278,7 @@ int main(int argc, char *argv[])
   printf(" under conditions of GNU GENERAL PUBLIC LICENSE\n\n");
 
   printf("\nThis terminal and the graphical window are both used for interactions with you.\n");
-  printf("Thus the program must be a foreground process of this terminal.\n");
+  printf("Thus the program must be run as a FOREGROUND process of this terminal.\n");
   printf("Most interactions are by pressing the keys, on the graphical window.\n");
   printf("(Press key <H> on graphical window to print the list of key commands)\n");
   printf("From time to time you may be requested to input a text in this terminal.\n");

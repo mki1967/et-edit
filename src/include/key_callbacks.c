@@ -1004,8 +1004,8 @@ goto_terminal();
   printf(" <Space> group menu in the text terminal\n");  
   printf(" <=> current group statistics\n");  
 printf("Press <ENTER> to return to graphical window:");
-getchar();
-/* scanf("\n"); */
+/* getchar(); */
+scanf("%*[^\n]");
 printf("Continue ...\n");
 goto_window();
 }
@@ -1555,7 +1555,8 @@ void callback_key_default(XKeyEvent* evptr)
       stats(); break;
 
     case XK_m:
-      main_menu(); break;
+        /* main_menu(); break; */
+        root_menu(); break;
     case XK_u:
       undo(); redraw(); break;
     case XK_q:
@@ -1605,7 +1606,8 @@ goto_terminal();
   printf("<Ctrl>+<ALT>+<P> - paint the edges incident to the vertex pointed by cursor\n");
   printf("<Ctrl>+<ALT>+<Shift>+<P> - paint the triangles incident to the vertex pointed by cursor\n");
   printf("<V> - move connected component (in context: et0)\n");
-  printf("<Shift>+<V> - copy and move connected component (in context: et0)\n");  printf("<Ctrl>+<V> - move current group (in context: et0)\n");
+  printf("<Shift>+<V> - copy and move connected component (in context: et0)\n");  
+  printf("<Ctrl>+<V> - move current group (in context: et0)\n");
   printf("<G> - menu for connected component in text terminal\n");
   printf("<Q> - quit\n");
   printf("<F1> - switch to F1 key mode (groups) \n");
@@ -1629,7 +1631,7 @@ polygon_n);
   char s[4];
   printf("MENU:\n");
   printf(" 0 (or anything) - to return to graphical window\n");
-  printf("\nselect intem: ");
+  printf("\nselect item: ");
   scanf(" %3s%*[^\n]", s);
 }
 /* printf("Continue ...\n"); */
