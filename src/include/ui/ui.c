@@ -45,7 +45,7 @@ int are_you_sure()
 
 void get_anything()
 {
-printf("Input <anything> to continue ...\n");
+printf("Input any non-empty text to continue ...\n");
 scanf("%*s%*[^\n]");
 }
 

@@ -11,7 +11,7 @@ void main_menu()
       printf("\nMAIN MENU:\n\n");
       printf("1  Cursor\n");
       printf("2  Screen\n");
-      printf("3  Groups\n");
+      /* printf("3  Groups\n"); */
       printf("4  Export\n");
        /*  ... */
       printf("0  Return\n");
@@ -22,8 +22,10 @@ void main_menu()
       else
       if(strcmp(s,"2")==0) screen_menu();
       else
+/*    
       if(strcmp(s,"3")==0) group_menu();
       else
+*/
       if(strcmp(s,"4")==0) export_menu();
 
        /*  ... */
@@ -142,90 +144,6 @@ void cursor_menu()
   while(strcmp(s,"0")!=0);
 
 }
-
-
-void group_menu()
-{
-  char s[4];
-  int g_max;
-  do
-    {
-      g_max=group_max(group, vertex_used);
-      printf("\nGROUPS MENU\n");
-      printf("(maximal group number is: %d)\n\n", g_max);
-      printf("cg change current group [%d]\n", group_current);
-      if(context==context_et0) 
-	printf("mv move current group\n");
-      printf("s  Scale\n");
-      printf("sx Scale in X dimmension\n");
-      printf("sy Scale in Y dimmension\n");
-      printf("sz Scale in Z dimmension\n");
-
-
-      printf("0  Return\n");
-
-      printf("\nselect item: ");
-      scanf("%3s", s);
-
-      if(strcmp(s,"cg")==0)
-	{int g;
-	  printf("Input group number (between 0 and %d):\n", g_max+1);
-          scanf("%d", &g);
-          if(0<=g && g<= g_max+1) 
-	    group_change_current(g, &group_current, group, vertex_used); 
-	  else printf("bad group number !\n");
-	}
-      else 
-      if(context==context_et0 && strcmp(s,"mv")==0)
-	{
-	  float mv[3];
-          vector_sub(cursor, et0_marker, mv);
-	  backup();
-          group_move(group_current, mv, group, vertex, vertex_used);
-	}
-      else
-      if(strcmp(s,"s")==0)
-	{float s;
-	printf("Input scaling factor:\n");
-	s=get_float();
-	backup();
-	group_scale(group_current, s, s, s, cursor,
-		    group, vertex, vertex_used);
-	}
-      else
-      if(strcmp(s,"sx")==0)
-	{float s;
-	printf("Input scaling factor:\n");
-	s=get_float();
-	backup();
-	group_scale(group_current, s, 1.0, 1.0, cursor,
-		    group, vertex, vertex_used);
-	}
-      else
-      if(strcmp(s,"sy")==0)
-	{float s;
-	printf("Input scaling factor:\n");
-	s=get_float();
-	backup();
-	group_scale(group_current, 1.0, s, 1.0, cursor,
-		    group, vertex, vertex_used);
-	}
-      else
-      if(strcmp(s,"sz")==0)
-	{float s;
-	printf("Input scaling factor:\n");
-	s=get_float();
-	backup();
-	group_scale(group_current, 1.0, 1.0, s, cursor,
-		    group, vertex, vertex_used);
-	}
-
-      redraw();
-    }
-  while(strcmp(s,"0")!=0);
-
-}
-
 
 
 
