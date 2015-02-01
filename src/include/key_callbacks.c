@@ -1179,6 +1179,7 @@ void callback_key_default(XKeyEvent* evptr)
 	case ShiftMask:
 	  switch_second_light(); redraw(); break;
 	case ControlMask:
+          goto_terminal();
 	  if(!was_modified || are_you_sure())
 	    {	    
 	      printf("LOADING:\n");
@@ -1198,8 +1199,10 @@ void callback_key_default(XKeyEvent* evptr)
 	      backup();
 	      was_modified=False;
 	    }
-	  redraw(); break;
+          goto_window();
+	  break;
 	case ControlMask|ShiftMask:
+          goto_terminal();
 	  backup();
 	  printf("MERGING:\n");
 	  get_file_name(merge_file_name);
@@ -1215,7 +1218,8 @@ void callback_key_default(XKeyEvent* evptr)
 		 &cursor_step,
 		 &current_color,
 		 group);
-	  redraw(); break;
+          goto_window();
+	  break;
 	};
       break;
           
@@ -1224,6 +1228,7 @@ void callback_key_default(XKeyEvent* evptr)
       switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
 	{
 	case ControlMask:
+          goto_terminal();
 	  printf("SAVING:\n");
           get_file_name(file_name);
 	  save( file_name, 
@@ -1240,12 +1245,14 @@ void callback_key_default(XKeyEvent* evptr)
 		group);
 	  was_modified=False;
 	  backup_was_modified=True;
-	  redraw(); 
+          goto_window();
 	  break;
 	case ControlMask|ShiftMask:
+          goto_terminal();
 	  printf("EXPORTING:\n");
           (*export_last_ptr)();
-	  redraw(); break;
+          goto_window();
+	  break;
 	};
       break;
 
@@ -1407,15 +1414,7 @@ polygon_n);
   printf("-----------------------------------------\n\n");
 
 get_anything();
-/*
-{
-  char s[4];
-  printf("MENU:\n");
-  printf(" 0 (or anything) - to return to graphical window\n");
-  printf("\nselect item: ");
-  scanf(" %3s%*[^\n]", s);
-}
-*/
+
 /* printf("Continue ...\n"); */
 goto_window();
 }
