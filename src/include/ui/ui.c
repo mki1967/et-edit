@@ -51,7 +51,9 @@ scanf("%*s%*[^\n]");
 
 /* INCLUDE SUB-MENUS */
 
+
 #include "menu_F1.c"
+#include "menu_F5.c"
 #include "terminal_menus.c"
 #include "root_menu.c"
 

@@ -44,9 +44,6 @@ void callbackKeyPress( XKeyEvent* evptr)
     case key_F4:
       callback_key_F4(evptr);
       break;
-    case key_F5:
-      callback_key_F5(evptr);
-      break;
     case key_F6:
        /*  callback_key_F6(evptr); */
       break;
@@ -300,59 +297,6 @@ void key_F7_help()
   printf("<X> exchange left and right colors\n");
 }
 
-
-
-void callback_key_F5(XKeyEvent* evptr)
-{
-  enum Keymode next_mode;
-  next_mode= key_default;
-
-  switch(XLookupKeysym(evptr,0))
-    {
-    case  XK_Shift_L:
-    case  XK_Shift_R:
-    case XK_Control_L:
-    case XK_Control_R:
-    case XK_Alt_L:
-    case XK_Alt_R:
-      next_mode=key_F5;
-      break;
-
-    case XK_1:
-      printf("Inputnew reduction epsilon (>= 0):");
-      reduction_epsilon=get_float();
-      if(reduction_epsilon<0) reduction_epsilon=0.0;
-      printf("\n new value of reduction epsilon is: %e\n", reduction_epsilon);
-      redraw();
-      break;
-
-    case XK_v:
-      reduce_group_vertices(group_current);
-      redraw();
-      break;
-
-/*     case XK_s: */
-/*       qsort(edge,edge_top, sizeof(int[3]), edge_compare); */
-/*       qsort(triangle,triangle_top, sizeof(int[4]), triangle_compare); */
-/*       redraw(); */
-/*       break; */
-
-    }
-
-
-  keymode=next_mode;
-  if(keymode==key_default) printf("default key mode\n");
-
-}
-
-
-void key_F5_help()
-{
-  printf("F5 mode (REDUCTIONS):\n");
-  printf("\n");
-  printf("<1> input new reduction epsilon [%e]\n", reduction_epsilon);
-  printf("<V> reduce vertices in current group\n");
-}
 
 
 void callback_key_F4(XKeyEvent* evptr)
@@ -821,8 +765,9 @@ void callback_key_default(XKeyEvent* evptr)
       break;
 
     case XK_F5:
-      keymode=key_F5;
-      key_F5_help();
+      goto_terminal();
+      menu_F5();
+      goto_window();
       break;
 
     case XK_F7:

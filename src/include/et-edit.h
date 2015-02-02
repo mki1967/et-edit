@@ -282,7 +282,7 @@ enum Keymode
     key_F2,
     key_F3,
     key_F4,
-    key_F5,
+/*    key_F5, */
     key_F6,
     key_F7
 
@@ -737,8 +737,10 @@ void callbackExpose( XExposeEvent* evptr);
 void callbackKeyPress( XKeyEvent* evptr);
 void callback_key_F7(XKeyEvent* evptr);
 void key_F7_help();
+/*
 void callback_key_F5(XKeyEvent* evptr);
-void key_F5_help();
+void key_F5_help(); 
+*/
 void callback_key_F4(XKeyEvent* evptr);
 void key_F4_help();
 void callback_key_F3(XKeyEvent* evptr);
