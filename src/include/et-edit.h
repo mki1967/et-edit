@@ -395,11 +395,6 @@ double reduction_epsilon=0.0001;
 
 
 
-
-
-
-
-
  /* ////////////  FUNCTIONS */
 
 

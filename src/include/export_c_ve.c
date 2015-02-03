@@ -1,3 +1,26 @@
+
+void c_vertex_fprintf(FILE* s, int n, float v[][3], char * name_prefix)
+{
+  int i;
+  fprintf(s, "\nfloat %s_vertex[%d][3]={\n", name_prefix, n);
+  for(i=0; i<n; i++) 
+    fprintf(s, "  { %f, %f, %f},\n", v[i][0], v[i][1], v[i][2]);
+  fprintf(s, "};\n");
+}
+
+void c_edge_fprintf(FILE* s, int edge_top, int edge[][3], char * name_prefix)
+{
+  int i;
+  fprintf(s, "\nint %s_edge_top=%d;\n", name_prefix, edge_top);
+  fprintf(s, "\nint %s_edge[%d][3]={\n", name_prefix, edge_top);
+  for(i=0; i<edge_top; i++)
+    {
+      fprintf(s, "  { %d, %d, %d},\n", edge[i][0], edge[i][1], edge[i][2]);
+    }
+  fprintf(s, "};\n");
+}
+
+
 void export_c_ve(char * name_prefix)
 {
 /* UNFINISHED !!! */
@@ -23,11 +46,11 @@ void export_c_ve(char * name_prefix)
 			     triangle_top, triangle, triangle_normal,
 			     group);
 
-  vertex_fprintf(stream, n_vertices, vertex);
+  c_vertex_fprintf(stream, n_vertices, vertex, name_prefix);
   fprintf(stream, "\n");
 
    /*  EDGES */
-  edge_fprintf(stream, edge_top, edge);
+  c_edge_fprintf(stream, edge_top, edge, name_prefix);
   fprintf(stream, "\n");
 
   fclose(stream);

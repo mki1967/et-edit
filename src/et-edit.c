@@ -28,6 +28,10 @@
 
 #include "include/et-edit.h"
 
+/* FONT DATA */
+const float font_scale=0.06;
+
+#include "res/et-fonts/points/font_point"
 
 
  /* ////////////  FUNCTIONS */
