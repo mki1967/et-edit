@@ -65,6 +65,8 @@
 #include "include/export_pcl.c" 
 /* //// POVRAY */
 #include "include/export_povray.c"
+/* EXPORT TO C DATA */
+#include "include/export_c_ve.c"
 /* // REDRAW FUNCTIONS */
 #include "include/redraw_functions.c"
 /* // MENU */

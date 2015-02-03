@@ -715,6 +715,9 @@ void pcl_print();
 int povray_export();
 void povray_clipping(FILE* povf);
 
+/* EXPORT TO C DATA */
+
+void export_c_ve(char * name_prefix);
 
  /* ////////// X / GLX ////////////////////// */
 
