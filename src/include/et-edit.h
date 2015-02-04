@@ -376,9 +376,10 @@ float backup_move_step;
 
  /* // POINTS */
 
-#define POINT_MAX 25
+#define POINT_MAX ('9'-'0'+1 + 'Z'-'A'+1)
 
-float point[POINT_MAX][3];
+float point[POINT_MAX][3]; /* contructive points */
+Bool point_visible[POINT_MAX]; /* visibility of contructive points */
 
 
  /* // REGULAR POLYGON */
