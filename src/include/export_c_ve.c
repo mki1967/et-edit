@@ -58,6 +58,6 @@ void export_c_ve(char * name_prefix)
   fprintf(stream, "SHAPE_VE %s = { %s_vertex, %d, %s_edge };\n", name_prefix, name_prefix, edge_top, name_prefix);
 
   fclose(stream);
-  printf("NOT FINISHED: only saved to: '%s'\n", fname);
+  printf("C data exported to: '%s'\n", fname);
 
 }

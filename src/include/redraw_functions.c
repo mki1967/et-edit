@@ -158,7 +158,9 @@ void redraw_mono()
   draw_font(font_scale, font_point_vertex, font_point_edge_top, font_point_edge, cursor[0], cursor[1], cursor[2] ); 
 */
   draw_font_shape_ve(font_scale, &font_point,  0,0,0); 
+  draw_font_shape_ve(font_scale,digit_letter_shape[10+'Z'-'A'] ,  0,0,0); 
   draw_font_shape_ve(font_scale, &font_point, cursor[0], cursor[1], cursor[2] ); 
+  draw_font_shape_ve(font_scale, digit_letter_shape[0], cursor[0], cursor[1], cursor[2] ); 
   /* TEST - end */
 
 
