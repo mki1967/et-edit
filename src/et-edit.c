@@ -28,10 +28,22 @@
 
 #include "include/et-edit.h"
 
+
+typedef struct{
+               float (*vertex)[3];
+               int edge_top;
+               int (*edge)[3];
+              } SHAPE_VE; /* shape consisting of vectors and edges */
+
 /* FONT DATA */
 const float font_scale=0.06;
 
 #include "res/et-fonts/points/font_point"
+
+/*
+SHAPE_VE font_point={  font_point_vertex, 4, font_point_edge };
+*/
+
 
 
  /* ////////////  FUNCTIONS */

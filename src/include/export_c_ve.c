@@ -53,6 +53,10 @@ void export_c_ve(char * name_prefix)
   c_edge_fprintf(stream, edge_top, edge, name_prefix);
   fprintf(stream, "\n");
 
+  /* DEFINFE SHAPE _VE */
+ 
+  fprintf(stream, "SHAPE_VE %s = { %s_vertex, %d, %s_edge };\n", name_prefix, name_prefix, edge_top, name_prefix);
+
   fclose(stream);
   printf("NOT FINISHED: only saved to: '%s'\n", fname);
 

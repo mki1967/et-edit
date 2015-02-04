@@ -107,6 +107,19 @@ void draw_font(float font_scale, float vertex[][3], int edge_top, int edge[][3],
   glPopMatrix();
 }
 
+void draw_font_shape_ve(float font_scale, SHAPE_VE * shape, float x, float y, float z)
+{
+/* UNFINISHED !!! */
+  glPushMatrix();
+  glTranslatef(x, y, z);
+  glMultMatrixd(transformation.R); /* reverse rotations */
+  glScaled(font_scale,font_scale,font_scale);
+  
+  draw_edges(shape->edge_top, shape->edge, shape->vertex, 
+	     group_current, False, group);
+  glPopMatrix();
+}
+
 
 void redraw_mono()
 {
@@ -139,10 +152,14 @@ void redraw_mono()
     vector_scale(-1,light);
   }
 
-  /* TEST */
+  /* TEST - begin */
+/*
   draw_font(font_scale, font_point_vertex, font_point_edge_top, font_point_edge,  0,0,0); 
   draw_font(font_scale, font_point_vertex, font_point_edge_top, font_point_edge, cursor[0], cursor[1], cursor[2] ); 
-
+*/
+  draw_font_shape_ve(font_scale, &font_point,  0,0,0); 
+  draw_font_shape_ve(font_scale, &font_point, cursor[0], cursor[1], cursor[2] ); 
+  /* TEST - end */
 
 
 
