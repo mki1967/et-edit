@@ -69,7 +69,7 @@ void draw_edges(int top, int e[][3], float v[][3],  /*  int e_color[], */
   int i;
   Bool valid_color_idx;
   valid_color_idx= ( 0<= color_idx &&  color_idx < COLOR_MAX );
-  if(valid_color_idx) glColor3fv( color[color_idx] );
+  if(valid_color_idx && !stereo_mode) glColor3fv( color[color_idx] );
 
   glDisable(GL_LIGHTING);
 
