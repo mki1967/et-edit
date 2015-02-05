@@ -53,6 +53,7 @@ scanf("%*s%*[^\n]");
 
 
 #include "menu_F1.c"
+#include "menu_F3.c"
 #include "menu_F5.c"
 #include "povray_menu.c"
 #include "export_c_menu.c"
