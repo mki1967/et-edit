@@ -756,8 +756,11 @@ void draw_triangles(int top, int t[][4],  float v[][3], float t_normal[][3],
 		    int group_current, Bool group_restricted, int group[]);
 void draw_triangle(float a[], float b[], float c[], int col);
 void draw_edge(float a[], float b[], int c);
-void draw_edges(int top, int e[][3], float v[][3],  /*  int e_color[], */
-		int group_current, Bool group_restricted, int group[]);
+void draw_edges(int top, int e[][3], float v[][3], 
+	       int group_current, Bool group_restricted, int group[], 
+               int color_idx /* if 0<= color_idx < COLOR_MAX  then use color[color_idx] */
+               );
+
 void draw_cursor();
 void redraw_mono();
 void redraw();

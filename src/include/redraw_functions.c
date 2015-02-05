@@ -62,9 +62,15 @@ void draw_edge(float a[], float b[], int c)
 
 
 void draw_edges(int top, int e[][3], float v[][3],  /*  int e_color[], */
-	       int group_current, Bool group_restricted, int group[])
+	       int group_current, Bool group_restricted, int group[], 
+               int color_idx /* if 0<= color_idx < COLOR_MAX  then use color[color_idx] */
+               )
 {
   int i;
+  Bool valid_color_idx;
+  valid_color_idx= ( 0<= color_idx &&  color_idx < COLOR_MAX );
+  if(valid_color_idx) glColor3fv( color[color_idx] );
+
   glDisable(GL_LIGHTING);
 
 
@@ -77,7 +83,7 @@ void draw_edges(int top, int e[][3], float v[][3],  /*  int e_color[], */
 	)
        )
       {
-	if(!stereo_mode) glColor3fv( color[e[i][2]] );
+	if(!(stereo_mode || valid_color_idx) ) glColor3fv( color[e[i][2]] );
 	glVertex3fv( v[e[i][0]] );
 	glVertex3fv( v[e[i][1]] );
       }
@@ -90,7 +96,7 @@ void draw_cursor()
   glPushMatrix();
   glTranslatef(cursor[0], cursor[1], cursor[2]);
   draw_edges(CURSOR_EDGE_TOP, cursor_edge, cursor_vertex, 
-	     group_current, False, group);
+	     group_current, False, group, current_color);
   glPopMatrix();
 }
 
@@ -104,7 +110,7 @@ void draw_font_shape_ve(float font_scale, SHAPE_VE * shape, float x, float y, fl
   glScaled(font_scale,font_scale,font_scale);
   
   draw_edges(shape->edge_top, shape->edge, shape->vertex, 
-	     group_current, False, group);
+	     group_current, False, group, current_color);
   glPopMatrix();
 }
 
@@ -141,15 +147,12 @@ void redraw_mono()
   }
 
   /* TEST - begin */
-/*
-  draw_font(font_scale, font_point_vertex, font_point_edge_top, font_point_edge,  0,0,0); 
-  draw_font(font_scale, font_point_vertex, font_point_edge_top, font_point_edge, cursor[0], cursor[1], cursor[2] ); 
-
+/**/
   draw_font_shape_ve(font_scale, &font_point,  0,0,0); 
   draw_font_shape_ve(font_scale,digit_letter_shape[10+'Z'-'A'] ,  0,0,0); 
   draw_font_shape_ve(font_scale, &font_point, cursor[0], cursor[1], cursor[2] ); 
   draw_font_shape_ve(font_scale, digit_letter_shape[0], cursor[0], cursor[1], cursor[2] ); 
-*/
+/**/
   /* TEST - end */
 
   { /* draw visible constructive points */
@@ -233,7 +236,7 @@ void redraw_mono()
   }
 
   draw_edges(edge_top, edge, vertex, 
-	         group_current, group_restricted, group);
+	         group_current, group_restricted, group, -1); /* -1 is not valid color index */
   draw_triangles(triangle_top, triangle, vertex, triangle_normal,
 	         group_current, group_restricted, group);
 
