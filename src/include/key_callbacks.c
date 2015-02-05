@@ -38,9 +38,6 @@ void callbackKeyPress( XKeyEvent* evptr)
     case key_F2:
       callback_key_F2(evptr);
       break;
-    case key_F3:
-      callback_key_F3(evptr);
-      break;
     case key_F4:
       callback_key_F4(evptr);
       break;
@@ -470,81 +467,6 @@ void key_F4_help()
 
 
 
-void callback_key_F3(XKeyEvent* evptr)
-{
-  enum Keymode next_mode;
-  char buffer[10];
-  KeySym keysym;
-  XKeyEvent ev;
-
-
-  ev.state=evptr->state;
-  evptr->state=0;
-  XLookupString(evptr, buffer, 9, &keysym, NULL);
-  evptr->state=ev.state;
-
-
-  next_mode= key_default;
-
-  switch(XLookupKeysym(evptr,0))
-    {
-    case  XK_Shift_L:
-    case  XK_Shift_R:
-    case XK_Control_L:
-    case XK_Control_R:
-    case XK_Alt_L:
-    case XK_Alt_R:
-      next_mode=key_F3;
-      break;
-
-    default:
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  if('0'<= buffer[0] && buffer[0]<= '9')
-	    point_store(buffer[0]-'0', cursor);
-	  else
-	  if('a'<= buffer[0] && buffer[0]<= 'a'+POINT_MAX-10)
-	    point_store(buffer[0]-'a'+10, cursor);
-
-	  break;
-	case ControlMask:
-	  if('0'<= buffer[0] && buffer[0]<= '9')
-	    cursor_set(point[buffer[0]-'0'][0],
-		       point[buffer[0]-'0'][1], 
-		       point[buffer[0]-'0'][2]
-		       );
-	  else
-	  if('a'<= buffer[0] && buffer[0]<= 'a'+POINT_MAX-10)
-	    cursor_set(point[buffer[0]-'a'+10][0],
-		       point[buffer[0]-'a'+10][1], 
-		       point[buffer[0]-'a'+10][2]
-		       );
-	  break;
-	  
-	}
-      redraw();
-      break;
-    }
-
-
-
-  keymode=next_mode;
-  if(keymode==key_default) printf("default key mode\n");
-
-}
-
-
-void key_F3_help()
-{
-  printf("F3 mode (STORED POINTS):\n");
-  point_print();
-  printf("\n");
-  printf("<*> stroes cursor position as the point '*'\n");
-  printf("<Ctrl>+<*> moves the cursor to the point '*'\n");
-}
-
-
 
 
 void callback_key_F2(XKeyEvent* evptr)
@@ -755,8 +677,9 @@ void callback_key_default(XKeyEvent* evptr)
       break;
 
     case XK_F3:
-      keymode=key_F3;
-      key_F3_help();
+      goto_terminal();
+      menu_F3();
+      goto_window();
       break;
 
     case XK_F4:

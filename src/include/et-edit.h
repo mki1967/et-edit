@@ -278,11 +278,11 @@ float  et0_marker[3], t1_marker[3];  /*  for storing endpoits of new edge or tri
 enum Keymode
   {
     key_default,
-/*    key_F1, */
+    /*    key_F1, */
     key_F2,
-    key_F3,
+    /*    key_F3, */
     key_F4,
-/*    key_F5, */
+    /*    key_F5, */
     key_F6,
     key_F7
 
@@ -742,8 +742,10 @@ void key_F5_help();
 */
 void callback_key_F4(XKeyEvent* evptr);
 void key_F4_help();
+/*
 void callback_key_F3(XKeyEvent* evptr);
 void key_F3_help();
+*/
 void callback_key_F2(XKeyEvent* evptr);
 void key_F2_help();
 void callback_key_default(XKeyEvent* evptr);
