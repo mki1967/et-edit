@@ -38,9 +38,6 @@ void callbackKeyPress( XKeyEvent* evptr)
     case key_F2:
       callback_key_F2(evptr);
       break;
-    case key_F4:
-      callback_key_F4(evptr);
-      break;
     case key_F6:
        /*  callback_key_F6(evptr); */
       break;
@@ -296,179 +293,6 @@ void key_F7_help()
 
 
 
-void callback_key_F4(XKeyEvent* evptr)
-{
-  enum Keymode next_mode;
-  next_mode= key_default;
-
-  switch(XLookupKeysym(evptr,0))
-    {
-    case  XK_Shift_L:
-    case  XK_Shift_R:
-    case XK_Control_L:
-    case XK_Control_R:
-    case XK_Alt_L:
-    case XK_Alt_R:
-      next_mode=key_F4;
-      break;
-
-    case XK_i:
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  {
-	    float X[3];
-	    vectorcpy(X, cursor);
-	    line_triangle_intersection(point[10], point[11],
-				       point[12], point[13], point[14],
-				       X);
-	    cursor_set(X[0], X[1], X[2]);
-	    
-	  }
-	  redraw();
-	  break;
-	case ShiftMask:
-	  group_tt_intersection(group_current, group_marker);
-	  redraw();
-	  break;
-	}
-      break;
-    case XK_c:
-      {
-	float X[3];
-	vectorcpy(X, cursor);
-	find_group_center(group_current, X);
-	cursor_set(X[0], X[1], X[2]);
-      }
-      redraw();
-      break;
-
-    case XK_n:
-      {
-	float X[3];
-	triangle_normal_vector(point[10], point[11],point[12],X);
-        vector_scale(cursor_step,X);
-        vectorcpy(et0_marker, cursor);
-        vector_add(cursor, X, X);
-        context_switch(context_et0);
-	cursor_set(X[0], X[1], X[2]);
-
-      }
-      redraw();
-      break;
-
-    case XK_s:
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  constr_scale(point[10], point[11],
-		       point[12], point[13], cursor,
-		       group_current);
-	  break;
-	case ControlMask:
-	  constr_scale_in_direction(point[10], point[11],
-				    point[12], point[13], 
-				    point[14], point[15], 
-				    cursor,
-				    group_current);
-	  break;
-	}
-      redraw();
-      break;
-
-    case XK_t:
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  three_point_transform(point[10], point[11], point[12], 
-				point[13], point[14], point[15],
-				group_current);
-	  break;
-	}
-      redraw();
-      break;
-
-    case XK_f:
-      switch((evptr->state)&(ControlMask|Mod1Mask|ShiftMask))
-	{
-	case 0:
-	  {
-	    float V[3];
-	    if(find_folding(point[10], 
-			    point[11], point[12], 
-			    point[13], point[14], 
-			    point[15],
-			    V)
-	       )
-	      {
-		cursor_set(V[0], V[1], V[2]);
-	      }
-	  }
-	  break;
-	case ControlMask:
-	  {
-	    float V[3], mv1[3], mv2[3], R1[3][3], R2[3][3];
-	    if(find_folding(point[10], 
-			    point[11], point[12], 
-			    point[13], point[14], 
-			    point[15],
-			    V)
-	       &&
-	       find_three_point_transform(point[10], point[11], point[13],
-					 point[10], point[11], V,
-					 mv1,R1)
-	       &&
-	       find_three_point_transform(point[10], point[12], point[14],
-					 point[10], point[12], V,
-					 mv2,R2)
-	       )
-	      {
-
-		backup();
-		group_transform(group_current,mv2,R2);
-		if(group_marker!=group_current)
-		  group_transform(group_marker,mv1,R1);
- 
-	         /*  DOKONCZ ... */
-	      }
-	  }
-	  break;
-	}
-      redraw();
-      break;
-      
-      
-    }
-
-
-  keymode=next_mode;
-  if(keymode==key_default) printf("default key mode\n");
-
-}
-
-
-void key_F4_help()
-{
-  printf("F4 mode (CONSTRUCTIVE METHODS):\n");
-  printf("\n");
-  printf("<C> move cursor to the current group center\n");
-  printf("<I> move cursor to intersection of line AB and plane CDE\n");
-  printf("<Shift>+<I> intersection of triangles of marked and curent groups\n");
-  printf("<N> find cursor_step*(normal to ABC)\n");
-  printf("<S> scale current group by  |AB|/|CD| (where fixed_point=cursor)\n");
-  printf("<Ctrl>+<S> scale current group by  |AB|/|CD| in direction EF\n");
-  printf("<T> three point transformation ABC to DEF\n");
-  printf("<F> find folding point: axes AB, AC, rotated lines AD, AE, direction F\n");
-  printf("<Ctrl>+<F> folding marked and current group around AB and AC in direction F so that AD meets AE\n");
-
-
-}
-
-
-
-
-
-
 void callback_key_F2(XKeyEvent* evptr)
 {
   enum Keymode next_mode;
@@ -683,8 +507,9 @@ void callback_key_default(XKeyEvent* evptr)
       break;
 
     case XK_F4:
-      keymode=key_F4;
-      key_F4_help();
+      goto_terminal();
+      menu_F4();
+      goto_window();
       break;
 
     case XK_F5:
