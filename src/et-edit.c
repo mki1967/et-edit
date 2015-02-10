@@ -37,7 +37,7 @@ typedef struct{
 
 /* FONT DATA */
 const float font_scale=0.06;
-
+/*
 #include "res/et-fonts/points/font_point"
 #include "res/et-fonts/alphanum/font_0"
 #include "res/et-fonts/alphanum/font_1"
@@ -75,6 +75,9 @@ const float font_scale=0.06;
 #include "res/et-fonts/alphanum/font_X"
 #include "res/et-fonts/alphanum/font_Y"
 #include "res/et-fonts/alphanum/font_Z"
+*/
+
+#include "font_data.c" /* include font data collected with make_font_data_c.bash */
 
 
 /* TABLE OF SHAPES of digits 0...9 and then letters A...Z */
