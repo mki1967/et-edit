@@ -99,3 +99,10 @@ printed on the terminal.
 
 Actions are described in HTML file:  doc/index.html
 
+
+REQUIRED PACKAGES:
+------------------
+For compilation on Linux Ubuntu:
+ * mesa-common-dev
+ * libgl1-mesa-dev
+
