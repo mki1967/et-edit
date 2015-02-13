@@ -10,6 +10,7 @@ printf(" r   Reduction (F5) menu\n");
 printf(" e   Export menu\n");
 printf(" cp  Constructive points (F3) menu\n");
 printf(" cm  Constructive methods (F4) menu\n");
+printf(" sm  Stereo (F7) menu\n");
 
 
 s=get_menu_selector();
@@ -25,6 +26,8 @@ else
 if(strcmp(s,"cp")==0) menu_F3();
 else
 if(strcmp(s,"cm")==0) menu_F4();
+else
+if(strcmp(s,"sm")==0) menu_F7();
 
 printf("\nContinue in graphical window\n");
 

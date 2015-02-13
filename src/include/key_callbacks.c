@@ -519,8 +519,9 @@ void callback_key_default(XKeyEvent* evptr)
       break;
 
     case XK_F7:
-      keymode=key_F7;
-      key_F7_help();
+      goto_terminal();
+      menu_F7();
+      goto_window();
       break;
 
     case XK_Up : 
