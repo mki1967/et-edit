@@ -279,12 +279,8 @@ enum Keymode
   {
     key_default,
     /*    key_F1, */
-    key_F2,
-    /*    key_F3, */
-    /* key_F4,  */
-    /*    key_F5, */
-    key_F6,
-    key_F7
+    key_F2
+
 
   };
 
