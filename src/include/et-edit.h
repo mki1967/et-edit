@@ -43,6 +43,11 @@
 
 #include "et-define.h"
 
+
+/* DEFINITIONS of type, struct, enum ... */
+
+#include "et-types.h"
+
  /* /// PROGRAM VARIABLES AND FUNCTIONS //////////////////////// */
 
 #include "../et-variables.c"

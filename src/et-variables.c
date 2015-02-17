@@ -37,12 +37,6 @@ char merge_file_name[MAX_FILE_NAME+5]="noname.et";
 
  /*  float rwidth, rheight;  */
 
-struct Screen
-{
-  float distance;
-  float clip_min, clip_max;
-  int width, height;
-};
 
 struct Screen screen;
 
@@ -83,36 +77,12 @@ double pcl_darkness=0.7;
 
  /* // TRANSFORMATION VARIABLES */
 
-struct Transformation 
-{
-  float mov[16];
-  double M[16], R[16];
-  
-};
-
 
 struct Transformation transformation;
 
 
  /* // CLIPPING VARIABLES */
 
-struct Clipping_xyz
-{
-  float xmin;
-  Bool xmin_flag;
-  float xmax;
-  Bool xmax_flag;
-
-  float ymin;
-  Bool ymin_flag;
-  float ymax;
-  Bool ymax_flag;
-
-  float zmin;
-  Bool zmin_flag;
-  float zmax;
-  Bool zmax_flag;
-};
 
 struct Clipping_xyz clipping_xyz;
 
@@ -207,12 +177,6 @@ float cursor_step=1.0, cursor_min_step=0.0001, cursor_max_step=10000;
 
 float move_step=1.0, rotate_step=5.0;
 
-enum  Context
-  { 
-    context_default, 
-    context_et0,
-    context_t1 
-  };
 
 enum Context context=context_default;
 
@@ -221,14 +185,6 @@ float  et0_marker[3], t1_marker[3];  /*  for storing endpoits of new edge or tri
 
  /* / CALLBACK */
 
-enum Keymode
-  {
-    key_default,
-    /*    key_F1, */
-    key_F2
-
-
-  };
 
 enum Keymode keymode=key_default;
 
@@ -332,4 +288,50 @@ int   polygon_n=POLYGON_MIN;
 double reduction_epsilon=0.0001;
 
 
+
+/* FONT DATA */
+const float font_scale=0.06;
+
+#include "font_data.c" /* include font data collected with make_font_data_c.bash */
+
+
+/* TABLE OF SHAPES of digits 0...9 and then letters A...Z */
+SHAPE_VE * digit_letter_shape[] = {
+                                   &font_0,
+                                   &font_1,
+                                   &font_2,
+                                   &font_3,
+                                   &font_4,
+                                   &font_5,
+                                   &font_6,
+                                   &font_7,
+                                   &font_8,
+                                   &font_9,
+                                   &font_A,
+                                   &font_B,
+                                   &font_C,
+                                   &font_D,
+                                   &font_E,
+                                   &font_F,
+                                   &font_G,
+                                   &font_H,
+                                   &font_I,
+                                   &font_J,
+                                   &font_K,
+                                   &font_L,
+                                   &font_M,
+                                   &font_N,
+                                   &font_O,
+                                   &font_P,
+                                   &font_Q,
+                                   &font_R,
+                                   &font_S,
+                                   &font_T,
+                                   &font_U,
+                                   &font_V,
+                                   &font_W,
+                                   &font_X,
+                                   &font_Y,
+                                   &font_Z,
+};
 
