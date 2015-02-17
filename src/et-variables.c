@@ -26,7 +26,7 @@ int screen_width=600, screen_height=600;
 
 char *program_name="E.T. EDITOR";
 
-#define MAX_FILE_NAME 200
+
 char file_name[MAX_FILE_NAME+5]="noname.et";
 char merge_file_name[MAX_FILE_NAME+5]="noname.et";
 
@@ -121,7 +121,6 @@ float clipping_cube_size=25.0;
 
  /* /// COLOR VARIABLES */
 
-#define COLOR_MAX 12
 
 float color[COLOR_MAX][3] =
   {
@@ -152,7 +151,6 @@ Bool two_lights = True;
 
  /* // VERTEX VARIABLES */
 
-#define VERTEX_MAX 10000
 
 int vertex_used[VERTEX_MAX];
 float vertex[VERTEX_MAX][3];
@@ -160,16 +158,12 @@ float vertex[VERTEX_MAX][3];
 
  /* /// EDGE VARIABLES */
 
-#define EDGE_MAX 20000
-
 int edge[EDGE_MAX][3]; 
  /*  int edge_color[EDGE_MAX]; // moved to last coordinate of edge */
 int edge_top=0;
 
 
  /* // TRIANGLE VARIABLES */
-
-#define TRIANGLE_MAX 20000
 
 int triangle[TRIANGLE_MAX][4]; 
  /*  int triangle_color[TRIANGLE_MAX]; // moved to last coordinate of triangle */
@@ -189,9 +183,6 @@ Bool group_restricted=False;
 
 float cursor[16]={ 0.0, 0.0, 0.0, 1.0 };
 
-#define  CURSOR_VERTEX_MAX 7
-
-
 float cursor_vertex[CURSOR_VERTEX_MAX][3];
 
 float cursor_vertex_template[CURSOR_VERTEX_MAX][3] = 
@@ -205,7 +196,6 @@ float cursor_vertex_template[CURSOR_VERTEX_MAX][3] =
     { 0.25,  0.5,  0.0},
   };
 
-#define CURSOR_EDGE_TOP  4
 
 int cursor_edge[CURSOR_EDGE_TOP][3] = { {0,1,0}, {2,3,0}, {4,5,0}, {3,6,0} };
  /*  int cursor_edge_color[CURSOR_EDGE_TOP]= {0,0,0}; */
@@ -328,16 +318,11 @@ float backup_move_step;
 
  /* // POINTS */
 
-#define POINT_MAX ('9'-'0'+1 + 'Z'-'A'+1)
-
 float point[POINT_MAX][3]; /* contructive points */
 Bool point_visible[POINT_MAX]; /* visibility of contructive points */
 
 
  /* // REGULAR POLYGON */
-
-#define POLYGON_MAX 720
-#define POLYGON_MIN 3
 
 int   polygon_n=POLYGON_MIN;
 

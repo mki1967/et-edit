@@ -39,7 +39,9 @@
 
 
 
+/* DEFINITIONS "#define ..." */
 
+#include "et-define.h"
 
  /* /// PROGRAM VARIABLES AND FUNCTIONS //////////////////////// */
 
