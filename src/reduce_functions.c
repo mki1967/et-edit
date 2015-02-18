@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void reduce_group_vertices(int g)
 {

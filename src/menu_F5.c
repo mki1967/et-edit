@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 void menu_F5()
 {
 char * s; /* pointer to menu selector */

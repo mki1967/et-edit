@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 /*** TERMINAL INTERACTION UI ***/
 
 char * get_menu_selector()
@@ -51,7 +52,7 @@ scanf("%*s%*[^\n]");
 
 /* INCLUDE SUB-MENUS */
 
-
+/*
 #include "menu_F1.c"
 #include "menu_F3.c"
 #include "menu_F4.c"
@@ -63,4 +64,4 @@ scanf("%*s%*[^\n]");
 #include "terminal_menus.c"
 #include "root_menu.c"
 
-
+*/

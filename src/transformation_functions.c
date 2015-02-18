@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void transformation_fprintf(FILE* s, struct Transformation* t)
 {

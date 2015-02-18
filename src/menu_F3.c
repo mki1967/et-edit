@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 /*
  CONSTRUCTIVE POINTS (F3) MENU
 */

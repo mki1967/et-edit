@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 /*
 GROUP MENU (F1 MENU)
 */

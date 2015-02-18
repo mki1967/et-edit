@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void clip_reset(struct Clipping_xyz *clipping_xyz)
 {

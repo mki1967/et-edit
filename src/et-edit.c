@@ -31,56 +31,6 @@
 
 
 
- /* ////////////  FUNCTIONS */
-
-
- /* // BACKUP AND UNDO */
-#include "backup_undo.c"
-/* // SCREEN  */
-#include "screen_functions.c"
-/* / VECTOR OPERATIONS */
-#include "vector_functions.c"
-/* / CONSTRUCTIVE METHODS */
-#include "constructive_methods.c"
-/* /// TRANSFORMATION  */
-#include "transformation_functions.c"
-/* //// CLIPPING PLANES ///// */
-#include "clip_functions.c"
-/* /// LIGHT  */
-#include "light_functions.c"
-/* // VERTEX FUNCTIONS */
-#include "vertex_functions.c"
-/* // EDGE STACK */
-#include "edge_functions.c"
-/* // TRIANGLE  */
-#include "triangle_functions.c"
-/* ///////// GROUPS */
-#include "group_functions.c"
-/* ////// CURSOR /////// */
-#include "cursor_functions.c"
-/* / REDUTCIONS */
-#include "reduce_functions.c"
-/* /////////// SAVING / LOADING */
-#include "io_functions.c"
-/* // PCL raster printing */
-/* #include "export_pcl.c" */
-/* //// POVRAY */
-#include "export_povray.c"
-/* EXPORT TO C DATA */
-#include "export_c_ve.c"
-/* // REDRAW FUNCTIONS */
-#include "redraw_functions.c"
-/* // MENU */
-/* #include "terminal_menus.c" */
-#include "ui.c"
-/* ///// GRAPH FUNCTIONS */
-#include "graph_functions.c"
-/* //// CALLBACKS */
-#include "expose_callbacks.c"
-/* //////////// KEY COMMANDS //////////// */
-#include "key_callbacks.c"
-
-
 
  /* ///////////////// EDITOR  /////////////////////////// */
 

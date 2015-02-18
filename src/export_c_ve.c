@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void c_vertex_fprintf(FILE* s, int n, float v[][3], char * name_prefix)
 {

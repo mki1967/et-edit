@@ -1,6 +1,7 @@
+#include "include/et-edit.h"
+
 /* GLOBAL VARIABLES - compiled separately */
 
-#include "include/et-edit.h"
 
  /* /////// X / GLX VARIABLES ///////////// */
 
@@ -295,7 +296,7 @@ double reduction_epsilon=0.0001;
 /* FONT DATA */
 const float font_scale=0.06;
 
-#include "font_data.c" /* include font data collected with make_font_data_c.bash */
+#include "font_data.include" /* include font data collected with make_font_data_c.bash */
 
 
 /* TABLE OF SHAPES of digits 0...9 and then letters A...Z */

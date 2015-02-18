@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void cursor_set_shape()
 {

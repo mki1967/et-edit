@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 int save(char* fname, 
 	 float vertex[][3], int vertex_used[],

@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void draw_triangles(int top, int t[][4],  float v[][3], float t_normal[][3],
 	       int group_current, Bool group_restricted, int group[])

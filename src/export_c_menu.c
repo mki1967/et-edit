@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 void export_c_menu()
 {
 char * s; /* pointer to menu selector */

@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void set_light(float light[16])
 {

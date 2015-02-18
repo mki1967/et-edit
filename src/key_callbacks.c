@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 
 void context_switch(enum Context new_context)

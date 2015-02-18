@@ -1,3 +1,4 @@
+#include "include/et-edit.h"
 
 void graph_marked_init()
 {
