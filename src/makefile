@@ -9,6 +9,8 @@ LIB= -L/usr/X11R6/lib
 
 # $(MAIN_SOURCE) -- all source and header files are directly or indirectly included in $(MAIN_SOURCE)
 MAIN_SOURCE= et-edit.c
+# $(VAR_DEFS) -- definitions of global variables
+VAR_DEFS= et-variables.c
 # $(MAIN_SOURCE) -- directly and indirectly included source files
 INCLUDED_SOURCES= $(wildcard include/%.c) 
 # $(INDCLUDED_HEADERS) -- directly and indirectly included headers
@@ -20,7 +22,7 @@ EXECUTABLE= et-edit
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(MAIN_SOURCE) $(INCLUDED_SOURCES) $(INDCLUDED_HEADERS) makefile
-	gcc -g -Wall -pedantic $(INC) $(LIB)  -o $@ $< -lX11 -lm  -lGL
+	gcc -g -Wall -pedantic $(INC) $(LIB)  -o $@ $< $(VAR_DEFS) -lX11 -lm  -lGL
 
 src: 
 	mv et-edit et-edit.bin; cd ..; tar zcvf et-edit.tgz \

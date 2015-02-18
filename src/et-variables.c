@@ -1,3 +1,6 @@
+/* GLOBAL VARIABLES - compiled separately */
+
+#include "include/et-edit.h"
 
  /* /////// X / GLX VARIABLES ///////////// */
 

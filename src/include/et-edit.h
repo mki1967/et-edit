@@ -50,8 +50,9 @@
 
  /* /// PROGRAM VARIABLES AND FUNCTIONS //////////////////////// */
 
-#include "../et-variables.c"
-
+/* #include "../et-variables.c" */
+/* declarations ... */
+#include "et-variables.h" 
 
  /* ////////////  FUNCTIONS */
 
