@@ -194,6 +194,8 @@ void switch_second_light();
 
  /* // VERTEX FUNCTIONS */
 
+int vertex_used_find(float v[]);
+int vertex_find_nearest(float v[]);
 
 int vertex_number_of(int vertex_used[VERTEX_MAX]);
 int vertex_insert(float v[]);
@@ -439,7 +441,18 @@ void group_menu();
 void graph_menu();
 void export_menu();
 void povray_menu();
-
+/* UI MENU */
+void get_anything();
+char * get_menu_selector();
+void root_menu();
+void menu_F1();
+void menu_F2();
+void menu_F3();
+void menu_F4();
+void menu_F5();
+void menu_F6();
+void menu_F7();
+void export_c_menu();
 
  /* ///// GRAPH FUNCTIONS */
 
