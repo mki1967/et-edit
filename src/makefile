@@ -1,11 +1,11 @@
-# INC= -I/usr/X11/include/ -I/usr/share/doc/packages/NVIDIA_GLX/include/
-# INC= -I/usr/include/X11/ -I/usr/share/doc/NVIDIA_GLX-1.0/include/
-INC= -I/usr/include/X11/ -I./include/
-# INC= -I/usr/openwin/include/
-# LIB= -L/usr/X11/lib 
+INC= -I/usr/include/X11/
 LIB= -L/usr/X11R6/lib 
  
-# LIB= -L/usr/openwin/lib/
+
+CPPFLAGS= -I/usr/include/X11/
+CFLAGS= -g -Wall -pedantic
+LDFLAGS= -L/usr/X11R6/lib
+LDLIBS= -lX11 -lm  -lGL
 
 # $(MAIN_SOURCE) -- all source and header files are directly or indirectly included in $(MAIN_SOURCE)
 MAIN_SOURCE= et-edit.c

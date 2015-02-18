@@ -37,48 +37,48 @@
  /* // BACKUP AND UNDO */
 #include "backup_undo.c"
 /* // SCREEN  */
-#include "include/screen_functions.c"
+#include "screen_functions.c"
 /* / VECTOR OPERATIONS */
-#include "include/vector_functions.c"
+#include "vector_functions.c"
 /* / CONSTRUCTIVE METHODS */
-#include "include/constructive_methods.c"
+#include "constructive_methods.c"
 /* /// TRANSFORMATION  */
-#include "include/transformation_functions.c"
+#include "transformation_functions.c"
 /* //// CLIPPING PLANES ///// */
-#include "include/clip_functions.c"
+#include "clip_functions.c"
 /* /// LIGHT  */
-#include "include/light_functions.c"
+#include "light_functions.c"
 /* // VERTEX FUNCTIONS */
-#include "include/vertex_functions.c"
+#include "vertex_functions.c"
 /* // EDGE STACK */
-#include "include/edge_functions.c"
+#include "edge_functions.c"
 /* // TRIANGLE  */
-#include "include/triangle_functions.c"
+#include "triangle_functions.c"
 /* ///////// GROUPS */
-#include "include/group_functions.c"
+#include "group_functions.c"
 /* ////// CURSOR /////// */
-#include "include/cursor_functions.c"
+#include "cursor_functions.c"
 /* / REDUTCIONS */
-#include "include/reduce_functions.c"
+#include "reduce_functions.c"
 /* /////////// SAVING / LOADING */
-#include "include/io_functions.c"
+#include "io_functions.c"
 /* // PCL raster printing */
-/* #include "include/export_pcl.c" */
+/* #include "export_pcl.c" */
 /* //// POVRAY */
-#include "include/export_povray.c"
+#include "export_povray.c"
 /* EXPORT TO C DATA */
-#include "include/export_c_ve.c"
+#include "export_c_ve.c"
 /* // REDRAW FUNCTIONS */
-#include "include/redraw_functions.c"
+#include "redraw_functions.c"
 /* // MENU */
-/* #include "include/terminal_menus.c" */
-#include "include/ui/ui.c"
+/* #include "terminal_menus.c" */
+#include "ui.c"
 /* ///// GRAPH FUNCTIONS */
-#include "include/graph_functions.c"
+#include "graph_functions.c"
 /* //// CALLBACKS */
-#include "include/expose_callbacks.c"
+#include "expose_callbacks.c"
 /* //////////// KEY COMMANDS //////////// */
-#include "include/key_callbacks.c"
+#include "key_callbacks.c"
 
 
 
