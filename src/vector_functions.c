@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 
 void float_zeroes(int n, float v[])
 {

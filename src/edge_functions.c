@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 
 
 void edge_fprintf(FILE* s, int edge_top, int edge[][3] )

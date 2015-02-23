@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 
 void group_mark(int gr)
 {

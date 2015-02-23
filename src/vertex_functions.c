@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 
 int vertex_number_of(int vertex_used[VERTEX_MAX])
 {

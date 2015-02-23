@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 void menu_F4()
 {
 char * s; /* pointer to menu selector */

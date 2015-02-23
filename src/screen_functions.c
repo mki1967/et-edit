@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 void screen_init(struct Screen* scr)
 {
   scr->distance=screen_distance;

@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 
 void triangle_fprintf(FILE* s, int triangle_top, int triangle[][4])
 {

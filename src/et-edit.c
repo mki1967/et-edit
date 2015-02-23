@@ -26,7 +26,7 @@
 
 
 
-#include "include/et-edit.h"
+#include "./et-edit.h"
 
 
 

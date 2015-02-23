@@ -1,4 +1,4 @@
-#include "include/et-edit.h"
+#include "./et-edit.h"
 /*** TERMINAL INTERACTION UI ***/
 
 char * get_menu_selector()
