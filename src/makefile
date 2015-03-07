@@ -11,40 +11,40 @@ all: et-edit
 clean:
 	-rm rm -f *.o core
 # The rules for making .o files from .c files
-backup_undo.o : backup_undo.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-clip_functions.o : clip_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-constructive_methods.o : constructive_methods.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-cursor_functions.o : cursor_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-edge_functions.o : edge_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-et-edit.o : et-edit.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-et-variables.o : et-variables.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-export_c_menu.o : export_c_menu.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-export_c_ve.o : export_c_ve.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-export_menu.o : export_menu.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-export_povray.o : export_povray.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-expose_callbacks.o : expose_callbacks.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-graph_functions.o : graph_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-group_functions.o : group_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-io_functions.o : io_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-key_callbacks.o : key_callbacks.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-light_functions.o : light_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-menu_F1.o : menu_F1.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-menu_F2.o : menu_F2.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-menu_F3.o : menu_F3.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-menu_F4.o : menu_F4.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-menu_F5.o : menu_F5.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-menu_F7.o : menu_F7.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-povray_menu.o : povray_menu.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-redraw_functions.o : redraw_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-reduce_functions.o : reduce_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-root_menu.o : root_menu.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-screen_functions.o : screen_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-terminal_menus.o : terminal_menus.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-transformation_functions.o : transformation_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-triangle_functions.o : triangle_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-ui.o : ui.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-vector_functions.o : vector_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
-vertex_functions.o : vertex_functions.c include/et-define.h include/et-edit.h include/et-types.h include/et-variables.h
+backup_undo.o : backup_undo.c et-define.h et-edit.h et-types.h et-variables.h
+clip_functions.o : clip_functions.c et-define.h et-edit.h et-types.h et-variables.h
+constructive_methods.o : constructive_methods.c et-define.h et-edit.h et-types.h et-variables.h
+cursor_functions.o : cursor_functions.c et-define.h et-edit.h et-types.h et-variables.h
+edge_functions.o : edge_functions.c et-define.h et-edit.h et-types.h et-variables.h
+et-edit.o : et-edit.c et-define.h et-edit.h et-types.h et-variables.h
+et-variables.o : et-variables.c et-define.h et-edit.h et-types.h et-variables.h
+export_c_menu.o : export_c_menu.c et-define.h et-edit.h et-types.h et-variables.h
+export_c_ve.o : export_c_ve.c et-define.h et-edit.h et-types.h et-variables.h
+export_menu.o : export_menu.c et-define.h et-edit.h et-types.h et-variables.h
+export_povray.o : export_povray.c et-define.h et-edit.h et-types.h et-variables.h
+expose_callbacks.o : expose_callbacks.c et-define.h et-edit.h et-types.h et-variables.h
+graph_functions.o : graph_functions.c et-define.h et-edit.h et-types.h et-variables.h
+group_functions.o : group_functions.c et-define.h et-edit.h et-types.h et-variables.h
+io_functions.o : io_functions.c et-define.h et-edit.h et-types.h et-variables.h
+key_callbacks.o : key_callbacks.c et-define.h et-edit.h et-types.h et-variables.h
+light_functions.o : light_functions.c et-define.h et-edit.h et-types.h et-variables.h
+menu_F1.o : menu_F1.c et-define.h et-edit.h et-types.h et-variables.h
+menu_F2.o : menu_F2.c et-define.h et-edit.h et-types.h et-variables.h
+menu_F3.o : menu_F3.c et-define.h et-edit.h et-types.h et-variables.h
+menu_F4.o : menu_F4.c et-define.h et-edit.h et-types.h et-variables.h
+menu_F5.o : menu_F5.c et-define.h et-edit.h et-types.h et-variables.h
+menu_F7.o : menu_F7.c et-define.h et-edit.h et-types.h et-variables.h
+povray_menu.o : povray_menu.c et-define.h et-edit.h et-types.h et-variables.h
+redraw_functions.o : redraw_functions.c et-define.h et-edit.h et-types.h et-variables.h
+reduce_functions.o : reduce_functions.c et-define.h et-edit.h et-types.h et-variables.h
+root_menu.o : root_menu.c et-define.h et-edit.h et-types.h et-variables.h
+screen_functions.o : screen_functions.c et-define.h et-edit.h et-types.h et-variables.h
+terminal_menus.o : terminal_menus.c et-define.h et-edit.h et-types.h et-variables.h
+transformation_functions.o : transformation_functions.c et-define.h et-edit.h et-types.h et-variables.h
+triangle_functions.o : triangle_functions.c et-define.h et-edit.h et-types.h et-variables.h
+ui.o : ui.c et-define.h et-edit.h et-types.h et-variables.h
+vector_functions.o : vector_functions.c et-define.h et-edit.h et-types.h et-variables.h
+vertex_functions.o : vertex_functions.c et-define.h et-edit.h et-types.h et-variables.h
 # $(OBJS) denotes the set of .o files
 OBJS+=  backup_undo.o
 OBJS+=  clip_functions.o

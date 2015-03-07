@@ -19,7 +19,7 @@ EOF
 
 echo '# The rules for making .o files from .c files'
 # for x in $(find -name '*.c') ; do echo ${x/'.c'/'.o'} ':' $x include/*.h ; done 
-for x in *.c ; do echo ${x/'.c'/'.o'} ':' $x include/*.h ; done 
+for x in *.c ; do echo ${x/'.c'/'.o'} ':' $x *.h ; done 
 
 echo '# $(OBJS) denotes the set of .o files'
 # for x in $(find -name '*.c') ; do echo 'OBJS+= ' ${x/'.c'/'.o'}  ; done
