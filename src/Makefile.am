@@ -1,0 +1,3 @@
+bin_PROGRAMS = etedit
+etedit_SOURCES = backup_undo.c clip_functions.c constructive_methods.c cursor_functions.c edge_functions.c et-edit.c et-variables.c export_c_menu.c export_c_ve.c export_menu.c export_povray.c expose_callbacks.c graph_functions.c group_functions.c io_functions.c key_callbacks.c light_functions.c menu_F1.c menu_F2.c menu_F3.c menu_F4.c menu_F5.c menu_F7.c povray_menu.c redraw_functions.c reduce_functions.c root_menu.c screen_functions.c terminal_menus.c transformation_functions.c triangle_functions.c ui.c vector_functions.c vertex_functions.c et-define.h et-edit.h et-types.h et-variables.h
+
