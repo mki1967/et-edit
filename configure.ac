@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([et-edit], [0.5], [mki1967@gmail.com])
+AC_INIT([et-edit], [0.5.0-alpha], [mki1967@gmail.com])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/transformation_functions.c])
 AC_CONFIG_HEADERS([config.h])

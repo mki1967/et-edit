@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
 
   printf("==================================================\n");
   printf("E.T. EDITOR:  EDGE TRIANGLE THREE-DIMENSIONAL EDITOR\n");
-  printf("version 0.21\n\n");
+  printf("version: " PACKAGE_VERSION "\n\n");
   printf("Copyright (C) 2003  Marcin Kik    mki1967@gmail.com \n");
   printf("\nE.T. EDITOR comes with ABSOLUTELY NO WARRANTY.\n");
 
