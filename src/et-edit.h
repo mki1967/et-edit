@@ -446,6 +446,7 @@ void export_menu();
 void povray_menu();
 /* UI MENU */
 void get_anything();
+void get_enter();
 char * get_menu_selector();
 void root_menu();
 void menu_F1();

@@ -46,8 +46,21 @@ int are_you_sure()
 
 void get_anything()
 {
-printf("Input any non-empty text to continue ...\n");
-scanf("%*s%*[^\n]");
+  get_enter();
+  /* older version: 
+    printf("Input any non-empty text to continue ...\n");
+    scanf("%*s%*[^\n]");
+  */
+}
+
+void get_enter()
+{
+  int c;
+  printf("Press ENTER ...(once or twice ;-)\n");
+  c=getchar();
+  while(c!= '\n') c=getchar(); /* read the 'old' ENTER */
+  c=getchar();
+  while(c!= '\n') c=getchar();
 }
 
 /* INCLUDE SUB-MENUS */

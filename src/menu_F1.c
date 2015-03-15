@@ -103,7 +103,8 @@ if(strcmp(s,"rz")==0){
 } else
 if(strcmp(s,"=")==0){
       group_statistics(group_current); 
-      get_anything();
+      /* get_anything(); */
+      get_enter();
 } else
 if(strcmp(s,"ex")==0){
       backup();
