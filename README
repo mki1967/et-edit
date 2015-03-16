@@ -105,6 +105,7 @@ REQUIRED PACKAGES:
 For compilation on Linux Ubuntu:
  * mesa-common-dev
  * libgl1-mesa-dev
+ * libX11-dev
 
 
 BUILDING IN THE REPO CLONED FROM GITHUB:
