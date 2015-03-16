@@ -106,3 +106,14 @@ For compilation on Linux Ubuntu:
  * mesa-common-dev
  * libgl1-mesa-dev
 
+
+BUILDING IN THE REPO CLONED FROM GITHUB:
+----------------------------------------
+
+To build the project automatically, you need autotools and automake packages.
+First time after you clone the repository, 
+you need to run the script ./autogen.sh.
+Then you may run 
+* ./confgure
+* make
+* sudo make install # if you want to install this in your system. Otherwise run: ./src/etedit
