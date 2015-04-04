@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.68])
 AC_INIT([et-edit], [0.5.0-alpha], [mki1967@gmail.com])
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([-Wall -Werror])
 AC_CONFIG_SRCDIR([src/transformation_functions.c])
 AC_CONFIG_HEADERS([config.h])
 # AM_CONFIG_HEADERS([config.h])
