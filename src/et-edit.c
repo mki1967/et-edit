@@ -224,8 +224,8 @@ int main(int argc, char *argv[])
   printf("\nE.T. EDITOR comes with ABSOLUTELY NO WARRANTY.\n");
 
   printf("This is unstable test version, that can be freely redistributed.\n");
-  printf("Send any comments or suggestions to: mki1967@gmail.com \n");
-  printf("Most recent versions are available at:  https://github.com/mki1967/et-edit \n"); 
+  printf("Send any comments or suggestions to: " PACKAGE_BUGREPORT "\n");
+  printf("Most recent versions are available at: " PACKAGE_URL "\n"); 
 
   printf("This is free software, and you are welcome to redistribute it\n");
   printf(" under conditions of GNU GENERAL PUBLIC LICENSE\n\n");
