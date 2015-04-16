@@ -457,6 +457,7 @@ void menu_F4();
 void menu_F5();
 void menu_F6();
 void menu_F7();
+void menu_text();
 void export_c_menu();
 
  /* ///// GRAPH FUNCTIONS */

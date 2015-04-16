@@ -12,6 +12,7 @@ printf(" e   Export menu\n");
 printf(" cp  Constructive points (F3) menu\n");
 printf(" cm  Constructive methods (F4) menu\n");
 printf(" sm  Stereo (F7) menu\n");
+printf(" txt text input menu\n");
 
 
 s=get_menu_selector();
@@ -29,6 +30,8 @@ else
 if(strcmp(s,"cm")==0) menu_F4();
 else
 if(strcmp(s,"sm")==0) menu_F7();
+else
+if(strcmp(s,"txt")==0) menu_text();
 
 printf("\nContinue in graphical window\n");
 
