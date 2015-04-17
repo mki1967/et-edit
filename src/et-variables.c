@@ -295,6 +295,8 @@ double reduction_epsilon=0.0001;
 
 /* FONT DATA */
 const float font_scale=0.06;
+const float font_width= 6;
+const float font_height= 10;
 
 #include "font_data.include" /* include font data collected with make_font_data_c.bash */
 

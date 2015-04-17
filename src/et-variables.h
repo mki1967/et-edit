@@ -256,6 +256,8 @@ extern double reduction_epsilon;
 
 /* FONT DATA */
 extern const float font_scale;
+extern const float font_width;
+extern const float font_height;
 
 /* #include "font_data.c" *//* include font data collected with make_font_data_c.bash */
 
