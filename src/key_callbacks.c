@@ -434,6 +434,9 @@ void callback_key_default(XKeyEvent* evptr)
       break;
 
     case XK_Tab:
+      goto_terminal();
+      get_enter();
+      goto_window();
       break; 
 
     case XK_Escape : 
@@ -854,7 +857,9 @@ goto_terminal();
   printf("<Shift>+<O> - add regular polygon (triangles)\n");
   printf("<Alt>+<Shift>+<O> - add regular polygon (edges and triangles)\n");
   printf("<PageUp>/<PageDown> - increase/decrease number of polygon vertices [%d]\n",
-polygon_n);
+	 polygon_n);
+  printf("<Tab> - show terminal\n");
+
    /*  ... */
 
   printf("-----------------------------------------\n\n");
