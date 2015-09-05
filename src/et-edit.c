@@ -26,45 +26,9 @@
 
 
 
-#include "include/et-edit.h"
+#include "./et-edit.h"
 
 
-
- /* ////////////  FUNCTIONS */
-
-
- /* // BACKUP AND UNDO */
-#include "backup_undo.c"
-/* // SCREEN  */
-#include "include/screen_functions.c"
-/* / VECTOR OPERATIONS */
-#include "include/vector_functions.c"
-/* / CONSTRUCTIVE METHODS */
-#include "include/constructive_methods.c"
-/* /// TRANSFORMATION  */
-#include "include/transformation_functions.c"
-/* //// CLIPPING PLANES ///// */
-#include "include/clip_functions.c"
-/* /// LIGHT  */
-#include "include/light_functions.c"
-/* // VERTEX FUNCTIONS */
-#include "include/vertex_functions.c"
-/* // EDGE STACK */
-#include "include/edge_functions.c"
-/* // TRIANGLE  */
-#include "include/triangle_functions.c"
-/* ///////// GROUPS */
-#include "include/group_functions.c"
-/* ////// CURSOR /////// */
-#include "include/cursor_functions.c"
-/* / REDUTCIONS */
-#include "include/reduce_functions.c"
-/* /////////// SAVING / LOADING */
-#include "include/io_functions.c"
-/* // PCL raster printing */
-#include "include/export_pcl.c" 
-/* //// POVRAY */
-#include "include/export_povray.c"
 
 
 
@@ -96,6 +60,7 @@ void goto_window()
 /* XIconifyWindow(display, window, DefaultScreen(display)); */ /* screen_number set to 0 */
 /* XMapRaised(display, window); */
   XRaiseWindow(display, window);
+  redraw(); 
  XSetInputFocus(display, window, RevertToParent, CurrentTime); 
   XFlush(display);
 }
@@ -175,8 +140,7 @@ if(xvisualinfo_array==NULL)
 
 }
 
-
- /* /////////////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////////// */
 
 
 void mainloop()
@@ -199,14 +163,6 @@ void mainloop()
 
 
 
- /* //// CALLBACKS */
-
-#include "include/expose_callbacks.c"
-
-/* //////////// KEY COMMANDS //////////// */
-
-
-#include "include/key_callbacks.c"
 
 
 
@@ -252,17 +208,6 @@ void setfrustum()
 
 
 
- /* // REDRAW FUNCTIONS */
-
-#include "include/redraw_functions.c"
-
- /* // MENU */
-
-#include "include/terminal_menus.c"
-
- /* ///// GRAPH FUNCTIONS */
-
-#include "include/graph_functions.c"
 
 
  /* //////// MAIN */
@@ -274,19 +219,19 @@ int main(int argc, char *argv[])
 
   printf("==================================================\n");
   printf("E.T. EDITOR:  EDGE TRIANGLE THREE-DIMENSIONAL EDITOR\n");
-  printf("version 0.21\n\n");
+  printf("version: " PACKAGE_VERSION "\n\n");
   printf("Copyright (C) 2003  Marcin Kik    mki1967@gmail.com \n");
   printf("\nE.T. EDITOR comes with ABSOLUTELY NO WARRANTY.\n");
 
   printf("This is unstable test version, that can be freely redistributed.\n");
-  printf("Send any comments or suggestions to: mki1967@gmail.com \n");
-  printf("Most recent versions are available at:  https://github.com/mki1967/et-edit \n"); 
+  printf("Send any comments or suggestions to: " PACKAGE_BUGREPORT "\n");
+  printf("Most recent versions are available at: " PACKAGE_URL "\n"); 
 
   printf("This is free software, and you are welcome to redistribute it\n");
   printf(" under conditions of GNU GENERAL PUBLIC LICENSE\n\n");
 
   printf("\nThis terminal and the graphical window are both used for interactions with you.\n");
-  printf("Thus the program must be a foreground process of this terminal.\n");
+  printf("Thus the program must be run as a FOREGROUND process of this terminal.\n");
   printf("Most interactions are by pressing the keys, on the graphical window.\n");
   printf("(Press key <H> on graphical window to print the list of key commands)\n");
   printf("From time to time you may be requested to input a text in this terminal.\n");
