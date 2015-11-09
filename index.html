@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Et-edit by mki1967</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Et-edit</h1>
+      <h2 class="project-tagline">Editor for designing 3D  objects consisting of coloured edges and triangles</h2>
+      <a href="https://github.com/mki1967/et-edit" class="btn">View on GitHub</a>
+      <a href="https://github.com/mki1967/et-edit/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mki1967/et-edit/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="et-editor--edge-triangle-three-dimensional-editor" class="anchor" href="#et-editor--edge-triangle-three-dimensional-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>E.T. EDITOR:  EDGE TRIANGLE THREE-DIMENSIONAL EDITOR</h1>
+
+<p>Copyright (C) 2003, 2015  Marcin Kik     <a href="mailto:mki1967@gmail.com">mki1967@gmail.com</a> </p>
+
+<p>E.T. EDITOR comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under conditions of GNU GENERAL PUBLIC LICENSE</p>
+
+<p>Send any comments or suggestions to: <a href="mailto:mki1967@gmail.com">mki1967@gmail.com</a>
+Most recent versions are available at: <a href="https://github.com/mki1967">https://github.com/mki1967</a></p>
+
+<p>Some stereoscopic screen-shots are placed at: <a href="https://drive.google.com/folderview?id=0B83LMR1NBoUXNW85MmtwaTR1bk0&amp;usp=sharing">https://drive.google.com/folderview?id=0B83LMR1NBoUXNW85MmtwaTR1bk0&amp;usp=sharing</a></p>
+
+<h2>
+<a id="description-of-the-program" class="anchor" href="#description-of-the-program" aria-hidden="true"><span class="octicon octicon-link"></span></a>DESCRIPTION OF THE PROGRAM:</h2>
+
+<p>(Short tutorial has been placed on-line at: <a href="https://dl.dropboxusercontent.com/u/22924817/et-edit/doc/index.html">https://dl.dropboxusercontent.com/u/22924817/et-edit/doc/index.html</a> )</p>
+
+<p>E.T. EDITOR  is a graphical editor for designing 3-dimensional 
+graph consisting of coloured edges and triangles.
+The main intention is to make the modelling process as direct
+as possible without additional hardware required
+for stereoscopic vision.
+I believe it can be used for many useful purposes
+(e.g. designing 3D scenes in computer games).</p>
+
+<p>The graph is represented by following objects:</p>
+
+<ol>
+<li><p>Array of VERTICES; each vertex is placed in a point of 3D space.</p></li>
+<li><p>Array of coloured EDGES; each edge is represented by line segment between
+its incident vertices.</p></li>
+<li><p>Array of coloured TRIANGLES; a triangle is analogue of an edge but 
+connects three vertices.</p></li>
+</ol>
+
+<p>The remaining objects of the editor are:</p>
+
+<ol>
+<li><p>CURSOR: indicates position in 3D space and current colour.
+Its orientation in the scene is fixed. 
+The shape of the cursor is asymmetrical to help you find
+your orientation  in the scene.</p></li>
+<li><p>OBSERVER: represents your  position and orientation in 3D space</p></li>
+<li><p>SCREEN: represents the view-port (zoom, resolution, etc.)</p></li>
+<li><p>CONTEXT: modifies the meaning of some pressed keys</p></li>
+<li><p>GROUPS: each vertex belongs to a single group 
+(denoted by an integer). 
+Some actions can be performed on the groups of vertices. </p></li>
+</ol>
+
+<p>You can manipulate these objects by invoking editing actions.
+Most of the actions are invoked by pressing the key while the input focus is
+on the graphical window.
+Sometimes you have to input a value in the terminal in
+which the program is started.
+Also some actions are invoked by selecting an item
+from text menu in the terminal.
+Therefore you should run the program in terminal as a foreground process.</p>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>INSTALLING:</h2>
+
+<p>The program requires X11 with GL/GLX libraries.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>USAGE:</h2>
+
+<p>In the directory containing the compiled program type:</p>
+
+<p>./et-edit [filename.et]</p>
+
+<p>You should have downloaded some example data: 
+the files with extension '.et'.</p>
+
+<p>(Warning: Keyboard CapsLock must be off.) </p>
+
+<p>Some simple tutorial is in HTML file:  doc/index.html</p>
+
+<h2>
+<a id="user-actions" class="anchor" href="#user-actions" aria-hidden="true"><span class="octicon octicon-link"></span></a>USER ACTIONS:</h2>
+
+<p>You start the compiled  program with the command:
+./et-edit</p>
+
+<p>After starting the program, it opens the window, and reacts on the key press events in this
+window.
+Occasionally, it needs some text input from the terminal, where it is running.</p>
+
+<p>Type  command to print the key actions on the terminal in default mode.
+Whenever you switch the mode (F1, F2, ...) the key actions for the mode are
+printed on the terminal.</p>
+
+<p>Actions are described in HTML file:  doc/index.html</p>
+
+<h2>
+<a id="required-packages" class="anchor" href="#required-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIRED PACKAGES:</h2>
+
+<p>For compilation on Linux Ubuntu:</p>
+
+<ul>
+<li>mesa-common-dev</li>
+<li>libgl1-mesa-dev</li>
+<li>libX11-dev</li>
+</ul>
+
+<h2>
+<a id="building-in-the-repo-cloned-from-github" class="anchor" href="#building-in-the-repo-cloned-from-github" aria-hidden="true"><span class="octicon octicon-link"></span></a>BUILDING IN THE REPO CLONED FROM GITHUB:</h2>
+
+<p>To build the project automatically, you need autotools and automake packages.
+First time after you clone the repository, 
+you need to run the script: 
+   ./autogen.sh</p>
+
+<p>Then you may run </p>
+
+<ul>
+<li>./configure</li>
+<li>make</li>
+<li>sudo make install # if you want to install this in your system. Otherwise run: ./src/etedit</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mki1967/et-edit">Et-edit</a> is maintained by <a href="https://github.com/mki1967">mki1967</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
