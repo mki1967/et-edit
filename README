@@ -106,7 +106,8 @@ For compilation on Linux Ubuntu:
  * mesa-common-dev
  * libgl1-mesa-dev
  * libX11-dev
-
+Try to use the command: 
+   sudo apt-get install  libX11-dev  libgl1-mesa-dev  mesa-common-dev 
 
 BUILDING IN THE REPO CLONED FROM GITHUB:
 ----------------------------------------
